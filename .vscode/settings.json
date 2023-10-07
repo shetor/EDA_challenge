@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "future": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp"
+    }
+}
