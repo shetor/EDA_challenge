@@ -2,6 +2,8 @@
     "files.associations": {
         "future": "cpp",
         "*.tcc": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "*.ipp": "cpp",
+        "regex": "cpp"
     }
 }

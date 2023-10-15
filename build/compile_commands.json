@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/libs/abcsat",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64 -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -w -o CMakeFiles/libabcsat.dir/AbcGlucose.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/AbcGlucose.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/AbcGlucose.cpp",
+  "output": "libs/abcsat/CMakeFiles/libabcsat.dir/AbcGlucose.cpp.o"
+},
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/libs/abcsat",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64 -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -w -o CMakeFiles/libabcsat.dir/Glucose.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/Glucose.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/Glucose.cpp",
+  "output": "libs/abcsat/CMakeFiles/libabcsat.dir/Glucose.cpp.o"
+},
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/libs/abcsat",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64 -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -w -o CMakeFiles/libabcsat.dir/SimpSolver.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/SimpSolver.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/SimpSolver.cpp",
+  "output": "libs/abcsat/CMakeFiles/libabcsat.dir/SimpSolver.cpp.o"
+},
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/libs/abcsat",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64 -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -w -o CMakeFiles/libabcsat.dir/satSolver.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/satSolver.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/satSolver.cpp",
+  "output": "libs/abcsat/CMakeFiles/libabcsat.dir/satSolver.cpp.o"
+},
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/libs/abcsat",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64 -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -w -o CMakeFiles/libabcsat.dir/satStore.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/satStore.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/satStore.cpp",
+  "output": "libs/abcsat/CMakeFiles/libabcsat.dir/satStore.cpp.o"
+},
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/cli",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DALICE_ENV_HOME=ALICE_HOME -DDISABLE_NAUTY -DFMT_HEADER_ONLY -DLIN64 -DREADLINE_USE_READLINE -I/home/wuhaojie/Desktop/EDA_challenge/cli/commands -I/home/wuhaojie/Desktop/EDA_challenge/include -I/home/wuhaojie/Desktop/EDA_challenge -I/home/wuhaojie/Desktop/EDA_challenge/include/database -I/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include -I/home/wuhaojie/Desktop/EDA_challenge/include/utils -I/home/wuhaojie/Desktop/EDA_challenge/include/operations -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -I/home/wuhaojie/Desktop/EDA_challenge/libs/fmt -I/home/wuhaojie/Desktop/EDA_challenge/libs/lorina -I/home/wuhaojie/Desktop/EDA_challenge/libs/rang -I/home/wuhaojie/Desktop/EDA_challenge/include/flow -I/home/wuhaojie/Desktop/EDA_challenge/libs/json -isystem /home/wuhaojie/Desktop/EDA_challenge/libs -isystem /home/wuhaojie/Desktop/EDA_challenge/libs/percy -isystem /home/wuhaojie/Desktop/EDA_challenge/libs/alice/include -isystem /home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11 -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -Wno-unneeded-internal-declaration -o CMakeFiles/imap.dir/imap.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/cli/imap.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/cli/imap.cpp",
+  "output": "cli/CMakeFiles/imap.dir/imap.cpp.o"
+},
+{
+  "directory": "/home/wuhaojie/Desktop/EDA_challenge/build/cli",
+  "command": "/usr/bin/c++ -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DALICE_PYTHON -DDISABLE_NAUTY -DFMT_HEADER_ONLY -DLIN64 -DREADLINE_USE_READLINE -Dimap_python_EXPORTS -I/home/wuhaojie/Desktop/EDA_challenge/cli/commands -I/home/wuhaojie/Desktop/EDA_challenge/libs/fmt -I/home/wuhaojie/Desktop/EDA_challenge/libs/json -I/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/include -I/usr/include/python3.10 -I/home/wuhaojie/Desktop/EDA_challenge/include -I/home/wuhaojie/Desktop/EDA_challenge -I/home/wuhaojie/Desktop/EDA_challenge/include/database -I/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include -I/home/wuhaojie/Desktop/EDA_challenge/include/utils -I/home/wuhaojie/Desktop/EDA_challenge/include/operations -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat -I/home/wuhaojie/Desktop/EDA_challenge/libs/lorina -I/home/wuhaojie/Desktop/EDA_challenge/libs/rang -I/home/wuhaojie/Desktop/EDA_challenge/include/flow -isystem /home/wuhaojie/Desktop/EDA_challenge/libs/alice/include -isystem /home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11 -isystem /home/wuhaojie/Desktop/EDA_challenge/libs -isystem /home/wuhaojie/Desktop/EDA_challenge/libs/percy -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -fPIC -Wno-unneeded-internal-declaration -fvisibility=hidden -o CMakeFiles/imap_python.dir/imap.cpp.o -c /home/wuhaojie/Desktop/EDA_challenge/cli/imap.cpp",
+  "file": "/home/wuhaojie/Desktop/EDA_challenge/cli/imap.cpp",
+  "output": "cli/CMakeFiles/imap_python.dir/imap.cpp.o"
+}
+]

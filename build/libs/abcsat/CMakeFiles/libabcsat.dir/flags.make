@@ -6,5 +6,5 @@ CXX_DEFINES = -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64
 
 CXX_INCLUDES = -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat
 
-CXX_FLAGS = -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O3 -DNDEBUG -std=gnu++17 -w
+CXX_FLAGS = -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address -std=gnu++17 -w
 

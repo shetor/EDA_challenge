@@ -92,7 +92,13 @@ class HistoryDemo(Demo):
 
         self.engine.write()
 
+def main():
+    input_file = '../benchmark/adder/adder.aig'
+    inst = Demo(input_file)
+
+    inst.run()
+
 
 if __name__ == '__main__':
-    d = Demo(sys.argv[1])
-    d.run()
+   main()
+
