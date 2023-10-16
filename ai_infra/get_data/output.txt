@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/wuhaojie/Desktop/EDA_challenge/ai_infra/get_data/get_data.py", line 48, in <module>
+    main()
+  File "/home/wuhaojie/Desktop/EDA_challenge/ai_infra/get_data/get_data.py", line 38, in main
+    engine = EngineIMAP()
+TypeError: EngineIMAP.__init__() missing 2 required positional arguments: 'input_file' and 'output_file'

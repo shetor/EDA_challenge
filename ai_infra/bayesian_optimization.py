@@ -1,5 +1,6 @@
 from imap_engine import EngineIMAP
 import numpy as np
+import time
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
 from acquisition_functions import acquisition_function
@@ -7,6 +8,7 @@ from acquisition_functions import acquisition_function
 def evaluate_QoRC(seq):
     # Evaluate the quality of the sequence using QoRC metric
     pass
+
 # 1. 数据准备
 X = np.array(...)  # 输入变量，应该是一个二维数组
 y = np.array(...)  # 目标函数值，应该是一个一维数组
@@ -14,6 +16,7 @@ sequence = None
 trust_radius = 0
 next_sequence = None
 # 2. 高斯过程建模
+time_start = time.time()
 kernel = RBF(length_scale=1.0)  # 高斯核函数
 gp = GaussianProcessRegressor(kernel=kernel)
 
@@ -34,3 +37,15 @@ for _ in range(1000):
     
     # 更新高斯过程模型
     gp.fit(X, y)
+
+    # 如果当前样本点的目标函数值更好，则更新最佳序列和对应的目标函数值
+    if next_sample_value > best_sample_value:
+        best_sequence = next_sequence
+        best_sample_value = next_sample_value
+
+# 在迭代完成后，best_sequence 就是最佳序列
+print("Best sequence:", best_sequence)
+print("Best sample value:", best_sample_value)
+time_end = time.time()
+time_sum = time_end - time_start
+print(time_sum)
