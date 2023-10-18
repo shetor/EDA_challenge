@@ -10,8 +10,8 @@ def evaluate_QoRC(seq):
     pass
 
 # 1. 数据准备
-X = np.array(...)  # 输入变量，应该是一个二维数组
-y = np.array(...)  # 目标函数值，应该是一个一维数组
+X = np.array(...)  # 输入变量
+y = np.array(...)  # 目标函数值
 sequence = None
 trust_radius = 0
 next_sequence = None
