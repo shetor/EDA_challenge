@@ -234,6 +234,10 @@ class rewrite_impl
    * @return depth for n
   */
   int update_arrive_depth(node_t const& n, std::vector<node_t> const& leaves) {
+    if(std::find(leaves.begin(), leaves.end(), n) != leaves.end()){
+      return _depth_arrive[n];
+    }
+    
     int res = 0;
     _ntk.foreach_fanin(n, [&](auto const& sc){
       auto nc = _ntk.get_node(sc);

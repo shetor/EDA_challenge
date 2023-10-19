@@ -147,12 +147,5 @@ class EngineIMAP():
             type (int, optional): 0 means print the stats of current AIG-netowork, while 1 means LUT-network. Range of [0,1]. Defaults to 0.
         """
         imap.print_stats(type = type)
-    # def get_num_pis(self):
-    #     return imap.get_num_pis()
-    # def get_num_pos(self):
-    #     return imap.get_num_pos() 
-    # def get_num_gates(self):
-    #     return imap.get_num_gates()
-    # def get_depth():
-    #     return imap.get_depth()  
+   
         

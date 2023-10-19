@@ -78,7 +78,7 @@ namespace detail
       //////////////////////////////////////////////////////
       ///   the algorithm of refactor
       //////////////////////////////////////////////////////
-      _ntk.foreach_gate([&](auto const &n)
+      topo_view<Ntk>(_ntk).foreach_gate([&](auto const &n)
                         {
         // skip the nodes with many fanouts and nodes with no fanout
         if (_ntk.is_dead(n) || _ntk.fanout_size(n) > 1000)
