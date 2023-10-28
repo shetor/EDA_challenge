@@ -3,7 +3,8 @@ import time
 sys.path.append("..") 
 from imap_engine import EngineIMAP
 import subprocess
-
+import random
+from get_initial_nodes import random
 
 class GetInitialNodes(object):
     
@@ -27,18 +28,49 @@ class GetInitialNodes(object):
         self.engine.read()
         self.optimize_with_order(order)
 
-
 time_start = time.time()    
 input_file = '../../benchmark/adder/adder.aig'
 inst = GetInitialNodes(input_file)
-optimization_orders = [
-        ['balance', 'rewrite','refactor','lut_opt'],
-        ['rewrite','refactor' ]
-            # 添加其他顺序组合
-        ]
+
+strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refector", "refector -z", "refector -v"]
+
+from get_initial_nodes import random
+
+Random =random()
+data_seq = []
+
+total_count = Random.total_count
+total = Random.total
+
+for j in range(total_count):
+
+    counts = [0] * len(strings)
+
+    for i in range(total - 1):
+        index = random.randint(0, len(strings) - 1)
+        counts[index] += 1
+
+    # for i in range(len(strings)):
+    #     print(f"{strings[i]} 出现次数: {counts[i]}")
+
+    sequences = []
+    sequences.append(strings[j % len(strings)])
+
+    for i in range(len(strings)):
+        string = strings[i]
+        count = counts[i]
+        if i != j % len(strings):
+            sequences.extend([string] * count)
+
+    random.shuffle(sequences[1:])
+    data_seq.append(sequences)
+    #print(Alg)
+
+optimization_orders = data_seq
+
 for orders in optimization_orders:
     inst.run(orders)
-    print(orders)
+    #print(orders)
     time_end = time.time()
     time_sum = time_end - time_start    
-    # print(time_sum)
+    #print(time_sum)
