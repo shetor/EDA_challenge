@@ -1,79 +1,72 @@
-import sys 
 import subprocess
-import re
-
-class random:
-    def _init_ (self):
-        self.total_count = 5
-        self.total = 5
-
+import time
 
 def run_command(command):
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     return stdout.decode('utf-8'), stderr.decode('utf-8')
+time_start = time.time()    
 
 command = f"python3 get_data.py"
 run_command(command)
-
-
+output = []
 result = subprocess.run(["python3", "get_data.py"], capture_output=True, text=True)
+# print(result)
 if result.returncode == 0:
     output = result.stdout
     output_lines = output.split('\n')
 
-   
-    print("output: \n",output)
-    print("stop")
-
-
-Alg = []
-
-pattern = r"Stats of AIG: pis=(\d+), pos=(\d+), area=(\d+), depth=(\d+),not_num=(\d+)\n\[(.*)\]"
+# print(output)
+    # print("stop")
 
 max_area = 0
-min_area = float('inf')
+min_area = 10000000
 max_depth = 0
-min_depth = float('inf')
+min_depth = 10000000
+operator_sequences = []
+stats = []
+QoR = []
 
+output_lines = output.split('\n')  # 使用换行符拆分行
 
-for item in output:
-    area = int(item.split("area=")[1].split(",")[0])
-    depth = int(item.split("depth=")[1].split(",")[0])
-    max_area = max(max_area, area)
-    min_area = min(min_area,area)
-    max_depth = max(max_depth, depth)
-    min_depth = min(min_depth,depth)
+for item in output_lines:
+    if "Stats of FPGA" in item:
+        stats.append(item)
+    if "map_fpga" in item:
+        operator_sequences.append(item)
+    if "area=" in item:
+        area_index = item.find("area=")
+        area_end_index = item.find(",", area_index)
+        if area_index != -1 and area_end_index != -1:
+            area = int(item[area_index + len("area="):area_end_index])
+            max_area = max(max_area, area)
+            min_area = min(min_area, area)
+    if "depth=" in item:
+        depth_index = item.find("depth=")
+        if depth_index != -1:
+            depth = int(item[depth_index + len("depth="):])
+            max_depth = max(max_depth, depth)
+            min_depth = min(min_depth, depth)
 
-print("Max Area:", max_area)
-print("Min Area:", min_area)
-print("Max Depth:", max_depth)
-print("Min Depth:", min_depth)
+print("max_area:",max_area)
+print("min_area:",min_area)
+print("max_delay:",max_depth)
+print("min_delay:",min_depth)
+print("stats:",stats)
+print("squence: ",operator_sequences)
 
-for item in output:
-    matches = re.findall(pattern, item)
-    if matches:
-        match = matches[0]
-        pis = int(match[0])
-        pos = int(match[1])
-        area = [int(val) for val in match[2].split(',')]
-        depth = [int(val) for val in match[3].split(',')]
-        sequence = match[5].replace("'", "").split(", ")
+for item in stats:    
+    depth_index = item.find("depth=")
+    area_index = item.find("area=")
+    area_end_index = item.find(",", area_index)
+    depth = int(item[depth_index + len("depth="):])
+    area = int(item[area_index + len("area="):area_end_index])
+    qor = 0.6*(depth - min_depth)/(max_depth - min_depth)+0.4*(area - min_area)/(max_area-min_area)
+    print("qor:",qor)
+    QoR.append(qor)
 
-    
-weight_area = 0.6
-weight_depth = 0.4
+print("QoR:",QoR)
+end_time = time.time()
+print("time: ",end_time-time_start)
 
-for sequence, area, depth in Alg:
-    QOR = []
-    for a, d in zip(area, depth):
-        normalized_area = (a - min_area) / (max_area - min_area) if max_area != min_area else 0.0
-        normalized_depth = (d - min_depth) / (max_depth - min_depth) if max_depth != min_depth else 0.0
-        qor = weight_area * normalized_area + weight_depth * normalized_depth
-        QOR.append(qor)
-
-
-    Alg.append((sequence, QOR))
-print(QOR)  
-print(Alg)
 
