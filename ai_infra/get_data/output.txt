@@ -1,5 +1,0 @@
-['balance', 'rewrite', 'refactor', 'lut_opt']
-['rewrite', 'refactor']
-0.16116714477539062
-Stats of AIG: pis=256, pos=129, area=3835, depth=330
-Stats of AIG: pis=256, pos=129, area=1019, depth=255
