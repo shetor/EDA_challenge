@@ -11,13 +11,10 @@ command = f"python3 get_data.py"
 run_command(command)
 output = []
 result = subprocess.run(["python3", "get_data.py"], capture_output=True, text=True)
-# print(result)
+
 if result.returncode == 0:
     output = result.stdout
     output_lines = output.split('\n')
-
-# print(output)
-    # print("stop")
 
 max_area = 0
 min_area = 10000000
