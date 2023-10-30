@@ -24,43 +24,26 @@
 #include "utils/tic_toc.hpp"
 #include <cstdlib>
 
-int main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
     /**
      * usage:
      *
      *  ./bin/balance N <path/XXX.aig>
-     *  eg: ./bin/balance 5 ../benchmark/adder.aig
+     *  eg: ./bin/balance ../benchmark/adder.aig
      */
     assert(argc > 1);
-    uint iteration   = std::atoi(argv[1]);
-    std::string file = std::string(argv[2]);
+    std::string file = std::string(argv[1]);
 
     iFPGA_NAMESPACE::write_verilog_params ports;
     iFPGA_NAMESPACE::aig_network aig;
     iFPGA_NAMESPACE::Reader reader(file, aig, ports);
+    printf("Stats of AIG: pis=%d, pos=%d, area=%d\n", aig.num_pis(), aig.num_pos(), aig.num_gates());
 
-    iFPGA_NAMESPACE::tic_toc t;
     iFPGA_NAMESPACE::aig_network baig(aig);
-    for(uint i = 0u; i < iteration; ++i ){
-        baig = iFPGA_NAMESPACE::balance_and(baig);
-    }
-    printf("Statics:\n");
-    printf("time                : %0.6f", t.toc());
-    printf("area(before/after)  : %u/%u", aig.num_gates(), baig.num_gates());
-    iFPGA_NAMESPACE::depth_view<iFPGA_NAMESPACE::aig_network> aig_depth(aig);
-    iFPGA_NAMESPACE::depth_view<iFPGA_NAMESPACE::aig_network> baig_depth(baig);
-    printf("level(before/after) : %u/%u", aig_depth.depth(), baig_depth.depth());
-    printf("peak memory         : %ld bytes\n", getPeakRSS());
+    baig = iFPGA_NAMESPACE::balance_and(baig);
 
-    if(argc > 3)
-    {
-        std::ostringstream out;
-        write_verilog(baig, out, ports);
-        std::string ofile(argv[3]);
-        std::ofstream fout(ofile, std::ios::out);
-        fout << out.str();
-        fout.close();
-    }
+    printf("Stats of AIG: pis=%d, pos=%d, area=%d\n", aig.num_pis(), aig.num_pos(), aig.num_gates());
+    printf("Stats of AIG: pis=%d, pos=%d, area=%d\n", baig.num_pis(), baig.num_pos(), baig.num_gates());
+
     return 0;
 }

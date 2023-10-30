@@ -32,7 +32,7 @@ class GetInitialNodes(object):
 
     def set_sequences_num(self, new_sequences_num):
         self._sequences_num = new_sequences_num
-        
+
     def optimize_with_order(self, order):
         for op in order:
             if op == 'rewrite':
@@ -59,10 +59,13 @@ class GetInitialNodes(object):
         self.engine.read()
         self.optimize_with_order(order)
 
+def run_and_output(input_file,sequence):
+    inst = GetInitialNodes(input_file)
+    inst.run(sequence)
+    print(sequence)
 
-time_start = time.time()    
 input_file = '../../benchmark/b05_comb/b05_comb.aig'
 strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 inst = GetInitialNodes(input_file)
 sequence = get_random_sequence(strings,inst.algo_num)
-inst.run(sequence)
+run_and_output(input_file,sequence)

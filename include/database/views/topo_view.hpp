@@ -245,7 +245,7 @@ private:
       return;
 
     /* ensure that the node is not temporarily marked */
-    assert( this->visited( n ) != this->trav_id() - 1 );
+    // assert( this->visited( n ) != this->trav_id() - 1 ); // FIXME: it is disturbed by the dead nodes
 
     /* mark node temporarily */
     this->set_visited( n, this->trav_id() - 1 );

@@ -8,9 +8,9 @@ class GetInitialNodes(object):
     def __init__(self, input_file) -> None:
         self.input_file = input_file
         self.engine = EngineIMAP(input_file,input_file+'.seq')
-        self.algo_num = 6
-        self.sequences_num = 100
-        
+        self.algo_num = 10
+        self.sequences_num = 10
+
     def set_algo_num(self, new_algo_num):
         self._algo_num = new_algo_num    
 
@@ -45,12 +45,12 @@ class GetInitialNodes(object):
 
 time_start = time.time()    
 input_file = '../../benchmark/b05_comb/b05_comb.aig'
+strings = ["lut_opt","balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 inst = GetInitialNodes(input_file)
-# "lut_opt",
-strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 for j in range(inst.sequences_num):
+    inst1 = GetInitialNodes(input_file)
     counts = [0] * len(strings)
-    for i in range(inst.algo_num ):       
+    for i in range(inst1.algo_num ):       
         index = random.randint(0, len(strings) - 1)
         counts[index] += 1
 
@@ -62,6 +62,5 @@ for j in range(inst.sequences_num):
         sequences.extend([string] * count)
         random.shuffle(sequences)
     sequences.append("map_fpga")
-
     print(sequences)
-    inst.run(sequences)    
+    inst1.run(sequences)    

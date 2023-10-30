@@ -58,10 +58,10 @@ namespace detail
   class refactor_impl
   {
   public:
-    refactor_impl(Ntk &ntk,
-                  RefactoringFn const &refactoring_fn,
-                  const refactor_params &params,
-                  const NodeCostFn &node_cost_fn)
+    refactor_impl(Ntk const& ntk,
+                  RefactoringFn const& refactoring_fn,
+                  refactor_params const& params,
+                  NodeCostFn const& node_cost_fn)
         : _ntk(ntk),
           _refactoring_fn(refactoring_fn),
           _params(params),
@@ -573,34 +573,31 @@ namespace detail
     }
 
   private:
-    Ntk &_ntk;
-    RefactoringFn const &_refactoring_fn;
-    refactor_params const &_params;
-    NodeCostFn const &_node_cost_fn;
+    Ntk             _ntk;
+    RefactoringFn   _refactoring_fn;
+    refactor_params _params;
+    NodeCostFn      _node_cost_fn;
 
     std::vector<node<Ntk>> _visited_nodes;
     std::vector<node<Ntk>> _leaves_nodes;
-
-    uint32_t _depth_max = 0;
     std::unordered_map<node<Ntk>, uint32_t> _depth_map;
     std::unordered_map<node<Ntk>, uint32_t> _r_depth_map;
-
     std::unordered_map<node<Ntk>, std::unordered_set<node<Ntk>>> _fanouts_map;
+    uint32_t _depth_max = 0;
   }; // end class refactor_impl
 };   // end namespace detail
 
 template <typename Ntk = aig_network,
           class RefactoringFn = sop_factoring<Ntk>,
           typename NodeCostFn = unit_cost<Ntk>>
-Ntk refactor(Ntk &ntk, refactor_params const &params)
+Ntk refactor(Ntk const&ntk, refactor_params const &params)
 {
   RefactoringFn refactoring_fn;
   NodeCostFn cost_fn;
   const auto dest = detail::refactor_impl<Ntk, RefactoringFn, NodeCostFn>{ntk,
                                                                           refactoring_fn,
                                                                           params,
-                                                                          cost_fn}
-                        .run();
+                                                                          cost_fn}.run();
   return dest;
 }
 

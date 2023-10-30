@@ -22,7 +22,7 @@ max_depth = 0
 min_depth = 10000000
 operator_sequences = []
 stats = []
-QoR = []
+# QoR = []
 
 output_lines = output.split('\n')  # 使用换行符拆分行
 
@@ -45,24 +45,24 @@ for item in output_lines:
             max_depth = max(max_depth, depth)
             min_depth = min(min_depth, depth)
 
-print("max_area:",max_area)
-print("min_area:",min_area)
-print("max_delay:",max_depth)
-print("min_delay:",min_depth)
-print("stats:",stats)
+# print("max_area:",max_area)
+# print("min_area:",min_area)
+# print("max_delay:",max_depth)
+# print("min_delay:",min_depth)
+print("stats:\n",stats)
 print("squence: ",operator_sequences)
 
-for item in stats:    
-    depth_index = item.find("depth=")
-    area_index = item.find("area=")
-    area_end_index = item.find(",", area_index)
-    depth = int(item[depth_index + len("depth="):])
-    area = int(item[area_index + len("area="):area_end_index])
-    qor = 0.6*(depth - min_depth)/(max_depth - min_depth)+0.4*(area - min_area)/(max_area-min_area)
-    print("qor:",qor)
-    QoR.append(qor)
+# for item in stats:    
+#     depth_index = item.find("depth=")
+#     area_index = item.find("area=")
+#     area_end_index = item.find(",", area_index)
+#     depth = int(item[depth_index + len("depth="):])
+#     area = int(item[area_index + len("area="):area_end_index])
+#     qor = 0.6*(depth - min_depth)/(max_depth - min_depth)+0.4*(area - min_area)/(max_area-min_area)
+#     print("qor:",qor)
+    # QoR.append(qor)
 
-print("QoR:",QoR)
+# print("QoR:",QoR)
 end_time = time.time()
 print("time: ",end_time-time_start)
 

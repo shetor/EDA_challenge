@@ -171,11 +171,15 @@ public:
   {
   }
 
-  aig_network( std::shared_ptr<aig_storage> storage )
-      : _storage( storage ),
+  aig_network( const aig_network& aig )
+      : _storage( std::make_shared<aig_storage>( *aig._storage) ),
         _events( std::make_shared<decltype( _events )::element_type>() )
-  {
-  }
+  {   }
+
+  aig_network( std::shared_ptr<aig_storage> storage )
+      : _storage ( std::make_shared<aig_storage>( *storage ) ),
+        _events( std::make_shared<decltype( _events )::element_type>() )
+  {  }
 
   bool operator==(const aig_network& other) { return _storage == other._storage; }
 #pragma endregion

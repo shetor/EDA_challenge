@@ -60,7 +60,7 @@ class rewrite_impl
   using cut_t          = typename network_cuts_t::cut_t;
   using cut_set_t      = typename network_cuts_t::cut_set_t;
 
-  rewrite_impl( Ntk&                   ntk,
+  rewrite_impl( Ntk const&             ntk,
                 RewritingFn const&     rewriting_fn,
                 rewrite_params const&  ps)
       : _ntk( ntk ),
@@ -337,9 +337,9 @@ class rewrite_impl
   }
 
  private:
-  Ntk&                  _ntk;
-  RewritingFn const&    _rewriting_fn;
-  rewrite_params const& _ps;
+  Ntk            _ntk;
+  RewritingFn    _rewriting_fn;
+  rewrite_params _ps;
 
   std::unordered_map<node_t, std::vector<signal_t>> _fanouts;
   std::unordered_map<node_t, int> _depth_arrive;
@@ -350,7 +350,7 @@ class rewrite_impl
 
 template <typename Ntk         = iFPGA_NAMESPACE::aig_network,
           typename RewritingFn = node_rewriting<Ntk> >
-Ntk rewrite( Ntk& ntk, rewrite_params const& params )
+Ntk rewrite( Ntk const& ntk, rewrite_params const& params )
 {
   RewritingFn resynthesis_fn;
   const auto dest = detail::rewrite_impl<Ntk, RewritingFn>{ ntk,

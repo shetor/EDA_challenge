@@ -4,18 +4,14 @@ import re
 sys.path.append("..") 
 from imap_engine import EngineIMAP
 
-
 def extract_results(stats):
     """
     extracts area and delay from the printed stats on stdout
     """
     line = stats.decode("utf-8").split('\n')[-2].split(':')[-1].strip()
-
     ob = re.search(r'depth *= *[1-9]+.?[0-9]*', line)
-    print(ob)
     delay = float(ob.group().split('=')[1].strip())
     ob = re.search(r'area *= *[1-9][0-9]*(?:\.[0-9]+)?', line)
-    print(ob)
     area = float(ob.group().split('=')[1].strip())  
     return delay,area
 
@@ -34,8 +30,10 @@ class get_data(object):
 
 
 proc = subprocess.check_output(['python3','get_data_another_way.py'])
-print(type(proc))
+# print(type(proc))
 delay ,area= extract_results(proc)
+print(delay)
+print(area)
 
 
     
