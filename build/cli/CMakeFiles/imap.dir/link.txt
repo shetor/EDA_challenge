@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -fsanitize=address -O0 -g -fsanitize=address CMakeFiles/imap.dir/imap.cpp.o -o /home/wuhaojie/Desktop/EDA_challenge/bin/imap  ../libs/abcsat/liblibabcsat.a -lreadline 

@@ -24,7 +24,7 @@ class GetInitialNodes(object):
     def __init__(self, input_file) -> None:
         self.input_file = input_file
         self.engine = EngineIMAP(input_file,input_file+'.seq')
-        self.algo_num = 6
+        self.algo_num = 10
         self.sequences_num = 100
     
     def set_algo_num(self, new_algo_num):

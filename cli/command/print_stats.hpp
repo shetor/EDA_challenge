@@ -33,20 +33,20 @@ namespace alice
                 int not_gate = 0;
                 aig.foreach_gate([&not_gate, &aig](const auto &node)
                                  {
-    bool hasComplementedInput = false;
-    
-    aig.foreach_fanin(node, [&hasComplementedInput, &aig](const auto& input) {
-        if (aig.is_complemented(input)) {
-            hasComplementedInput = true;
-            return false;  // Stop iterating further
-        }
-        return true;  // Continue iterating
-    });
-    
-    if (hasComplementedInput) {
-        not_gate++;
-    } });
-                printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d,not_num=%d\n", aig.num_pis(), aig.num_pos(), aig.num_gates(), daig.depth(), not_gate);
+                bool hasComplementedInput = false;
+                
+                aig.foreach_fanin(node, [&hasComplementedInput, &aig](const auto& input) {
+                    if (aig.is_complemented(input)) {
+                        hasComplementedInput = true;
+                        return false;  // Stop iterating further
+                    }
+                    return true;  // Continue iterating
+                });
+                
+                if (hasComplementedInput) {
+                    not_gate++;
+                } });
+                printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", aig.num_pis(), aig.num_pos(), aig.num_gates(), daig.depth());
             }
             else if (type == 1)
             {

@@ -52,6 +52,7 @@ message("STEP4: add subdirectories")
 add_subdirectory(include)
 add_subdirectory(libs)
 add_subdirectory(cli)
+add_subdirectory(algorithm)
 
 if(ENABLE_TEST)
     add_subdirectory(test)
