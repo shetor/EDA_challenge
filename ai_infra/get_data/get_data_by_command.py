@@ -29,11 +29,20 @@ def extract_results(stats):
     ob = re.search(r'area *= *[1-9][0-9]*(?:\.[0-9]+)?', line)
     area = float(ob.group().split('=')[1].strip())  
     return delay,area
+def get_initial_output(design_file):
+    imap_command = './imap -c ' 
+    imap_command+='"read_aiger -f '+design_file+'; '  
+    imap_command+='map_fpga; '
+    imap_command+='print_stats -t 1; "'
+    proc = subprocess.check_output(imap_command,shell=True,cwd='../../bin/')
+    print(proc)
+    delay,area = extract_results(proc)
+    return delay,area
 
 def run_optimization(design_file,order):
     imap_command = './imap -c ' 
     imap_command+='"read_aiger -f '+design_file+'; '
-    # imap_command+='print_stats -t 0; '
+    imap_command+='print_stats -t 0; '
 
     for op in order:
         if op == 'rewrite':
@@ -65,8 +74,9 @@ start_time = time.time()
 input_file = '../benchmark/b05_comb/b05_comb.aig'
 strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 algo_num = 10
-algo_sequence = get_random_sequence(strings,algo_num)
-delay,area=run_optimization(input_file,algo_sequence)
+# algo_sequence = get_random_sequence(strings,algo_num)
+# delay,area=run_optimization(input_file,algo_sequence)
+delay,area=get_initial_output(input_file)
 print("delay:",delay)
 print("area",area)
 end_time = time.time()
