@@ -5,9 +5,12 @@ sys.path.append("..")
 from imap_engine import EngineIMAP
 import time
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 8d48cb0 (zhixin_push get_data_command)
+=======
+>>>>>>> main
 def extract_results(stats):
     """
     extracts area and delay from the printed stats on stdout
@@ -33,10 +36,14 @@ class get_data(object):
         self._sequences_num = new_sequences_num
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 start_time=time.time()
 =======
 start_time = time.time()
 >>>>>>> 8d48cb0 (zhixin_push get_data_command)
+=======
+start_time = time.time()
+>>>>>>> main
 proc = subprocess.check_output(['python3','get_data_another_way.py'])
 # print(type(proc))
 delay ,area= extract_results(proc)
@@ -44,9 +51,12 @@ end_time = time.time()
 print(delay)
 print(area)
 <<<<<<< HEAD
+<<<<<<< HEAD
 end_time=time.time()
 print("run_time",end_time - start_time)    
 =======
+=======
+>>>>>>> main
 print("time:",end_time-start_time)
 
 
