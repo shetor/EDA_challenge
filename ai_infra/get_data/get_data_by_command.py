@@ -18,7 +18,6 @@ def get_random_sequence(strings,algo_num):
         random.shuffle(sequences)
     sequences.append("map_fpga")
     return sequences
-
 def extract_results(stats):
     """
     extracts area and delay from the printed stats on stdout
@@ -38,7 +37,6 @@ def get_initial_output(design_file):
     print(proc)
     delay,area = extract_results(proc)
     return delay,area
-
 def run_optimization(design_file,order):
     imap_command = './imap -c ' 
     imap_command+='"read_aiger -f '+design_file+'; '
@@ -74,9 +72,10 @@ start_time = time.time()
 input_file = '../benchmark/b05_comb/b05_comb.aig'
 strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 algo_num = 10
-# algo_sequence = get_random_sequence(strings,algo_num)
-# delay,area=run_optimization(input_file,algo_sequence)
-delay,area=get_initial_output(input_file)
+algo_sequence = get_random_sequence(strings,algo_num)
+delay,area=run_optimization(input_file,algo_sequence)
+print(algo_sequence)
+# delay,area=get_initial_output(input_file)
 print("delay:",delay)
 print("area",area)
 end_time = time.time()
