@@ -72,14 +72,14 @@ def run_optimization(design_file,order):
 
 start_time = time.time()
 
-input_file = '../benchmark/b05_comb/b05_comb.aig'
-strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
+input_file = '../benchmark/vga_lcd_comb/vga_lcd_comb.aig'
+strings = ["lut_opt","balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 algo_num = 10  #the numbers of the operator sequence
 
 initial_population = [] 
 initial_area = []
 initial_delay = []
-for i in range(50):  
+for i in range(5):  
     initial_node = get_random_sequence(strings,algo_num)
     print(initial_node)
     initial_population.append(initial_node)
