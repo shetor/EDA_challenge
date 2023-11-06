@@ -5,14 +5,14 @@ import get_node_by_command as get_node
 time_start = time.time()
 
 input_file = '../benchmark/b05_comb/b05_comb.aig'
-strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
+strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v", "rewrite -l","refactor -l"]
 algo_num = 10  #the numbers of the operator sequence
 no_opt_delay,no_opt_area = get_node.get_initial_output(input_file)
 
 initial_population = [] 
 initial_area = []
 initial_delay = []
-for i in range(30):  
+for i in range(10):
     initial_node = get_node.get_random_sequence(strings,algo_num)
     initial_population.append(initial_node)
     delay,area=get_node.run_optimization(input_file,initial_node)
@@ -28,7 +28,7 @@ def fitness_func(current_area , current_delay , no_opt_area , no_opt_delay):
     return fitness_value
 qors = []
 initial_fitness = []
-for i in range(30):
+for i in range(10):
     qor = reward_func(initial_area[i], initial_delay[i], no_opt_area, no_opt_delay)
     qors.append(qor)
     fitness = fitness_func(initial_area[i], initial_delay[i], no_opt_area, no_opt_delay)
@@ -44,7 +44,6 @@ def find_top_half_population(fitness):
 
 def compute_probability(fitness_value):  #compute fitness probability
     fit_p = []
-    total = 0.0
     total = sum(fitness_value)
     for i in range(len(fitness_value)):
         p = fitness_value[i] / total
@@ -82,7 +81,6 @@ def crossoperate(cross_pop):
     cross_x = cross_pop[0][:-1]  #delete the last operator "map_fpga"
     cross_y = cross_pop[1][:-1]
     dim = len(cross_x)
-
     if dim == 0: 
         return
     elif dim == 1:
@@ -114,12 +112,12 @@ def mutation(sequence):
     else:
         pos = random.randrange(0,dim)  #chose a position in sequence to perform mutation
 
-    operator = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
+    operator = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v", "rewrite -l","refactor -l"]
     sequence[pos] = operator[random.randrange(len(operator))]  #change the operator on the position
     return sequence
 
 cross_probability = 0.6
-mutation_probability = 0.1
+mutation_probability = 0.3
 count = 0
 while(1):
 

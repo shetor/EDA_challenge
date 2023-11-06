@@ -48,6 +48,10 @@ def run_optimization(design_file,order):
     for op in order:
         if op == 'rewrite':
             imap_command+='rewrite; '
+        elif op == 'rewrite -l':
+            imap_command+='rewrite -l;'
+        elif op == 'refactor -l':
+            imap_command+='refactor -l;'
         elif op == 'balance':
             imap_command+='balance; '
         elif op == 'refactor':
