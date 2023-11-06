@@ -4,7 +4,7 @@ import get_node_by_command as get_node
 
 time_start = time.time()
 
-input_file = '../benchmark/b05_comb/b05_comb.aig'
+input_file = '../benchmark/des_perf_comb/des_perf_comb.aig'
 strings = ["lut_opt","balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 algo_num = 10  #the numbers of the operator sequence
 no_opt_delay,no_opt_area = get_node.get_initial_output(input_file)
