@@ -4,8 +4,8 @@ import get_node_by_command as get_node
 
 time_start = time.time()
 
-input_file = '../benchmark/des_perf_comb/des_perf_comb.aig'
-strings = ["lut_opt","balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
+input_file = '../benchmark/b05_comb/b05_comb.aig'
+strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 algo_num = 10  #the numbers of the operator sequence
 no_opt_delay,no_opt_area = get_node.get_initial_output(input_file)
 
@@ -114,7 +114,7 @@ def mutation(sequence):
     else:
         pos = random.randrange(0,dim)  #chose a position in sequence to perform mutation
 
-    operator = ["lut_opt","balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
+    operator = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
     sequence[pos] = operator[random.randrange(len(operator))]  #change the operator on the position
     return sequence
 
@@ -194,5 +194,5 @@ while(1):
     time_end = time.time()
     time_interval = time_end - time_start
     print("time_interval:",time_interval)
-    if time_interval >= 60.0:
-        break
+    # if time_interval >= 60.0:
+    #     break

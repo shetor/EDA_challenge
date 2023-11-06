@@ -10,7 +10,7 @@ class write_fpga_command : public command {
 public:
     explicit write_fpga_command(const environment::ptr &env) :
         command(env, "Write the FPGA mapping result.") {
-        add_option("--filename, -f", filename, "set the output file path.");
+        add_option("--filename, -f", filename, "set the output file path.")->required();
     }
 
     rules validity_rules() const { return {}; }

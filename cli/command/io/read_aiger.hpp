@@ -12,7 +12,7 @@ class read_aiger_command : public command {
 public:
     explicit read_aiger_command(const environment::ptr &env) :
         command(env, "Read the And-Inverter Graph (AIG) format file.") {
-        add_option("--filename, -f", filename, "set the input file path.");
+        add_option("--filename, -f", filename, "set the input file path.")->required();
     }
 
     rules validity_rules() const { return {}; }

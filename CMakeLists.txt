@@ -18,7 +18,7 @@ option(ENABLE_DOXYGEN "enable doxygen tool for generate the docs" OFF)
 # ##        config bebug/release mode
 # ###########################################################
 set(CMAKE_CXX_FLAGS "-Wall -Wno-unknown-pragmas -Werror=return-type")
-set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -fsanitize=address")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
 find_package(OpenMP REQUIRED)
@@ -52,7 +52,6 @@ message("STEP4: add subdirectories")
 add_subdirectory(include)
 add_subdirectory(libs)
 add_subdirectory(cli)
-add_subdirectory(algorithm)
 
 if(ENABLE_TEST)
     add_subdirectory(test)

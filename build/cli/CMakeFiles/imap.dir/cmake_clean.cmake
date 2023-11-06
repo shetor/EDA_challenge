@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "../../bin/imap"
-  "../../bin/imap.pdb"
+  "/home/wuhaojie/Desktop/EDA_challenge/bin/imap"
+  "/home/wuhaojie/Desktop/EDA_challenge/bin/imap.pdb"
   "CMakeFiles/imap.dir/imap.cpp.o"
   "CMakeFiles/imap.dir/imap.cpp.o.d"
 )

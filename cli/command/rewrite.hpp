@@ -10,7 +10,7 @@ class rewrite_command : public command
 public:
     explicit rewrite_command(const environment::ptr& env) : command(env, "performs technology-independent rewriting of AIG") 
     {
-        add_option("--priority_size, -P", priority_size, "set the number of priority-cut size for cut enumeration [6, 20] [default=10]");
+        add_option("--priority_size, -P", priority_size, "set the number of priority-cut size for cut enumeration [6, 12] [default=10]");
         add_option("--cut_size, -C", cut_size, "set the input size of cut for cut enumeration [2, 4] [default=4]");
         add_flag("--level_preserve, -l", preserve_level, "toggles of preserving the leves [default=yes]");
         add_flag("--zero_gain, -z", zero_gain, "toggles of using zero-cost local replacement [default=no]");
@@ -21,12 +21,27 @@ public:
 protected:
     void execute()
     {
+        if(!is_set("-P")) {
+            priority_size = 10;
+        }
+        if(!is_set("-C")) {
+            cut_size = 4;
+        }
+        if(!is_set("-l")) {
+            preserve_level = true;
+        }
+        if(!is_set("-z")) {
+            zero_gain = false;
+        }
+        if(!is_set("-v")) {
+            verbose = false;
+        }
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
         }
 
-        if(priority_size < 6u || priority_size > 20u) {
+        if(priority_size < 6u || priority_size > 12u) {
             printf("WARN: the priority size should be in the range [6, 20], please refer to the command \"rewrite -h\"\n");
             return;
         }
@@ -43,7 +58,8 @@ protected:
         params.cut_enumeration_ps.cut_size = cut_size;
         params.cut_enumeration_ps.cut_limit = priority_size;
         aig = iFPGA::rewrite(aig, params);
-
+        //printf("cut_size: %u, priority: %u, preserve: %d, zero: %d\n", 
+        //        cut_size, priority_size, preserve_level, zero_gain);
         store<iFPGA::aig_network>().current() = aig;
     }
 private:

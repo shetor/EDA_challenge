@@ -9,7 +9,7 @@ class write_aiger_command : public command {
 public:
     explicit write_aiger_command(const environment::ptr &env) :
         command(env, "Write the And-Inverter Graph (AIG) format file.") {
-        add_option("--filename, -f", filename, "set the output file path.");
+        add_option("--filename, -f", filename, "set the output file path.")->required();
     }
 
     rules validity_rules() const { return {}; }

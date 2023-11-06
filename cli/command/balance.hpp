@@ -18,6 +18,9 @@ public:
 protected:
     void execute()
     {
+        if(!is_set("-v")) {
+            verbose = false;
+        }
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;

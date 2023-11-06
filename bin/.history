@@ -1,7 +1,0 @@
-read_aiger -f ../benchmark/C2670.iscas_comb.aig
-rewrite
-map_fpga
-print_stats -t 1
-print_stats -t 
-print_stats -t 1
-print_stats -t 1

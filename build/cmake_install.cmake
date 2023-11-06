@@ -1,4 +1,4 @@
-# Install script for directory: /home/lzx/Desktop/EDA_challenge
+# Install script for directory: /home/wuhaojie/Desktop/EDA_challenge
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,9 +44,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/lzx/Desktop/EDA_challenge/build/include/cmake_install.cmake")
-  include("/home/lzx/Desktop/EDA_challenge/build/libs/cmake_install.cmake")
-  include("/home/lzx/Desktop/EDA_challenge/build/cli/cmake_install.cmake")
+  include("/home/wuhaojie/Desktop/EDA_challenge/build/include/cmake_install.cmake")
+  include("/home/wuhaojie/Desktop/EDA_challenge/build/libs/cmake_install.cmake")
+  include("/home/wuhaojie/Desktop/EDA_challenge/build/cli/cmake_install.cmake")
 
 endif()
 
@@ -58,5 +58,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/lzx/Desktop/EDA_challenge/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/wuhaojie/Desktop/EDA_challenge/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

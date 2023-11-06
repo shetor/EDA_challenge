@@ -21,7 +21,7 @@ class map_fpga_command : public command
 public:
     explicit map_fpga_command(const environment::ptr& env) : command(env, "performs FPGA technology mapping of AIG") 
     {
-        add_option("--priority_size, -P", priority_size, "set the number of priority-cut size for cut enumeration [6, 20] [default=10]");
+        add_option("--priority_size, -P", priority_size, "set the number of priority-cut size for cut enumeration [6, 12] [default=10]");
         add_option("--cut_size, -C", cut_size, "set the input size of cut for cut enumeration [2, 6] [default=6]");
         add_option("--global_area_iterations, -G", iFlowIter, "set the number of iteration for global area cost optimization, [1, 2] [default=1]");
         add_option("--local_area_iterations, -L", iAreaIter, "set the number of iteration for local area cost optimization, [1, 3] [default=2]");
@@ -33,12 +33,30 @@ public:
 protected:
     void execute()
     {
+        if(!is_set("-P")) {
+            priority_size = 10;
+        }
+        if(!is_set("-C")) {
+            cut_size = 6;
+        }
+        if(!is_set("-G")) {
+            iFlowIter = 1;
+        }
+        if(!is_set("-L")) {
+            iAreaIter = 2;
+        }
+        if(!is_set("-t")) {
+            type = 0;
+        }
+        if(!is_set("-v")) {
+            verbose = false;
+        }
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
         }
 
-        if( priority_size < 6u || priority_size > 20u ) {
+        if( priority_size < 6u || priority_size > 12u ) {
             printf("WARN: the priority size should be in the range [6, 20], please refer to the command \"map_fpga -h\"\n");
             return;
         }
@@ -81,13 +99,15 @@ protected:
 
         if(type == 1) { // mapping with choice
 
-            uint32_t i = 0u;
+            int i = 0;
             iFPGA::choice_miter cm;
             iFPGA::choice_params params_choice;
 
-            for(i = store<iFPGA::aig_network>().size() - 2; i >=0; i--) {
+            for(i = store<iFPGA::aig_network>().size() - 2; i >= 0; i--) {
                 iFPGA::aig_network aig = store<iFPGA::aig_network>()[i]._storage;
-                cm.add_aig( std::make_shared<iFPGA::aig_network>(aig) );
+                if(aig.num_gates() > 0) {
+                    cm.add_aig( std::make_shared<iFPGA::aig_network>(aig) );
+                }
             }
         
             iFPGA::choice_computation cc(params_choice, cm.merge_aigs_to_miter());

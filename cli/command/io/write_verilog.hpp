@@ -11,7 +11,7 @@ class write_primary_command : public command {
 public:
     explicit write_primary_command(const environment::ptr &env) :
         command(env, "Write the verilog file with primary gates.") {
-        add_option("--filename, -f", filename, "set the output file path.");
+        add_option("--filename, -f", filename, "set the output file path.")->required();
         add_option("--type, -t", type, "write the DOT file for AIG or mapping result, 0 for AIG, 1 for FPGA, 2 for ASIC, [default = 0]");
     }
 
@@ -37,6 +37,9 @@ protected:
             printf("FAIL, not supported type!\n");
             return;
         }
+
+        // reset
+        type = 0;
     }
 private:
     std::string filename;

@@ -20,7 +20,22 @@ public:
     rules validity_rules() const { return {}; }
 protected:
     void execute()
-    {
+    {        
+        if(!is_set("-I")) {
+            input_size = 10;
+        }
+        if(!is_set("-C")) {
+            cone_size = 16;
+        }
+        if(!is_set("-l")) {
+            preserve_level = true;
+        }
+        if(!is_set("-z")) {
+            zero_gain = false;
+        }
+        if(!is_set("-v")) {
+            verbose = false;
+        }
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
