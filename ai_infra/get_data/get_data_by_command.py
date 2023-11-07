@@ -16,7 +16,7 @@ def get_random_sequence(strings,algo_num):
         count = counts[i]        
         sequences.extend([string] * count)
         random.shuffle(sequences)
-    sequences.append("map_fpga")
+    # sequences.append("map_fpga")
     return sequences
 def extract_results(stats):
     """
@@ -60,8 +60,14 @@ def run_optimization(design_file,order):
         elif op == 'lut_opt':
             imap_command+='lut_opt;'    
         elif op == 'map_fpga':
-            imap_command+='map_fpga; '                     
-    imap_command+='print_stats -t 1;"'
+            imap_command+='map_fpga; '
+        elif op =='history -a':
+            imap_command+='history -a;'
+        elif op =='history -r':
+            imap_command+='history -r 1;'
+        elif op =='history -c':
+            imap_command+='history -c;'
+    imap_command+='print_stats -t 0;"'
 
     proc = subprocess.check_output(imap_command,shell=True,cwd='../../bin/')
     print(proc)
@@ -73,11 +79,12 @@ input_file = '../benchmark/b05_comb/b05_comb.aig'
 strings = ["balance", "rewrite", "rewrite -z", "rewrite -v", "refactor", "refactor -z", "refactor -v"]
 algo_num = 10
 algo_sequence = get_random_sequence(strings,algo_num)
-delay,area=run_optimization(input_file,algo_sequence)
+
 print(algo_sequence)
-# delay,area=get_initial_output(input_file)
+delay,area=run_optimization(input_file,algo_sequence)
+
 print("delay:",delay)
 print("area",area)
 end_time = time.time()
 
-print("run_time",end_time - start_time)
+# print("run_time",end_time - start_time)

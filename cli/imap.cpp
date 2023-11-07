@@ -14,4 +14,5 @@
 #include "command/cleanup.hpp"
 #include "command/print_stats.hpp"
 #include "command/history.hpp"
+#include "command/ga.hpp"
 ALICE_MAIN(imap)

@@ -24,7 +24,6 @@ class output(object):
                 self.engine.add_sequence('refactor -z')
             elif op == 'refactor -v':
                 self.engine.add_sequence('refactor -v')
-
             elif op == 'lut_opt':
                 self.engine.add_sequence('lut_opt')
             elif op == 'map_fpga':

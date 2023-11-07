@@ -670,4 +670,6 @@ cli/CMakeFiles/imap_python.dir/imap.cpp.o: \
  /home/wuhaojie/Desktop/EDA_challenge/include/operations/algorithms/choice_miter.hpp \
  /home/wuhaojie/Desktop/EDA_challenge/cli/command/cleanup.hpp \
  /home/wuhaojie/Desktop/EDA_challenge/cli/command/print_stats.hpp \
- /home/wuhaojie/Desktop/EDA_challenge/cli/command/history.hpp
+ /home/wuhaojie/Desktop/EDA_challenge/cli/command/history.hpp \
+ /home/wuhaojie/Desktop/EDA_challenge/cli/command/ga.hpp \
+ /home/wuhaojie/Desktop/EDA_challenge/cli/command/ga_utils.hpp
