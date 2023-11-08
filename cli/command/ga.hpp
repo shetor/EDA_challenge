@@ -17,7 +17,8 @@
 #include "include/operations/optimization/rewrite.hpp"
 #include "include/operations/optimization/refactor.hpp"
 #include "include/operations/optimization/and_balance.hpp"
-#include <typeinfo>
+#include <ctime>
+
 namespace alice {
 
     class ga_command : public command {
@@ -28,11 +29,7 @@ namespace alice {
         rules validity_rules() const { return {}; }
 
     protected:
-        void execute() {
-            std::vector <std::string> strings = {"balance", "rewrite", "rewrite -z", "rewrite -v", "refactor",
-                                                 "refactor -z", "refactor -v"};
-            int algo_num = 10;
-            std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
+        void run_algo_seq(std::vector <std::string> algo_sequence) {
             for (const std::string &str: algo_sequence) {
                 if (str == "balance") {
                     store<iFPGA::aig_network>().current() = iFPGA::balance_and(store<iFPGA::aig_network>().current());
@@ -139,7 +136,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
                 }
                 if (str == "map_fpga") {
-                    if( store<iFPGA::klut_network>().empty() ) {
+                    if (store<iFPGA::klut_network>().empty()) {
                         store<iFPGA::klut_network>().extend();
                     }
                     uint32_t priority_size = 10u;
@@ -164,19 +161,63 @@ namespace alice {
 
                 }
             }
-            iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
-            iFPGA::depth_view <iFPGA::aig_network> daig(aig);
-            printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", aig.num_pis(), aig.num_pos(),
-                   aig.num_gates(),
-                   daig.depth());
-            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
-            printf("Stats of FPGA: pis=%d, pos=%d, area=%d, depth=%d\n", klut.num_pis(), klut.num_pos(),
-                   klut.num_gates(), dklut.depth());
+
+        }
+
+        void execute() {
+            clock_t start_time, end_time;
+            start_time = clock();
+            iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
+            iFPGA::aig_network initial_aig_storage = initial_aig._storage;
+            iFPGA::depth_view <iFPGA::aig_network> initial_daig(initial_aig_storage);
+            double no_opt_area = initial_aig_storage.num_gates();
+            double no_opt_delay = initial_daig.depth();
+
+            std::vector<double> v_qor;
+            std::vector<double> v_initial_fitness;
+            uint64_t algo_num = 10;
+            uint64_t sequence_num = 10;
+            std::vector<int> v_area;
+            std::vector<int> v_depth;
+            std::vector <std::string> strings = {"balance", "rewrite", "rewrite -z", "rewrite -v", "refactor",
+                                                 "refactor -z", "refactor -v"};
+            for (int i = 0; i < sequence_num; ++i) {
+                std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
+                run_algo_seq(algo_sequence);
+                iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
+                iFPGA::depth_view <iFPGA::aig_network> daig(aig);
+                double current_area = aig.num_gates();
+                double current_delay = daig.depth();
+                double qor = reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
+                v_qor.push_back(qor);
+                std::cout<<"qor:"<<qor<<std::endl;
+                std::cout<<"current_area: "<<current_area<<std::endl;
+                std::cout<<"current_delay: "<<current_delay<<std::endl;
+                std::cout<<"no_opt_area:"<<no_opt_area<<std::endl;
+                std::cout<<"no_opt_delay:"<<no_opt_delay<<std::endl;
+                double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
+                std::cout<<"fitness:"<<fitness<<std::endl;
+                v_initial_fitness.push_back(fitness);
+                v_area.push_back(aig.num_gates());
+                v_depth.push_back(daig.depth());
+                std::cout << "Stats of AIG: pis=" << aig.num_pis() << ", pos=" << aig.num_pos() << ", area="
+                          << aig.num_gates() << ", depth=" << daig.depth() << std::endl;
+            }
+
+
+
+
+
+//
+//            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+//            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+//            printf("Stats of FPGA: pis=%d, pos=%d, area=%d, depth=%d\n", klut.num_pis(), klut.num_pos(),
+//                   klut.num_gates(), dklut.depth());
+            end_time = clock();
+            std::cout << "run_time: " << (double) (end_time - start_time) / CLOCKS_PER_SEC << std::endl;
         }
 
     private:
-
     };
 
     ALICE_ADD_COMMAND(ga,
