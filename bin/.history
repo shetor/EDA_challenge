@@ -1,0 +1,2 @@
+read_aiger -f ../benchmark/b03_comb/b03_comb.aig
+ga

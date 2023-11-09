@@ -31,10 +31,10 @@ namespace alice {
     protected:
         void run_algo_seq(std::vector <std::string> algo_sequence) {
             for (const std::string &str: algo_sequence) {
-                if (str == "balance") {
+                if (str == " balance ") {
                     store<iFPGA::aig_network>().current() = iFPGA::balance_and(store<iFPGA::aig_network>().current());
                 }
-                if (str == "rewrite") {
+                if (str == " rewrite ") {
                     uint32_t cut_size = 4u;
                     uint32_t priority_size = 10u;
                     bool preserve_level = true;
@@ -50,7 +50,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
 
                 }
-                if (str == "rewrite -v") {
+                if (str == " rewrite -v ") {
                     uint32_t cut_size = 4u;
                     uint32_t priority_size = 10u;
                     bool preserve_level = true;
@@ -66,7 +66,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
 
                 }
-                if (str == "rewrite -z") {
+                if (str == " rewrite -z ") {
                     uint32_t cut_size = 4u;
                     uint32_t priority_size = 10u;
                     bool preserve_level = true;
@@ -82,7 +82,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
 
                 }
-                if (str == "refactor") {
+                if (str == " refactor ") {
                     uint32_t input_size = 10u;
                     uint32_t cone_size = 16u;
                     bool preserve_level = true;
@@ -100,7 +100,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
 
                 }
-                if (str == "refactor -z") {
+                if (str == " refactor -z ") {
                     uint32_t input_size = 10u;
                     uint32_t cone_size = 16u;
                     bool preserve_level = true;
@@ -118,7 +118,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
 
                 }
-                if (str == "refactor -v") {
+                if (str == " refactor -v ") {
                     uint32_t input_size = 10u;
                     uint32_t cone_size = 16u;
                     bool preserve_level = true;
@@ -135,7 +135,7 @@ namespace alice {
 
                     store<iFPGA::aig_network>().current() = aig;
                 }
-                if (str == "map_fpga") {
+                if (str == " map_fpga ") {
                     if (store<iFPGA::klut_network>().empty()) {
                         store<iFPGA::klut_network>().extend();
                     }
@@ -174,22 +174,27 @@ namespace alice {
             double no_opt_delay = initial_daig.depth();
 
             std::vector<double> v_qor;
-            std::vector<double> v_initial_fitness;
+            std::vector<double> v_fitness;
+            std::unordered_map<std::string,double>seq_to_fitness_map;
             uint64_t algo_num = 10;
             uint64_t sequence_num = 10;
             std::vector<int> v_area;
             std::vector<int> v_depth;
-            std::vector <std::string> strings = {"balance", "rewrite", "rewrite -z", "rewrite -v", "refactor",
-                                                 "refactor -z", "refactor -v"};
+            std::vector <std::string> strings = {" balance ", " rewrite ",  " rewrite -z ", " rewrite -v ", " refactor ",
+                                                 " refactor -z ", " refactor -v "};
             for (int i = 0; i < sequence_num; ++i) {
                 std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
                 run_algo_seq(algo_sequence);
+                ////turn vector to string
+                std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),algo_sequence.end(),std::string());
+                std::cout<<"Combined String:"<<combined_algo_seq_string<<std::endl;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
                 iFPGA::depth_view <iFPGA::aig_network> daig(aig);
                 double current_area = aig.num_gates();
                 double current_delay = daig.depth();
                 double qor = reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
                 v_qor.push_back(qor);
+                ////test
                 std::cout<<"qor:"<<qor<<std::endl;
                 std::cout<<"current_area: "<<current_area<<std::endl;
                 std::cout<<"current_delay: "<<current_delay<<std::endl;
@@ -197,12 +202,27 @@ namespace alice {
                 std::cout<<"no_opt_delay:"<<no_opt_delay<<std::endl;
                 double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
                 std::cout<<"fitness:"<<fitness<<std::endl;
-                v_initial_fitness.push_back(fitness);
+                v_fitness.push_back(fitness);
                 v_area.push_back(aig.num_gates());
                 v_depth.push_back(daig.depth());
+                seq_to_fitness_map.emplace(combined_algo_seq_string,fitness);
                 std::cout << "Stats of AIG: pis=" << aig.num_pis() << ", pos=" << aig.num_pos() << ", area="
-                          << aig.num_gates() << ", depth=" << daig.depth() << std::endl;
+                          << current_area << ", depth=" << current_delay << std::endl;
             }
+////            test
+//            for (const auto &item: seq_to_fitness_map) {
+//                std::cout<<"seq:"<<item.first<<std::endl;
+//                std::cout<<"fitness:"<<seq_to_fitness_map.find(item.first)->second<<std::endl;
+//            }
+            // 调用 find_top_half_strings 去找到fitness高的前一半
+            std::vector<std::string> top_half_algo_sequences = find_top_half_strings(seq_to_fitness_map);
+////test
+//            for (const auto &sequence: top_half_algo_sequences) {
+//                std::cout<<"top_half_sequence:"<<sequence<<std::endl;
+//            }
+
+
+
 
 
 

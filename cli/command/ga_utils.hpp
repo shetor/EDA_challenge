@@ -23,16 +23,36 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
     }
 
     std::shuffle(sequences.begin(), sequences.end(), gen);
-    sequences.push_back("map_fpga");
+    sequences.push_back(" map_fpga ");
     return sequences;
 }
 
 double reward_func(double current_area, double current_delay, double no_opt_area, double no_opt_delay) {
-    double qor = 0.4 * (double)(current_area / no_opt_area) + 0.6 * (double )(current_delay / no_opt_delay);
+    double qor = 0.4 * (double) (current_area / no_opt_area) + 0.6 * (double) (current_delay / no_opt_delay);
     return qor;
 }
 
 double fitness_func(double current_area, double current_delay, double no_opt_area, double no_opt_delay) {
     double fitness_value = 1 / reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
     return fitness_value;
+}
+
+std::vector<std::string> find_top_half_strings(const std::unordered_map<std::string,double>& seq_to_fitness_map) {
+    std::vector<std::string> sorted_strings;  // 存储按 fitness 排序的字符串
+    for (const auto& entry : seq_to_fitness_map) {
+        const std::string& str = entry.first;
+        double fitness = entry.second;
+
+        sorted_strings.push_back(str);
+        std::sort(sorted_strings.begin(), sorted_strings.end(), [&](const std::string& a, const std::string& b) {
+            return seq_to_fitness_map.find(a)->second >= seq_to_fitness_map.find(b)->second;
+        });
+
+        // 保持 vector 的大小为前一半
+        if (sorted_strings.size() > seq_to_fitness_map.size() / 2) {
+            sorted_strings.pop_back();
+        }
+    }
+
+    return sorted_strings;
 }
