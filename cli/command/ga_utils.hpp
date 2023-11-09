@@ -4,6 +4,14 @@
 #include <algorithm>
 #include <random>
 
+
+struct fit_area_delay{
+    double fitness=0;
+    double area =0;
+    double delay = 0;
+    double fit_prob = 0;
+};
+
 std::vector <std::string> get_random_sequence(const std::vector <std::string> &strings, int algo_num) {
     std::vector<int> counts(strings.size(), 0);
     std::random_device rd;
@@ -37,15 +45,15 @@ double fitness_func(double current_area, double current_delay, double no_opt_are
     return fitness_value;
 }
 
-std::vector<std::string> find_top_half_strings(const std::unordered_map<std::string,double>& seq_to_fitness_map) {
+std::vector<std::string> find_top_half_strings(const std::unordered_map<std::string,fit_area_delay>& seq_to_fitness_map) {
     std::vector<std::string> sorted_strings;  // 存储按 fitness 排序的字符串
     for (const auto& entry : seq_to_fitness_map) {
         const std::string& str = entry.first;
-        double fitness = entry.second;
+        double fitness = entry.second.fitness;
 
         sorted_strings.push_back(str);
         std::sort(sorted_strings.begin(), sorted_strings.end(), [&](const std::string& a, const std::string& b) {
-            return seq_to_fitness_map.find(a)->second >= seq_to_fitness_map.find(b)->second;
+            return seq_to_fitness_map.find(a)->second.fitness >= seq_to_fitness_map.find(b)->second.fitness;
         });
 
         // 保持 vector 的大小为前一半
@@ -56,3 +64,4 @@ std::vector<std::string> find_top_half_strings(const std::unordered_map<std::str
 
     return sorted_strings;
 }
+
