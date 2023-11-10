@@ -64,4 +64,23 @@ std::vector<std::string> find_top_half_strings(const std::unordered_map<std::str
 
     return sorted_strings;
 }
+////轮盘赌选择
+std::string ga_select(std::unordered_map<std::string, fit_area_delay> half_seq_to_db_map) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::string select_sequences;
+    // 生成一个0到总概率之间的随机数
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    double random_num = dis(gen);
 
+    double cumulative_probability = 0.0;
+    for (const auto& pair : half_seq_to_db_map) {
+        cumulative_probability += pair.second.fit_prob;
+        if (cumulative_probability >= random_num) {
+            select_sequences = pair.first; // 返回与选中概率匹配的字符串
+        }
+    }
+
+    // 如果没有选择到字符串，则返回空字符串或者默认值
+    return select_sequences;
+}

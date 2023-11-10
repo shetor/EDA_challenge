@@ -173,11 +173,11 @@ namespace alice {
             iFPGA::depth_view <iFPGA::aig_network> initial_daig(initial_aig_storage);
             double no_opt_area = initial_aig_storage.num_gates();
             double no_opt_delay = initial_daig.depth();
-            double sum_fitness;
-            std::vector<double> v_qor;
-            std::vector<double> v_halp_top_fitness;
-            std::unordered_map<std::string,fit_area_delay>seq_to_db_map;
-            std::unordered_map<std::string,fit_area_delay>half_seq_to_db_map;
+            double sum_fitness = 0;
+            std::vector<double> v_qor{};
+            std::vector<double> v_halp_top_fitness{};
+            std::unordered_map<std::string,fit_area_delay>seq_to_db_map{};
+            std::unordered_map<std::string,fit_area_delay>half_seq_to_db_map{};
 
             uint64_t algo_num = 10;
             uint64_t sequence_num = 10;
@@ -191,7 +191,7 @@ namespace alice {
                 run_algo_seq(algo_sequence);
                 ////turn vector to string
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),algo_sequence.end(),std::string());
-                std::cout<<"Combined String:"<<combined_algo_seq_string<<std::endl;
+//                std::cout<<"Combined String:"<<combined_algo_seq_string<<std::endl;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
                 iFPGA::depth_view <iFPGA::aig_network> daig(aig);
                 double current_area = aig.num_gates();
@@ -205,7 +205,7 @@ namespace alice {
 //                std::cout<<"no_opt_area:"<<no_opt_area<<std::endl;
 //                std::cout<<"no_opt_delay:"<<no_opt_delay<<std::endl;
                 double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
-                std::cout<<"fitness:"<<fitness<<std::endl;
+//                std::cout<<"fitness:"<<fitness<<std::endl;
                 v_area.push_back(aig.num_gates());
                 v_depth.push_back(daig.depth());
                 fit_area_delay tmp_fit_area_delay;
@@ -213,22 +213,22 @@ namespace alice {
                 tmp_fit_area_delay.area = current_area;
                 tmp_fit_area_delay.delay = current_delay;
                 seq_to_db_map.emplace(combined_algo_seq_string,tmp_fit_area_delay);
-                std::cout << "Stats of AIG: pis=" << aig.num_pis() << ", pos=" << aig.num_pos() << ", area="
-                          << current_area << ", depth=" << current_delay << std::endl;
+//                std::cout << "Stats of AIG: pis=" << aig.num_pis() << ", pos=" << aig.num_pos() << ", area="
+//                          << current_area << ", depth=" << current_delay << std::endl;
             }
             //// 调用 find_top_half_strings 去找到fitness高的前一半
             std::vector<std::string> top_half_algo_sequences = find_top_half_strings(seq_to_db_map);
-            ////            test
-
             ////得到前一半fitness，返回一个fitness_vector
             for (const auto &sequence: top_half_algo_sequences) {
                 double fitness = seq_to_db_map.find(sequence)->second.fitness;
-//                std::cout<<"half_top_fitness:"<<fitness<<std::endl;
+                std::cout<<"half_top_fitness:"<<fitness<<std::endl;
                 fit_area_delay tmp_db = seq_to_db_map.find(sequence)->second;
                 half_seq_to_db_map.emplace(sequence,tmp_db);///将前一半赋给这个map
                 v_halp_top_fitness.push_back(fitness);
                 sum_fitness+=fitness;
             }
+            std::cout<<"sum_fitness:"<<sum_fitness<<std::endl;
+
             ////计算所有fitness_prob，存进half_map的prob
             for (const auto &seqToDbMap: half_seq_to_db_map) {
                 double fitness = seq_to_db_map.find(seqToDbMap.first)->second.fitness;
@@ -236,14 +236,15 @@ namespace alice {
                 half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob = fit_prob;
 
                 ////test
-//                std::cout<<"sequence: "<<seqToDbMap.first<<std::endl;
-//                std::cout<<"fitness: "<<fitness<<std::endl;
-//                std::cout<<"area: "<<half_seq_to_db_map.find(seqToDbMap.first)->second.area<<std::endl;
-//                std::cout<<"delay: "<<half_seq_to_db_map.find(seqToDbMap.first)->second.delay<<std::endl;
-//                std::cout<<"fit_prob: "<<half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob<<std::endl;
+                std::cout<<"sequence: "<<seqToDbMap.first<<std::endl;
+                std::cout<<"fitness: "<<fitness<<std::endl;
+                std::cout<<"area: "<<half_seq_to_db_map.find(seqToDbMap.first)->second.area<<std::endl;
+                std::cout<<"delay: "<<half_seq_to_db_map.find(seqToDbMap.first)->second.delay<<std::endl;
+                std::cout<<"fit_prob: "<<half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob<<std::endl;
 
             }
-
+            std::string father = ga_select(half_seq_to_db_map);
+            std::cout<<"select_seq:"<<father<<std::endl;
 
 
 
