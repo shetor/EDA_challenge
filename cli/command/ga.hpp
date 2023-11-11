@@ -175,17 +175,15 @@ namespace alice {
             double sum_fitness = 0;
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map{};
-
-            uint64_t algo_num = 10;
-            uint64_t sequence_num = 30;
-            std::vector<int> v_area;
-            std::vector<int> v_depth;
+            uint64_t algo_num = 5;
+            uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -v;", "refactor;",
                                                  "refactor -z;", "refactor -v;"};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map{};
             double cross_probability = 0.6;
             double mutation_probability = 0.4;
             int count = 0;
+            start_time = clock();
             ////生成初始序列,返回seq_to_db_map
             for (int i = 0; i < sequence_num; ++i) {
                 std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
@@ -201,15 +199,14 @@ namespace alice {
                 double current_delay = daig.depth();
                 double qor = reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
                 ////test
-//                std::cout<<"qor:"<<qor<<std::endl;
-//                std::cout<<"current_area: "<<current_area<<std::endl;
-//                std::cout<<"current_delay: "<<current_delay<<std::endl;
-//                std::cout<<"no_opt_area:"<<no_opt_area<<std::endl;
-//                std::cout<<"no_opt_delay:"<<no_opt_delay<<std::endl;
+                /*
+                std::cout << "qor:" << qor << std::endl;
+                std::cout << "current_area: " << current_area << std::endl;
+                std::cout << "current_delay: " << current_delay << std::endl;
+                std::cout << "no_opt_area:" << no_opt_area << std::endl;
+                std::cout << "no_opt_delay:" << no_opt_delay << std::endl;*/
                 double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
 //                std::cout<<"fitness:"<<fitness<<std::endl;
-                v_area.push_back(aig.num_gates());
-                v_depth.push_back(daig.depth());
                 fit_area_delay tmp_fit_area_delay;
                 tmp_fit_area_delay.fitness = fitness;
                 tmp_fit_area_delay.area = current_area;
@@ -221,12 +218,25 @@ namespace alice {
                 store<iFPGA::aig_network>().current() = initial_aig;
             }
             ////迭代GA
-            for (int i = 0; i < 10; ++i) {
+            for (int i = 0; i < 2;++i){
                 ////初始化sum_fitness
                 sum_fitness = 0;
-                start_time = clock();
+                double best_fitness = 0.0;
+                std::string best_seq{};
                 //// 调用 find_top_half_strings 去找到fitness高的前一半，只有算子序列，无QoR
                 std::vector <std::string> top_half_algo_sequences = find_top_half_strings(seq_to_db_map);
+                ////找最好的序列
+                for (const auto &seq: seq_to_db_map) {
+                    std::string current_seq = seq.first;
+                    double current_fitness = seq.second.fitness;
+                    if (current_fitness > best_fitness) {
+                        best_seq = current_seq;
+                        best_fitness = current_fitness;
+                    }
+                }
+                //// 输出最佳序列和最佳适应度
+                std::cout << "Best Sequence: " << best_seq << std::endl;
+                std::cout << "Best Fitness: " << best_fitness << std::endl;
                 ////得到前一半seq,返回half_seq_to_db_map，这个map是有string以及QoR
                 for (const auto &sequence: top_half_algo_sequences) {
                     double fitness = seq_to_db_map.find(sequence)->second.fitness;
@@ -235,50 +245,50 @@ namespace alice {
                     half_seq_to_db_map.emplace(sequence, tmp_db);///将前一半赋给这个map
                     sum_fitness += fitness;
                 }
-//                std::cout << "sum_fitness:" << sum_fitness << std::endl;
+                std::cout << "sum_fitness:" << sum_fitness << std::endl;
                 ////计算所有fitness_prob，存进half_map的prob
                 for (const auto &seqToDbMap: half_seq_to_db_map) {
                     double fitness = seq_to_db_map.find(seqToDbMap.first)->second.fitness;
                     double fit_prob = fitness / sum_fitness;
                     half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob = fit_prob;
-
                     ////test
-                    /*
-                    std::cout << "sequence: " << seqToDbMap.first << std::endl;
-                    std::cout << "fitness: " << fitness << std::endl;
-                    std::cout << "area: " << half_seq_to_db_map.find(seqToDbMap.first)->second.area << std::endl;
-                    std::cout << "delay: " << half_seq_to_db_map.find(seqToDbMap.first)->second.delay << std::endl;
-                    std::cout << "fit_prob: " << half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob
-                              << std::endl;
-*/
+//                    std::cout << "sequence: " << seqToDbMap.first << std::endl;
+//                    std::cout << "fitness: " << fitness << std::endl;
+//                    std::cout << "area: " << half_seq_to_db_map.find(seqToDbMap.first)->second.area << std::endl;
+//                    std::cout << "delay: " << half_seq_to_db_map.find(seqToDbMap.first)->second.delay << std::endl;
+//                    std::cout << "fit_prob: " << half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob
+//                              << std::endl;
+
                 }
                 ////将前一半seq存进下一个总群next_seq_to_db_map
                 for (const auto &sequence: half_seq_to_db_map) {
                     next_seq_to_db_map.emplace(sequence.first, sequence.second);
+                    std::cout << "test1!!" << std::endl;
                 }
                 ////test cross and mutation ！！！问题：father和mother用ga_select选出来的都一样，交叉没变化，变异很少
-                /* std::string string_father = ga_select(half_seq_to_db_map);
-            std::cout<<"select_father_seq:"<<string_father<<std::endl;
-            std::string string_mother = ga_select(half_seq_to_db_map);
-            std::cout<<"select_mother_seq:"<<string_mother<<std::endl;
+                /*std::string string_father = ga_select(half_seq_to_db_map);
+                std::cout << "select_father_seq:" << string_father << std::endl;
+                std::string string_mother = ga_select(half_seq_to_db_map);
+                std::cout << "select_mother_seq:" << string_mother << std::endl;
 
-            std::vector<std::string> vector_father = string_to_vector(string_father);
-            std::vector<std::string> vector_mother = string_to_vector(string_mother);
-            for (const auto &vectorFather: vector_father) {
-                std::cout<<"vector_father: "<<vectorFather<<std::endl;
-            }
-            for (const auto &vectormother: vector_mother) {
-                std::cout<<"vector_mother: "<<vectormother<<std::endl;
-            }
-            std::vector<std::string>cross_two_seq_string = crossover_op(vector_father,vector_mother);
-            for (const auto &item: cross_two_seq_string) {
-                std::cout<<"cross_seq:"<<item<<std::endl;
-            }
-            std::string mutation_seq = mutation(vector_father);
-            std::cout<<"mutation_seq: "<<mutation_seq<<std::endl;*/
+                std::vector <std::string> vector_father = string_to_vector(string_father);
+                std::vector <std::string> vector_mother = string_to_vector(string_mother);
+                for (const auto &vectorFather: vector_father) {
+                    std::cout << "vector_father: " << vectorFather << std::endl;
+                }
+                for (const auto &vectormother: vector_mother) {
+                    std::cout << "vector_mother: " << vectormother << std::endl;
+                }
+                std::vector <std::string> cross_two_seq_string = crossover_op(vector_father, vector_mother);
+                for (const auto &item: cross_two_seq_string) {
+                    std::cout << "cross_seq:" << item << std::endl;
+                }
+                std::string mutation_seq = mutation(vector_father);
+                std::cout << "mutation_seq: " << mutation_seq << std::endl;*/
                 std::vector <std::string> v_child;
                 ////得到交叉或者变异之后的vector_child
-                for (int i = 0; i < (seq_to_db_map.size() - half_seq_to_db_map.size()) / 2 - 1; ++i) {
+                for (int i = 0; i < (seq_to_db_map.size() - half_seq_to_db_map.size()) / 2; ++i) {
+                    std::cout << "test2!!" << std::endl;
                     std::string string_father = ga_select(half_seq_to_db_map);
                     std::vector <std::string> vector_father = string_to_vector(string_father);
                     std::string string_mother = ga_select(half_seq_to_db_map);
@@ -288,6 +298,8 @@ namespace alice {
                     std::uniform_real_distribution<> dis(0.0, 1.0);
                     if (dis(gen) <= cross_probability) {
                         v_child = crossover_op(vector_father, vector_mother);
+                        std::cout << "test3!!" << std::endl;
+
                     } else {
                         v_child.push_back(string_mother);
                         v_child.push_back(string_father);
@@ -317,8 +329,10 @@ namespace alice {
                             iFPGA::depth_view <iFPGA::aig_network> daig(aig);
                             double current_area = aig.num_gates();
                             double current_delay = daig.depth();
-                            double qor = reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
                             double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
+                            std::cout << "current_area:" << current_area << std::endl;
+                            std::cout << "current_delay:" << current_delay << std::endl;
+                            std::cout << "fitness:" << fitness << std::endl;
                             ////复原为原来一开始输入文件的那个结构
                             store<iFPGA::aig_network>().current() = initial_aig;
                             fit_area_delay tmp_fit_area_delay;
@@ -327,8 +341,6 @@ namespace alice {
                             tmp_fit_area_delay.delay = current_delay;
                             next_seq_to_db_map.emplace(child, tmp_fit_area_delay);
                         }
-
-
                     }
                     for (const auto &next_seq: next_seq_to_db_map) {
                         double fitness = next_seq_to_db_map.find(next_seq.first)->second.fitness;
@@ -340,16 +352,24 @@ namespace alice {
                     double fit_prob = next_seq_to_db_map.find(next_seq.first)->second.fitness / sum_fitness;
                     next_seq_to_db_map.find(next_seq.first)->second.fit_prob = fit_prob;
                 }
+                std::cout << "test11!!" << std::endl;
+                for (const auto &dbMap: seq_to_db_map) {
+                    std::cout<<"seq_to_db:"<<dbMap.first<<std::endl;
+                }
+                // 清空 seq_to_db_map
+                seq_to_db_map.clear();
+                // 将 next_seq_to_db_map 移动到 seq_to_db_map
+                seq_to_db_map = std::move(next_seq_to_db_map);
 
-                seq_to_db_map = next_seq_to_db_map;
                 count += 1;
                 std::cout << "count: " << count << std::endl;
                 end_time = clock();
                 run_time = (double) (end_time - start_time) / CLOCKS_PER_SEC;
                 std::cout << "run_time: " << run_time << std::endl;
             }
-        }
 
+
+        }
 
     private:
     };
