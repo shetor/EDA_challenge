@@ -74,6 +74,7 @@ std::string ga_select(std::unordered_map<std::string, fit_area_delay> half_seq_t
         cumulative_probability += pair.second.fit_prob;
         if (cumulative_probability >= random_num) {
             select_sequences = pair.first; // 返回与选中概率匹配的字符串
+            break;
         }
     }
     return select_sequences;
@@ -89,10 +90,8 @@ std::vector<std::string> string_to_vector(const std::string& input_string) {
     return result;
 }
 ////交叉
-std::vector<std::string>crossover_op(std::vector<std::string> seq_1,std::vector<std::string> seq_2){
+std::string crossover_op(std::vector<std::string> seq_1,std::vector<std::string> seq_2){
     std::vector<std::string>after_cross_x;
-    std::vector<std::string>after_cross_y;
-    std::vector<std::string>two_string_seqs;
     int seq_num = seq_1.size();
     int position_1;
     int position_2;
@@ -112,20 +111,15 @@ std::vector<std::string>crossover_op(std::vector<std::string> seq_1,std::vector<
     for (int i = 0; i < seq_num; ++i) {
         if (std::min(position_1,position_2)<=i && i< std::max(position_1,position_2)){
             after_cross_x.push_back(seq_2[i]);
-            after_cross_y.push_back(seq_1[i]);
         }
         else{
             after_cross_x.push_back(seq_1[i]);
-            after_cross_y.push_back(seq_2[i]);
         }
     }
 
     std::string string_after_cross_x = std::accumulate(after_cross_x.begin(),after_cross_x.end(),std::string());
-    std::string string_after_cross_y = std::accumulate(after_cross_y.begin(),after_cross_y.end(),std::string());
-    two_string_seqs.push_back(string_after_cross_x);
-    two_string_seqs.push_back(string_after_cross_y);
 
-    return two_string_seqs;
+    return string_after_cross_x;
 }
 ////变异
 std::string mutation(std::vector<std::string> sequence){
