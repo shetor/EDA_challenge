@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="libabcsat"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\libs\;CMake Files\libs\alice\;CMake Files\libs\alice\tools\;CMake Files\libs\alice\lib\;CMake Files\libs\alice\lib\pybind11\;CMake Files\libs\alice\lib\pybind11\tools\;CMake Files\libs\alice\include\;CMake Files\libs\abcsat\;CMake Files\include\;CMake Files\include\utils\;CMake Files\include\database\;CMake Files\include\database\network\;CMake Files\include\database\cut\;CMake Files\include\database\views\;CMake Files\include\operations\;CMake Files\include\operations\algorithms\;CMake Files\include\operations\io\;CMake Files\include\operations\optimization\;CMake Files\include\flow\;CMake Files\cli\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libabcsat">
+				<Option output="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/liblibabcsat.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DLIN64"/>
+					<Add option="-DABC_NAMESPACE=pabc"/>
+					<Add option="-DABC_NO_USE_READLINE"/>
+					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 libabcsat"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libabcsat/fast">
+				<Option output="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/liblibabcsat.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DLIN64"/>
+					<Add option="-DABC_NAMESPACE=pabc"/>
+					<Add option="-DABC_NO_USE_READLINE"/>
+					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 libabcsat/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/AbcGlucose.cpp">
+			<Option target="libabcsat"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/Glucose.cpp">
+			<Option target="libabcsat"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/SimpSolver.cpp">
+			<Option target="libabcsat"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/satSolver.cpp">
+			<Option target="libabcsat"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/satStore.cpp">
+			<Option target="libabcsat"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\alice\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/tools/AliceTools.cmake">
+			<Option virtualFolder="CMake Files\libs\alice\tools\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\alice\lib\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\alice\lib\pybind11\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/tools/FindPythonLibsNew.cmake">
+			<Option virtualFolder="CMake Files\libs\alice\lib\pybind11\tools\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/tools/pybind11Tools.cmake">
+			<Option virtualFolder="CMake Files\libs\alice\lib\pybind11\tools\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/include/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\alice\include\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\abcsat\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/utils/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\utils\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\database\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/network/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\database\network\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/cut/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\database\cut\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/views/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\database\views\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\operations\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/algorithms/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\operations\algorithms\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/io/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\operations\io\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/optimization/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\operations\optimization\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/flow/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\flow\"/>
+		</Unit>
+		<Unit filename="/home/lzx/Desktop/EDA_challenge/cli/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\cli\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

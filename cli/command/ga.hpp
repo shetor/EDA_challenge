@@ -183,6 +183,7 @@ namespace alice {
             clock_t start_time, end_time;
             double run_time;
             iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
+            iFPGA::aig_network stage2_initial_aig;
             ////map_fpga
             if (store<iFPGA::klut_network>().empty()) {
                 store<iFPGA::klut_network>().extend();
@@ -210,12 +211,18 @@ namespace alice {
             double no_opt_delay = initial_dklut.depth();
             double sum_fitness = 0;
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map{};
+            std::unordered_map <std::string, fit_area_delay> seq_to_db_map_2{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map{};
-            uint64_t algo_num = 20;
+            std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map_2{};
+            uint64_t algo_num = 10;
+            uint64_t algo_num_of_stage_2 = 5;
             uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
                                                  "refactor -z;", "refactor -v;", "refactor -l;"};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map{};
+            std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map_2{};
+            std::string best_seq{};
+            std::string best_seq_of_2{};
             double mutation_probability = 0.4;
             int count = 0;
             start_time = clock();
@@ -224,8 +231,6 @@ namespace alice {
                 std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
                 algo_sequence.push_back("map_fpga;");
                 run_algo_seq(algo_sequence);
-
-
                 ////turn vector to string
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(), algo_sequence.end(),
                                                                        std::string());
@@ -234,8 +239,6 @@ namespace alice {
                 iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
                 double current_area = klut.num_gates();
                 double current_delay = dklut.depth();
-
-
 //            ////test
 //            for (const auto &sequence: algo_sequence) {
 //                std::cout << sequence;
@@ -256,12 +259,12 @@ namespace alice {
                 store<iFPGA::aig_network>().current() = initial_aig;
             }
 
-            ////迭代GA
+            ////迭代GA 第一阶段
             for (int i = 0; i < 10; ++i) {
                 ////初始化sum_fitness
                 sum_fitness = 0;
                 double best_fitness = 0.0;
-                std::string best_seq{};
+//                std::string best_seq{};
                 //// 调用 find_top_half_strings 去找到fitness高的前一半，只有算子序列，无QoR
                 std::vector <std::string> top_half_algo_sequences = find_top_half_strings(seq_to_db_map);
                 ////找最好的序列
@@ -338,14 +341,18 @@ namespace alice {
                     std::uniform_real_distribution<> dis(0.0, 1.0);
                     double random_num = dis(gen);
                     std::string child = "";
+                    std::cout << "father1:" << string_father << std::endl;
+                    std::cout << "mother1:" << string_mother << std::endl;
                     if (random_num >= mutation_probability) {
                         std::cout << "cross" << std::endl;
                         child = crossover_op(vector_father, vector_mother);
+                        std::cout<<"test1"<<std::endl;
                     }
                     if (random_num < mutation_probability) {
                         std::cout << "mutation" << std::endl;
                         std::vector <std::string> v_child = string_to_vector(child);
                         std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
+                        algo_sequence.push_back("map_fpga;");
                         std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),
                                                                                algo_sequence.end(),
                                                                                std::string());
@@ -414,7 +421,7 @@ namespace alice {
                 }
                 // 清空 seq_to_db_map
                 seq_to_db_map.clear();
-                // 将 next_seq_to_db_map 移动到 seq_to_db_map
+                // 将 next_seq_to_db_map_2 移动到 seq_to_db_map
                 seq_to_db_map = std::move(next_seq_to_db_map);
                 count += 1;
                 std::cout << "count: " << count << std::endl;
@@ -422,9 +429,196 @@ namespace alice {
                 run_time = (double) (end_time - start_time) / CLOCKS_PER_SEC;
                 std::cout << "run_time: " << run_time << std::endl;
             }
+
+
+            ////第二个阶段初始种群
+            for (uint64_t i = 0; i < sequence_num; ++i){
+                std::string best_seq_of_stage_1 = best_seq;
+                std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq_of_stage_1);
+                run_algo_seq(vector_best_seq_of_1);
+                stage2_initial_aig = store<iFPGA::aig_network>().current();
+
+                std::vector <std::string> algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2);
+                algo_sequence_of_2.push_back("map_fpga;");
+                run_algo_seq(algo_sequence_of_2);
+            ////turn vector to string
+                std::string combined_algo_seq_string = std::accumulate(algo_sequence_of_2.begin(), algo_sequence_of_2.end(),
+                                                                       std::string());
+
+                iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                double current_area = klut.num_gates();
+                double current_delay = dklut.depth();
+
+                double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
+                fit_area_delay tmp_fit_area_delay;
+                tmp_fit_area_delay.fitness = fitness;
+                tmp_fit_area_delay.area = current_area;
+                tmp_fit_area_delay.delay = current_delay;
+                seq_to_db_map_2.emplace(combined_algo_seq_string, tmp_fit_area_delay);
+                ////复原
+                store<iFPGA::aig_network>().current() = stage2_initial_aig;
+            }
+            for (const auto &item: seq_to_db_map_2) {
+                std::cout<<"seq2"<<item.first<<std::endl;
+                std::cout<<"seq2 area:"<<item.second.area<<std::endl;
+                std::cout<<"seq2 delay:"<<item.second.delay<<std::endl;
+            }
+            ////GA第二阶段
+            for (int i = 0; i < 10; ++i) {
+                ////初始化sum_fitness
+                sum_fitness = 0;
+                double best_fitness_of_2 = 0.0;
+//                std::string best_seq{};
+                //// 调用 find_top_half_strings 去找到fitness高的前一半，只有算子序列，无QoR
+                std::vector <std::string> top_half_algo_sequences = find_top_half_strings(seq_to_db_map_2);
+                ////找最好的序列
+                for (const auto &seq: seq_to_db_map_2) {
+                    std::string current_seq = seq.first;
+                    double current_fitness = seq.second.fitness;
+                    if (current_fitness > best_fitness_of_2) {
+                        best_seq_of_2 = current_seq;
+                        best_fitness_of_2 = current_fitness;
+                    }
+                }
+                //// 输出最佳序列和最佳适应度
+                std::cout << "Best Sequence2: " << best_seq_of_2 << std::endl;
+                std::cout << "Best Fitness2: " << best_fitness_of_2 << std::endl;
+                std::cout << "best_area2:" << seq_to_db_map_2.find(best_seq_of_2)->second.area << std::endl;
+                std::cout << "best_delay2:" << seq_to_db_map_2.find(best_seq_of_2)->second.delay << std::endl;
+                ////得到前一半seq,half_seq_to_db_map_2，这个map是有string以及QoR
+                for (const auto &sequence: top_half_algo_sequences) {
+//                    std::cout << "half_seq:" << sequence << std::endl;
+                    double fitness = seq_to_db_map_2.find(sequence)->second.fitness;
+//                    std::cout << "half_top_fitness:" << fitness << std::endl;
+                    fit_area_delay tmp_db = seq_to_db_map_2.find(sequence)->second;
+                    half_seq_to_db_map_2.emplace(sequence, tmp_db);///将前一半赋给这个map
+                    sum_fitness += fitness;
+                }
+//                std::cout << "sum_fitness:" << sum_fitness << std::endl;
+                ////计算所有fitness_prob，存进half_map的prob
+                for (const auto &seqToDbMap: half_seq_to_db_map_2) {
+//                    std::cout << "half_seq_db:" << seqToDbMap.first << std::endl;
+                    double fitness = seq_to_db_map_2.find(seqToDbMap.first)->second.fitness;
+                    double fit_prob = fitness / sum_fitness;
+                    half_seq_to_db_map_2.find(seqToDbMap.first)->second.fit_prob = fit_prob;
+                }
+                ////将前一半seq存进下一个总群next_seq_to_db_map
+                for (const auto &sequence: half_seq_to_db_map_2) {
+                    next_seq_to_db_map_2.emplace(sequence.first, sequence.second);
+                }
+
+                ////得到交叉或者变异之后的child
+                for (uint64_t i = 0; i < (seq_to_db_map_2.size() - half_seq_to_db_map_2.size()); ++i) {
+                    std::string string_father = ga_select(half_seq_to_db_map_2);
+                    std::vector <std::string> vector_father = string_to_vector(string_father);
+                    std::string string_mother = ga_select(half_seq_to_db_map_2);
+                    std::vector <std::string> vector_mother = string_to_vector(string_mother);
+                    std::random_device rd;
+                    std::mt19937 gen(rd());
+                    std::uniform_real_distribution<> dis(0.0, 1.0);
+                    double random_num = dis(gen);
+                    std::string child = "";
+                    std::cout << "father2:" << string_father << std::endl;
+                    std::cout << "mother2:" << string_mother << std::endl;
+                    if (random_num >= mutation_probability) {
+                        std::cout << "cross" << std::endl;
+                        child = crossover_op(vector_father, vector_mother);
+                        std::cout<<"test"<<std::endl;
+                    }
+                    if (random_num < mutation_probability) {
+                        std::cout << "mutation" << std::endl;
+                        std::vector <std::string> v_child = string_to_vector(child);
+                        std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num_of_stage_2);
+                        algo_sequence.push_back("map_fpga;");
+                        std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),
+                                                                               algo_sequence.end(),
+                                                                               std::string());
+                        child = combined_algo_seq_string;
+                    }
+                    std::cout << "child:" << child << std::endl;
+                    ////存入下一次种群,得到一个完整的next_seq_to_de_map
+                    if (child == string_father || child == string_mother) {
+//                        std::cout<<"child == pareants"<<std::endl;
+                        std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num_of_stage_2);
+                        algo_sequence.push_back("map_fpga;");
+                        run_algo_seq(algo_sequence);
+                        ////turn vector to string
+                        std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),
+                                                                               algo_sequence.end(),
+                                                                               std::string());
+                        iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                        iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                        double current_area = klut.num_gates();
+                        double current_delay = dklut.depth();
+                        double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
+                        child = combined_algo_seq_string;
+                        ////复原为原来一开始输入文件的那个结构
+                        store<iFPGA::aig_network>().current() = stage2_initial_aig;
+                        fit_area_delay tmp_fit_area_delay;
+                        tmp_fit_area_delay.fitness = fitness;
+                        tmp_fit_area_delay.area = current_area;
+                        tmp_fit_area_delay.delay = current_delay;
+                        next_seq_to_db_map_2.emplace(child, tmp_fit_area_delay);
+                    } else {
+                        std::cout << "child != pareants" << std::endl;
+                        std::vector <std::string> vector_child = string_to_vector(child);
+                        run_algo_seq(vector_child);
+                        iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                        iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                        double current_area = klut.num_gates();
+                        double current_delay = dklut.depth();
+                        double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
+
+                        ////复原为原来一开始输入文件的那个结构
+                        store<iFPGA::aig_network>().current() = stage2_initial_aig;
+                        fit_area_delay tmp_fit_area_delay;
+                        tmp_fit_area_delay.fitness = fitness;
+                        tmp_fit_area_delay.area = current_area;
+                        tmp_fit_area_delay.delay = current_delay;
+                        next_seq_to_db_map_2.emplace(child, tmp_fit_area_delay);
+                    }
+                }
+                for (const auto &next_seq: next_seq_to_db_map_2) {
+                    double fitness = next_seq_to_db_map_2.find(next_seq.first)->second.fitness;
+                    sum_fitness += fitness;
+                }
+                ////算出prob存进next_seq_to_db_map
+                for (const auto &next_seq: next_seq_to_db_map_2) {
+                    double fit_prob = next_seq_to_db_map_2.find(next_seq.first)->second.fitness / sum_fitness;
+                    next_seq_to_db_map_2.find(next_seq.first)->second.fit_prob = fit_prob;
+                }
+                for (const auto &dbMap: seq_to_db_map_2) {
+                    std::cout << "seq_to_db:" << dbMap.first << std::endl;
+                }
+                std::cout << " " << std::endl;
+                for (const auto &dbMap: next_seq_to_db_map_2) {
+                    std::cout << "next_seq:" << dbMap.first << std::endl;
+                }
+                // 清空 seq_to_db_map_2
+                seq_to_db_map_2.clear();
+                // 将 next_seq_to_db_map_2 移动到 seq_to_db_map
+                seq_to_db_map_2 = std::move(next_seq_to_db_map_2);
+            }
+            store<iFPGA::aig_network>().current() = initial_aig;
+            std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq);
+            std::vector <std::string> vector_best_seq_of_2 = string_to_vector(best_seq_of_2);
+            vector_best_seq_of_1.pop_back();
+            for (const auto &item: vector_best_seq_of_2) {
+                vector_best_seq_of_1.push_back(item);
+            }
+            store<iFPGA::aig_network>().current() = initial_aig;
+            run_algo_seq(vector_best_seq_of_1);
+            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+            double current_area = klut.num_gates();
+            double current_delay = dklut.depth();
+            std::string final_algo_seq_string = std::accumulate(vector_best_seq_of_1.begin(), vector_best_seq_of_1.end(),
+                                                                   std::string());
+            std::cout <<"current delay"<<current_delay<< std::endl;
+            std::cout <<"current area"<<current_area<< std::endl;
+            std::cout <<"current seq"<<final_algo_seq_string<< std::endl;
         }
-
-
     private:
     };
 
