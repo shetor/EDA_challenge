@@ -45,7 +45,7 @@ std::vector<std::string> find_top_half_strings(const std::unordered_map<std::str
     std::vector<std::string> sorted_strings;  // 存储按 fitness 排序的字符串
     for (const auto& entry : seq_to_fitness_map) {
         const std::string& str = entry.first;
-        double fitness = entry.second.fitness;
+
 
         sorted_strings.push_back(str);
         std::sort(sorted_strings.begin(), sorted_strings.end(), [&](const std::string& a, const std::string& b) {
@@ -93,8 +93,8 @@ std::vector<std::string> string_to_vector(const std::string& input_string) {
 std::string crossover_op(std::vector<std::string> seq_1,std::vector<std::string> seq_2){
     std::vector<std::string>after_cross_x;
     int seq_num = seq_1.size();
-    int position_1;
-    int position_2;
+    int position_1 = 0;
+    int position_2 = 0;
     if (seq_num == 0){
         std::cout<<"Error! The cross sequences is 0!"<<std::endl;
     }

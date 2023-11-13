@@ -40,23 +40,6 @@ namespace alice {
                     uint32_t priority_size = 10u;
                     bool preserve_level = true;
                     bool zero_gain = false;
-                    bool verbose = false;
-                    iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
-                    iFPGA::rewrite_params params;
-                    params.b_preserve_depth = preserve_level;
-                    params.b_use_zero_gain = zero_gain;
-                    params.cut_enumeration_ps.cut_size = cut_size;
-                    params.cut_enumeration_ps.cut_limit = priority_size;
-                    aig = iFPGA::rewrite(aig, params);
-                    store<iFPGA::aig_network>().current() = aig;
-
-                }
-                if (str == "rewrite -v;") {
-                    uint32_t cut_size = 4u;
-                    uint32_t priority_size = 10u;
-                    bool preserve_level = true;
-                    bool zero_gain = false;
-                    bool verbose = true;
                     iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                     iFPGA::rewrite_params params;
                     params.b_preserve_depth = preserve_level;
@@ -72,7 +55,21 @@ namespace alice {
                     uint32_t priority_size = 10u;
                     bool preserve_level = true;
                     bool zero_gain = true;
-                    bool verbose = false;
+                    iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+                    iFPGA::rewrite_params params;
+                    params.b_preserve_depth = preserve_level;
+                    params.b_use_zero_gain = zero_gain;
+                    params.cut_enumeration_ps.cut_size = cut_size;
+                    params.cut_enumeration_ps.cut_limit = priority_size;
+                    aig = iFPGA::rewrite(aig, params);
+                    store<iFPGA::aig_network>().current() = aig;
+
+                }
+                if (str == "rewrite -l;") {
+                    uint32_t cut_size = 4u;
+                    uint32_t priority_size = 10u;
+                    bool preserve_level = false;
+                    bool zero_gain = false;
                     iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                     iFPGA::rewrite_params params;
                     params.b_preserve_depth = preserve_level;
@@ -106,6 +103,24 @@ namespace alice {
                     uint32_t cone_size = 16u;
                     bool preserve_level = true;
                     bool zero_gain = true;
+                    bool verbose = false;
+                    iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+                    iFPGA::refactor_params params;
+                    params.allow_depth_up = preserve_level;
+                    params.allow_zero_gain = zero_gain;
+                    params.max_leaves_num = input_size;
+                    params.max_cone_size = cone_size;
+                    params.verbose = verbose;
+                    aig = iFPGA::refactor(aig, params);
+
+                    store<iFPGA::aig_network>().current() = aig;
+
+                }
+                if (str == "refactor -l;") {
+                    uint32_t input_size = 10u;
+                    uint32_t cone_size = 16u;
+                    bool preserve_level = false;
+                    bool zero_gain = false;
                     bool verbose = false;
                     iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                     iFPGA::refactor_params params;
@@ -168,55 +183,79 @@ namespace alice {
             clock_t start_time, end_time;
             double run_time;
             iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
-            iFPGA::aig_network initial_aig_storage = initial_aig._storage;
-            iFPGA::depth_view <iFPGA::aig_network> initial_daig(initial_aig_storage);
-            double no_opt_area = initial_aig_storage.num_gates();
-            double no_opt_delay = initial_daig.depth();
+            ////map_fpga
+            if (store<iFPGA::klut_network>().empty()) {
+                store<iFPGA::klut_network>().extend();
+            }
+            uint32_t priority_size = 10u;
+            uint32_t cut_size = 6u;
+            uint32_t iFlowIter = 1;
+            uint32_t iAreaIter = 2;
+            bool verbose = false;
+            iFPGA::klut_mapping_params param_mapping;
+            param_mapping.cut_enumeration_ps.cut_size = cut_size;
+            param_mapping.cut_enumeration_ps.cut_limit = priority_size;
+            param_mapping.uFlowIters = iFlowIter;
+            param_mapping.uAreaIters = iAreaIter;
+            param_mapping.verbose = verbose;
+            iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+            iFPGA::aig_with_choice awc(aig);
+            iFPGA::mapping_view<iFPGA::aig_with_choice, true, false> mapped_aig(awc);
+            iFPGA_NAMESPACE::klut_mapping<decltype(mapped_aig), true>(mapped_aig, param_mapping);
+            const auto initial_kluts = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>(mapped_aig);
+            store<iFPGA::klut_network>().current() = initial_kluts;
+            iFPGA::klut_network initial_klut = store<iFPGA::klut_network>().current()._storage;
+            iFPGA::depth_view <iFPGA::klut_network> initial_dklut(initial_klut);
+            double no_opt_area = initial_klut.num_gates();
+            double no_opt_delay = initial_dklut.depth();
             double sum_fitness = 0;
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map{};
             uint64_t algo_num = 20;
             uint64_t sequence_num = 10;
-            std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -v;", "refactor;",
-                                                 "refactor -z;", "refactor -v;"};
+            std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
+                                                 "refactor -z;", "refactor -v;", "refactor -l;"};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map{};
-            double cross_probability = 0.6;
             double mutation_probability = 0.4;
             int count = 0;
             start_time = clock();
             ////生成初始序列,返回seq_to_db_map
-            for (int i = 0; i < sequence_num; ++i) {
+            for (uint64_t i = 0; i < sequence_num; ++i) {
                 std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
                 algo_sequence.push_back("map_fpga;");
                 run_algo_seq(algo_sequence);
+
+
                 ////turn vector to string
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(), algo_sequence.end(),
                                                                        std::string());
 //                std::cout<<"Combined String:"<<combined_algo_seq_string<<std::endl;
-                iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
-                iFPGA::depth_view <iFPGA::aig_network> daig(aig);
-                double current_area = aig.num_gates();
-                double current_delay = daig.depth();
-                double qor = reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
-                ////test
-                /*
-                std::cout << "qor:" << qor << std::endl;
-                std::cout << "current_area: " << current_area << std::endl;
-                std::cout << "current_delay: " << current_delay << std::endl;
-                std::cout << "no_opt_area:" << no_opt_area << std::endl;
-                std::cout << "no_opt_delay:" << no_opt_delay << std::endl;*/
+                iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                double current_area = klut.num_gates();
+                double current_delay = dklut.depth();
+
+
+//            ////test
+//            for (const auto &sequence: algo_sequence) {
+//                std::cout << sequence;
+//            }
+//            std::cout << "current_area: " << current_area << std::endl;
+//            std::cout << "current_delay: " << current_delay << std::endl;
+//            std::cout << "no_opt_area:" << no_opt_area << std::endl;
+//            std::cout << "no_opt_delay:" << no_opt_delay << std::endl;
                 double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
-//                std::cout<<"fitness:"<<fitness<<std::endl;
+////                std::cout<<"fitness:"<<fitness<<std::endl;
                 fit_area_delay tmp_fit_area_delay;
                 tmp_fit_area_delay.fitness = fitness;
                 tmp_fit_area_delay.area = current_area;
                 tmp_fit_area_delay.delay = current_delay;
                 seq_to_db_map.emplace(combined_algo_seq_string, tmp_fit_area_delay);
-//                std::cout << "Stats of AIG: pis=" << aig.num_pis() << ", pos=" << aig.num_pos() << ", area="
-//                          << current_area << ", depth=" << current_delay << std::endl;
+
                 ////复原为原来一开始输入文件的那个结构
                 store<iFPGA::aig_network>().current() = initial_aig;
             }
+
             ////迭代GA
             for (int i = 0; i < 10; ++i) {
                 ////初始化sum_fitness
@@ -237,8 +276,8 @@ namespace alice {
                 //// 输出最佳序列和最佳适应度
                 std::cout << "Best Sequence: " << best_seq << std::endl;
                 std::cout << "Best Fitness: " << best_fitness << std::endl;
-                std::cout <<"best_area:"<<seq_to_db_map.find(best_seq)->second.area<<std::endl;
-                std::cout <<"best_delay:"<<seq_to_db_map.find(best_seq)->second.delay<<std::endl;
+                std::cout << "best_area:" << seq_to_db_map.find(best_seq)->second.area << std::endl;
+                std::cout << "best_delay:" << seq_to_db_map.find(best_seq)->second.delay << std::endl;
                 ////得到前一半seq,返回half_seq_to_db_map，这个map是有string以及QoR
                 for (const auto &sequence: top_half_algo_sequences) {
 //                    std::cout << "half_seq:" << sequence << std::endl;
@@ -289,7 +328,7 @@ namespace alice {
                 std::cout << "mutation_seq: " << mutation_seq << std::endl;
                  */
                 ////得到交叉或者变异之后的child
-                for (int i = 0; i < (seq_to_db_map.size() - half_seq_to_db_map.size()); ++i) {
+                for (uint64_t i = 0; i < (seq_to_db_map.size() - half_seq_to_db_map.size()); ++i) {
                     std::string string_father = ga_select(half_seq_to_db_map);
                     std::vector <std::string> vector_father = string_to_vector(string_father);
                     std::string string_mother = ga_select(half_seq_to_db_map);
@@ -323,10 +362,10 @@ namespace alice {
                         std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),
                                                                                algo_sequence.end(),
                                                                                std::string());
-                        iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
-                        iFPGA::depth_view <iFPGA::aig_network> daig(aig);
-                        double current_area = aig.num_gates();
-                        double current_delay = daig.depth();
+                        iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                        iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                        double current_area = klut.num_gates();
+                        double current_delay = dklut.depth();
                         double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
                         child = combined_algo_seq_string;
                         ////复原为原来一开始输入文件的那个结构
@@ -337,13 +376,13 @@ namespace alice {
                         tmp_fit_area_delay.delay = current_delay;
                         next_seq_to_db_map.emplace(child, tmp_fit_area_delay);
                     } else {
-                        std::cout<<"child != pareants"<<std::endl;
+                        std::cout << "child != pareants" << std::endl;
                         std::vector <std::string> vector_child = string_to_vector(child);
                         run_algo_seq(vector_child);
-                        iFPGA::aig_network aig = store<iFPGA::aig_network>().current()._storage;
-                        iFPGA::depth_view <iFPGA::aig_network> daig(aig);
-                        double current_area = aig.num_gates();
-                        double current_delay = daig.depth();
+                        iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                        iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                        double current_area = klut.num_gates();
+                        double current_delay = dklut.depth();
                         double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
 //                        std::cout << "current_area:" << current_area << std::endl;
 //                        std::cout << "current_delay:" << current_delay << std::endl;
@@ -383,10 +422,8 @@ namespace alice {
                 run_time = (double) (end_time - start_time) / CLOCKS_PER_SEC;
                 std::cout << "run_time: " << run_time << std::endl;
             }
-
-
-
         }
+
 
     private:
     };
