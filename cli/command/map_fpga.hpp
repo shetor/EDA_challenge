@@ -92,9 +92,18 @@ protected:
         param_mapping.uAreaIters = iAreaIter;
         param_mapping.verbose = verbose;
         
-        if(type == 1 && store<iFPGA::aig_network>().size() < 2) {
-            printf("WARN: there is no another history AIG files, please refer to the command \"history\"\n");
-            type = 0;
+        if(type == 1) {
+            int added = 0;
+            for(size_t i = 0; i < store<iFPGA::aig_network>().size() - 2; ++i) {
+                iFPGA::aig_network aig = store<iFPGA::aig_network>()[i]._storage;
+                if(aig.num_gates() > 0) {
+                    ++added;
+                }
+            }
+            if(added < 2) {
+                printf("WARN: there is no another history AIG files, will change to type 0. please refer to the command \"history\"\n");
+                type = 0;
+            }
         }
 
         if(type == 1) { // mapping with choice
