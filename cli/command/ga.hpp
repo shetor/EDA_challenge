@@ -175,7 +175,7 @@ namespace alice {
             double sum_fitness = 0;
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map{};
-            uint64_t algo_num = 5;
+            uint64_t algo_num = 20;
             uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -v;", "refactor;",
                                                  "refactor -z;", "refactor -v;"};
@@ -298,7 +298,7 @@ namespace alice {
                     std::mt19937 gen(rd());
                     std::uniform_real_distribution<> dis(0.0, 1.0);
                     double random_num = dis(gen);
-                    std::string child;
+                    std::string child = "";
                     if (random_num >= mutation_probability) {
                         std::cout << "cross" << std::endl;
                         child = crossover_op(vector_father, vector_mother);
