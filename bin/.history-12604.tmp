@@ -1,0 +1,5 @@
+read_aiger -f ../benchmark/b03_comb/b03_comb.aig
+ga
+read_aiger -f ../benchmark/b03_comb/b03_comb.aig
+map_fpga
+print_stats -t 1

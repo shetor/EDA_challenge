@@ -1,2 +1,19 @@
 read_aiger -f ../benchmark/b03_comb/b03_comb.aig
 ga
+lut_opt
+read_aiger -f ../benchmark/adder/adder.aig
+lut_opt
+adder
+balance
+lut_opt
+balamce
+balance
+lut_opt
+balance
+lut_opt
+rewrite
+balance
+refactor
+lut_opt
+map_fpga
+print_stats -t 1

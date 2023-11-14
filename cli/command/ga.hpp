@@ -17,7 +17,7 @@
 #include "include/operations/optimization/rewrite.hpp"
 #include "include/operations/optimization/refactor.hpp"
 #include "include/operations/optimization/and_balance.hpp"
-
+#include <fstream>
 #include <ctime>
 
 namespace alice {
@@ -25,6 +25,8 @@ namespace alice {
     class ga_command : public command {
     public:
         explicit ga_command(const environment::ptr &env) : command(env, "GA!") {
+            add_option("--output_file_path, -O", outfile_path, "output the sequences to the output file path");
+
         }
 
         rules validity_rules() const { return {}; }
@@ -70,6 +72,21 @@ namespace alice {
                     uint32_t priority_size = 10u;
                     bool preserve_level = false;
                     bool zero_gain = false;
+                    iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+                    iFPGA::rewrite_params params;
+                    params.b_preserve_depth = preserve_level;
+                    params.b_use_zero_gain = zero_gain;
+                    params.cut_enumeration_ps.cut_size = cut_size;
+                    params.cut_enumeration_ps.cut_limit = priority_size;
+                    aig = iFPGA::rewrite(aig, params);
+                    store<iFPGA::aig_network>().current() = aig;
+
+                }
+                if (str == "rewrite -z -l;") {
+                    uint32_t cut_size = 4u;
+                    uint32_t priority_size = 10u;
+                    bool preserve_level = false;
+                    bool zero_gain = true;
                     iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                     iFPGA::rewrite_params params;
                     params.b_preserve_depth = preserve_level;
@@ -178,7 +195,6 @@ namespace alice {
                 }
             }
         }
-
         void execute() {
             clock_t start_time, end_time;
             double run_time;
@@ -218,7 +234,7 @@ namespace alice {
             uint64_t algo_num_of_stage_2 = 5;
             uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
-                                                 "refactor -z;", "refactor -v;", "refactor -l;"};
+                                                 "refactor -z;", "refactor -v;", "refactor -l;","rewrite -z -l;"};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map_2{};
             std::string best_seq{};
@@ -604,22 +620,19 @@ namespace alice {
             std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq);
             std::vector <std::string> vector_best_seq_of_2 = string_to_vector(best_seq_of_2);
             vector_best_seq_of_1.pop_back();
-            for (const auto &item: vector_best_seq_of_2) {
-                vector_best_seq_of_1.push_back(item);
+            std::ofstream output(outfile_path);
+            if (output.is_open()){
+                for (const auto &bestSeqOf1: vector_best_seq_of_1) {
+                    output<<bestSeqOf1;
+                }
+                for (const auto &item: vector_best_seq_of_2) {
+                    output<<item;
+                }
+                output.close();
             }
-            store<iFPGA::aig_network>().current() = initial_aig;
-            run_algo_seq(vector_best_seq_of_1);
-            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
-            double current_area = klut.num_gates();
-            double current_delay = dklut.depth();
-            std::string final_algo_seq_string = std::accumulate(vector_best_seq_of_1.begin(), vector_best_seq_of_1.end(),
-                                                                   std::string());
-            std::cout <<"current delay"<<current_delay<< std::endl;
-            std::cout <<"current area"<<current_area<< std::endl;
-            std::cout <<"current seq"<<final_algo_seq_string<< std::endl;
         }
     private:
+        std::string outfile_path = "";
     };
 
     ALICE_ADD_COMMAND(ga,
