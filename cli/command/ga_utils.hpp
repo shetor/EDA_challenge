@@ -12,25 +12,50 @@ struct fit_area_delay{
     double fit_prob = 0;
 };
 std::vector <std::string> get_random_sequence(const std::vector <std::string> &strings, int algo_num) {
+    std::vector<std::string> macro_1 = {"balance;rewrite;rewrite -z;balance;rewrite -z;balance;"};
+    std::vector<std::string> macro_2 = {
+            "balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;"};
+    std::vector<std::string> macro_3 = {"balance;rewrite;balance;rewrite;rewrite -z;balance;rewrite -z;balance;"};
+    std::vector<std::string> macro_4 = {"balance;rewrite -l;rewrite -z -l;rewrite - -z -l;balance;"};
+    std::vector<std::string> macro_5 = {
+            "balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;"};
     std::vector<int> counts(strings.size(), 0);
     std::random_device rd;
     std::mt19937 gen(rd());
 
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    double random_num = dis(gen);
+    std::cout<<"random num:"<<random_num<<std::endl;
     for (int i = 0; i < algo_num; i++) {
         int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
         counts[index]++;
     }
 
-    std::vector <std::string> sequences;
+    std::vector<std::string> sequences;
+    if (random_num >= 0.5) {
+        for (int i = 0; i < strings.size(); i++) {
+            std::string str = strings[i];
+            int count = counts[i];
+            sequences.insert(sequences.end(), count, str);
+        }
 
-    for (int i = 0; i < strings.size(); i++) {
-        std::string str = strings[i];
-        int count = counts[i];
-        sequences.insert(sequences.end(), count, str);
+        std::shuffle(sequences.begin(), sequences.end(), gen);
+    }else{
+        if (random_num>=0.4){sequences = macro_1;std::cout<<"macro1"<<std::endl;}
+        if (random_num>=0.3 && random_num<0.4){sequences = macro_2;std::cout<<"macro2"<<std::endl;}
+        if (random_num>=0.2 && random_num<0.3){sequences = macro_3;std::cout<<"macro3"<<std::endl;}
+        if (random_num>=0.1 && random_num<0.2){sequences = macro_4;std::cout<<"macro4"<<std::endl;}
+        if (random_num>=0.0 && random_num<0.1){sequences = macro_5;std::cout<<"macro5"<<std::endl;}
     }
-
-    std::shuffle(sequences.begin(), sequences.end(), gen);
     return sequences;
+}
+
+bool isVectorEqual(const std::vector<std::string>& v1, const std::vector<std::string>& v2){
+    if(v1.size() != v2.size()){return true;}
+    for(size_t i = 0; i<v1.size(); i++){
+        if(v1[i] != v2[i]){return true;}
+    }
+    return false;
 }
 double reward_func(double current_area, double current_delay, double no_opt_area, double no_opt_delay) {
     double qor = 0.4 * (double) (current_area / no_opt_area) + 0.6 * (double) (current_delay / no_opt_delay);
@@ -53,7 +78,7 @@ std::vector<std::string> find_top_half_strings(const std::unordered_map<std::str
         });
 
         // 保持 vector 的大小为前一半
-        if (sorted_strings.size() > seq_to_fitness_map.size() / 2) {
+        if (sorted_strings.size() > seq_to_fitness_map.size() / 3 ) {
             sorted_strings.pop_back();
         }
     }
@@ -92,7 +117,7 @@ std::vector<std::string> string_to_vector(const std::string& input_string) {
 ////交叉
 std::string crossover_op(std::vector<std::string> seq_1,std::vector<std::string> seq_2){
     std::vector<std::string>after_cross_x;
-    int seq_num = seq_1.size();
+    int seq_num = std::min(seq_1.size(),seq_2.size());
     int position_1 = 0;
     int position_2 = 0;
     if (seq_num == 0){

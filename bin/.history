@@ -21,3 +21,5 @@ source run.sh
 source
 read_aiger -f "../benchmark/b03_comb/b03_comb.aig"
 ga -O "../output/result.txt"
+read_aiger -f "../benchmark/b03_comb/b03_comb.aig"
+ga -O "../output/1.txt"

@@ -230,11 +230,18 @@ namespace alice {
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map_2{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map_2{};
-            uint64_t algo_num = 10;
-            uint64_t algo_num_of_stage_2 = 5;
+            uint64_t algo_num = 5;
+            uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
                                                  "refactor -z;", "refactor -v;", "refactor -l;","rewrite -z -l;"};
+            std::vector<std::string> macro_1 = {"balance;rewrite;rewrite -z;balance;rewrite -z;balance;"};
+            std::vector<std::string> macro_2 = {
+                    "balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;"};
+            std::vector<std::string> macro_3 = {"balance;rewrite;balance;rewrite;rewrite -z;balance;rewrite -z;balance;"};
+            std::vector<std::string> macro_4 = {"balance;rewrite -l;rewrite -z -l;rewrite - -z -l;balance;"};
+            std::vector<std::string> macro_5 = {
+                    "balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;"};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map_2{};
             std::string best_seq{};
@@ -359,22 +366,26 @@ namespace alice {
                     std::string child = "";
                     std::cout << "father1:" << string_father << std::endl;
                     std::cout << "mother1:" << string_mother << std::endl;
-                    if (random_num >= mutation_probability) {
-                        std::cout << "cross" << std::endl;
-                        child = crossover_op(vector_father, vector_mother);
-                        std::cout<<"test1"<<std::endl;
+                    int isFather_Equal_to_macro = isVectorEqual(vector_father,macro_1)&&isVectorEqual(vector_father,macro_2)&&isVectorEqual(vector_father,macro_3)&&isVectorEqual(vector_father,macro_4)&&isVectorEqual(vector_father,macro_5);
+                    int isMother_Equal_to_macro = isVectorEqual(vector_mother,macro_1)&&isVectorEqual(vector_mother,macro_2)&&isVectorEqual(vector_mother,macro_3)&&isVectorEqual(vector_mother,macro_4)&&isVectorEqual(vector_mother,macro_5);
+                    if (isFather_Equal_to_macro && isMother_Equal_to_macro == 1) {
+                        if (random_num >= mutation_probability) {
+                            std::cout << "cross" << std::endl;
+                            child = crossover_op(vector_father, vector_mother);
+                            std::cout << "test1" << std::endl;
+                        }
                     }
                     if (random_num < mutation_probability) {
                         std::cout << "mutation" << std::endl;
-                        std::vector <std::string> v_child = string_to_vector(child);
-                        std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
+                        std::vector<std::string> v_child = string_to_vector(child);
+                        std::vector<std::string> algo_sequence = get_random_sequence(strings, algo_num);
                         algo_sequence.push_back("map_fpga;");
                         std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(),
-                                                                               algo_sequence.end(),
-                                                                               std::string());
+                                                                                   algo_sequence.end(),
+                                                                                   std::string());
                         child = combined_algo_seq_string;
-                    }
-                    std::cout << "child:" << child << std::endl;
+                        }
+                    std::cout << "child1:" << child << std::endl;
                     ////存入下一次种群,得到一个完整的next_seq_to_de_map
                     if (child == string_father || child == string_mother) {
 //                        std::cout<<"child == pareants"<<std::endl;
@@ -450,6 +461,7 @@ namespace alice {
             ////第二个阶段初始种群
             for (uint64_t i = 0; i < sequence_num; ++i){
                 std::string best_seq_of_stage_1 = best_seq;
+                std::cout<<"best_seq_of_1:"<<best_seq_of_stage_1<<std::endl;
                 std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq_of_stage_1);
                 run_algo_seq(vector_best_seq_of_1);
                 stage2_initial_aig = store<iFPGA::aig_network>().current();
@@ -476,7 +488,7 @@ namespace alice {
                 store<iFPGA::aig_network>().current() = stage2_initial_aig;
             }
             for (const auto &item: seq_to_db_map_2) {
-                std::cout<<"seq2"<<item.first<<std::endl;
+                std::cout<<"seq2:"<<item.first<<std::endl;
                 std::cout<<"seq2 area:"<<item.second.area<<std::endl;
                 std::cout<<"seq2 delay:"<<item.second.delay<<std::endl;
             }
@@ -537,10 +549,14 @@ namespace alice {
                     std::string child = "";
                     std::cout << "father2:" << string_father << std::endl;
                     std::cout << "mother2:" << string_mother << std::endl;
-                    if (random_num >= mutation_probability) {
-                        std::cout << "cross" << std::endl;
-                        child = crossover_op(vector_father, vector_mother);
-                        std::cout<<"test"<<std::endl;
+                    int isFather_Equal_to_macro = isVectorEqual(vector_father,macro_1)&&isVectorEqual(vector_father,macro_2)&&isVectorEqual(vector_father,macro_3)&&isVectorEqual(vector_father,macro_4)&&isVectorEqual(vector_father,macro_5);
+                    int isMother_Equal_to_macro = isVectorEqual(vector_mother,macro_1)&&isVectorEqual(vector_mother,macro_2)&&isVectorEqual(vector_mother,macro_3)&&isVectorEqual(vector_mother,macro_4)&&isVectorEqual(vector_mother,macro_5);
+                    if (isFather_Equal_to_macro && isMother_Equal_to_macro == true) {
+                        if (random_num >= mutation_probability) {
+                            std::cout << "cross" << std::endl;
+                            child = crossover_op(vector_father, vector_mother);
+                            std::cout << "test" << std::endl;
+                        }
                     }
                     if (random_num < mutation_probability) {
                         std::cout << "mutation" << std::endl;
@@ -552,7 +568,7 @@ namespace alice {
                                                                                std::string());
                         child = combined_algo_seq_string;
                     }
-                    std::cout << "child:" << child << std::endl;
+                    std::cout << "child2:" << child << std::endl;
                     ////存入下一次种群,得到一个完整的next_seq_to_de_map
                     if (child == string_father || child == string_mother) {
 //                        std::cout<<"child == pareants"<<std::endl;
@@ -620,16 +636,33 @@ namespace alice {
             std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq);
             std::vector <std::string> vector_best_seq_of_2 = string_to_vector(best_seq_of_2);
             vector_best_seq_of_1.pop_back();
-            std::ofstream output(outfile_path);
-            if (output.is_open()){
-                for (const auto &bestSeqOf1: vector_best_seq_of_1) {
-                    output<<bestSeqOf1;
-                }
-                for (const auto &item: vector_best_seq_of_2) {
-                    output<<item;
-                }
-                output.close();
+            for (const auto &item: vector_best_seq_of_2) {
+                vector_best_seq_of_1.push_back(item);
             }
+            run_algo_seq(vector_best_seq_of_1);
+            std::string vector_to_string_1 = std::accumulate(vector_best_seq_of_1.begin(),
+                                                                   vector_best_seq_of_1.end(),
+                                                                   std::string());
+            std::cout<<"final seq:"<<vector_to_string_1<<std::endl;
+
+            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+            double final_area = klut.num_gates();
+            double final_delay = dklut.depth();
+            std::cout<<"final area:"<<final_area<<std::endl;
+            std::cout<<"final delay:"<<final_delay<<std::endl;
+
+//            store<iFPGA::aig_network>().current() = initial_aig;
+//            std::ofstream output(outfile_path);
+//            if (output.is_open()){
+//                for (const auto &bestSeqOf1: vector_best_seq_of_1) {
+//                    output<<bestSeqOf1;
+//                }
+//                for (const auto &item: vector_best_seq_of_2) {
+//                    output<<item;
+//                }
+//                output.close();
+//            }
         }
     private:
         std::string outfile_path = "";
