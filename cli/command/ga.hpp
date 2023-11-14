@@ -82,21 +82,7 @@ namespace alice {
                     store<iFPGA::aig_network>().current() = aig;
 
                 }
-                if (str == "rewrite -z -l;") {
-                    uint32_t cut_size = 4u;
-                    uint32_t priority_size = 10u;
-                    bool preserve_level = false;
-                    bool zero_gain = true;
-                    iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
-                    iFPGA::rewrite_params params;
-                    params.b_preserve_depth = preserve_level;
-                    params.b_use_zero_gain = zero_gain;
-                    params.cut_enumeration_ps.cut_size = cut_size;
-                    params.cut_enumeration_ps.cut_limit = priority_size;
-                    aig = iFPGA::rewrite(aig, params);
-                    store<iFPGA::aig_network>().current() = aig;
 
-                }
                 if (str == "refactor;") {
                     uint32_t input_size = 10u;
                     uint32_t cone_size = 16u;
@@ -199,7 +185,10 @@ namespace alice {
             clock_t start_time, end_time;
             double run_time;
             iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
+            std::shared_ptr<iFPGA::storage<iFPGA::fixed_node<2, 2>, iFPGA::aig_storage_data>> initial_aig_storage = store<iFPGA::aig_network>().current()._storage;
             iFPGA::aig_network stage2_initial_aig;
+            std::shared_ptr<iFPGA::storage<iFPGA::fixed_node<2, 2>, iFPGA::aig_storage_data>> stage2_initial_aig_storage;
+
             ////map_fpga
             if (store<iFPGA::klut_network>().empty()) {
                 store<iFPGA::klut_network>().extend();
@@ -223,9 +212,13 @@ namespace alice {
             store<iFPGA::klut_network>().current() = initial_kluts;
             iFPGA::klut_network initial_klut = store<iFPGA::klut_network>().current()._storage;
             iFPGA::depth_view <iFPGA::klut_network> initial_dklut(initial_klut);
+
             double no_opt_area = initial_klut.num_gates();
             double no_opt_delay = initial_dklut.depth();
             double sum_fitness = 0;
+            ////复原
+            store<iFPGA::aig_network>().current() = initial_aig;
+            store<iFPGA::aig_network>().current()._storage = initial_aig_storage;
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> seq_to_db_map_2{};
             std::unordered_map <std::string, fit_area_delay> half_seq_to_db_map{};
@@ -234,7 +227,7 @@ namespace alice {
             uint64_t algo_num_of_stage_2 = 5;
             uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
-                                                 "refactor -z;", "refactor -v;", "refactor -l;","rewrite -z -l;"};
+                                                 "refactor -z;", "refactor -v;", "refactor -l;"};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map{};
             std::unordered_map <std::string, fit_area_delay> next_seq_to_db_map_2{};
             std::string best_seq{};
@@ -273,6 +266,14 @@ namespace alice {
 
                 ////复原为原来一开始输入文件的那个结构
                 store<iFPGA::aig_network>().current() = initial_aig;
+                store<iFPGA::aig_network>().current()._storage = initial_aig_storage;
+
+            }
+            std::cout<<"test_return initial"<<std::endl;
+            for (const auto &dbMap: seq_to_db_map) {
+                std::cout<<"seq_string: "<<dbMap.first<<std::endl;
+                std::cout<<"seq_string_area: "<<dbMap.second.area<<std::endl;
+                std::cout<<"seq_string_delay: "<<dbMap.second.delay<<std::endl;
             }
 
             ////迭代GA 第一阶段
@@ -393,6 +394,8 @@ namespace alice {
                         child = combined_algo_seq_string;
                         ////复原为原来一开始输入文件的那个结构
                         store<iFPGA::aig_network>().current() = initial_aig;
+                        store<iFPGA::aig_network>().current()._storage = initial_aig_storage;
+
                         fit_area_delay tmp_fit_area_delay;
                         tmp_fit_area_delay.fitness = fitness;
                         tmp_fit_area_delay.area = current_area;
@@ -412,6 +415,8 @@ namespace alice {
 //                        std::cout << "fitness:" << fitness << std::endl;
                         ////复原为原来一开始输入文件的那个结构
                         store<iFPGA::aig_network>().current() = initial_aig;
+                        store<iFPGA::aig_network>().current()._storage = initial_aig_storage;
+
                         fit_area_delay tmp_fit_area_delay;
                         tmp_fit_area_delay.fitness = fitness;
                         tmp_fit_area_delay.area = current_area;
@@ -447,12 +452,14 @@ namespace alice {
             }
 
 
+
             ////第二个阶段初始种群
             for (uint64_t i = 0; i < sequence_num; ++i){
                 std::string best_seq_of_stage_1 = best_seq;
                 std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq_of_stage_1);
                 run_algo_seq(vector_best_seq_of_1);
                 stage2_initial_aig = store<iFPGA::aig_network>().current();
+                stage2_initial_aig_storage = store<iFPGA::aig_network>().current()._storage;
 
                 std::vector <std::string> algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2);
                 algo_sequence_of_2.push_back("map_fpga;");
@@ -474,6 +481,7 @@ namespace alice {
                 seq_to_db_map_2.emplace(combined_algo_seq_string, tmp_fit_area_delay);
                 ////复原
                 store<iFPGA::aig_network>().current() = stage2_initial_aig;
+                store<iFPGA::aig_network>().current()._storage = stage2_initial_aig_storage;
             }
             for (const auto &item: seq_to_db_map_2) {
                 std::cout<<"seq2"<<item.first<<std::endl;
@@ -571,6 +579,8 @@ namespace alice {
                         child = combined_algo_seq_string;
                         ////复原为原来一开始输入文件的那个结构
                         store<iFPGA::aig_network>().current() = stage2_initial_aig;
+                        store<iFPGA::aig_network>().current()._storage = stage2_initial_aig_storage;
+
                         fit_area_delay tmp_fit_area_delay;
                         tmp_fit_area_delay.fitness = fitness;
                         tmp_fit_area_delay.area = current_area;
@@ -588,6 +598,8 @@ namespace alice {
 
                         ////复原为原来一开始输入文件的那个结构
                         store<iFPGA::aig_network>().current() = stage2_initial_aig;
+                        store<iFPGA::aig_network>().current()._storage = stage2_initial_aig_storage;
+
                         fit_area_delay tmp_fit_area_delay;
                         tmp_fit_area_delay.fitness = fitness;
                         tmp_fit_area_delay.area = current_area;
@@ -620,6 +632,31 @@ namespace alice {
             std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq);
             std::vector <std::string> vector_best_seq_of_2 = string_to_vector(best_seq_of_2);
             vector_best_seq_of_1.pop_back();
+            for (const auto &bestSeqOf1: vector_best_seq_of_1) {
+                std::cout<<"test1!!"<<std::endl;
+                std::cout<<bestSeqOf1;
+            }
+            std::cout<<"state_1_best_seq:"<<best_seq<<std::endl;
+            std::cout<<"state_2_best_seq: "<<best_seq_of_2<<std::endl;
+            for (const auto &item: vector_best_seq_of_2) {
+                vector_best_seq_of_1.push_back(item);
+            }
+            run_algo_seq(vector_best_seq_of_1);
+            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+            double current_area = klut.num_gates();
+            double current_delay = dklut.depth();
+            std::cout<<"no_opt_area: "<<no_opt_area<<std::endl;
+            std::cout<<"no_opt_delay: "<<no_opt_delay<<std::endl;
+            std::cout<<"best_area: "<<current_area<<std::endl;
+            std::cout<<"best_delay: "<<current_delay<<std::endl;
+            std::cout<<"best_seq:"<<std::endl;
+            for (const auto &bestSeqOf1: vector_best_seq_of_1) {
+                std::cout<<bestSeqOf1;
+            }
+
+
+
             std::ofstream output(outfile_path);
             if (output.is_open()){
                 for (const auto &bestSeqOf1: vector_best_seq_of_1) {
