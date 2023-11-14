@@ -17,3 +17,7 @@ refactor
 lut_opt
 map_fpga
 print_stats -t 1
+source run.sh
+source
+read_aiger -f "../benchmark/b03_comb/b03_comb.aig"
+ga -O "../output/result.txt"

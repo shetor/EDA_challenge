@@ -13,8 +13,10 @@ output_file="$2"
 # 切换到bin文件夹
 cd bin || exit 2
 
-# 运行imap，并将后续命令作为输入
-./imap <<EOF
-read_aiger -f "$input_file"
-ga -O "$output_file"
-EOF
+# 运行imap
+./imap
+# 运行read_aiger
+./read_aiger -f "$input_file"
+
+# 运行ga
+./ga -O "$output_file"
