@@ -23,3 +23,6 @@ read_aiger -f "../benchmark/b03_comb/b03_comb.aig"
 ga -O "../output/result.txt"
 read_aiger -f "../benchmark/b03_comb/b03_comb.aig"
 ga -O "../output/1.txt"
+read_aiger -f ../benchmark/b03_comb/b03_comb.aig
+rewrite -l;balance;refactor;rewrite -z;refactor -v;refactor -l;rewrite -z;rewrite -z;refactor;refactor -v;refactor -l;refactor;rewrite -l;refactor -v;refactor -v;map_fpga;
+print_stats -t 1

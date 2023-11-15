@@ -29,6 +29,8 @@ protected:
         }
         if(!is_set("-l")) {
             preserve_level = true;
+        } else {
+            preserve_level = false;
         }
         if(!is_set("-z")) {
             zero_gain = false;
