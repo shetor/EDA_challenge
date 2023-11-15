@@ -386,13 +386,13 @@ namespace alice {
                     std::cout << "father1:" << string_father << std::endl;
                     std::cout << "mother1:" << string_mother << std::endl;
                     int isFather_Equal_to_macro =
-                            isVectorEqual(vector_father, macro_1) && isVectorEqual(vector_father, macro_2) &&
-                            isVectorEqual(vector_father, macro_3) && isVectorEqual(vector_father, macro_4) &&
-                            isVectorEqual(vector_father, macro_5);
+                            is_vector_equal(vector_father, macro_1) && is_vector_equal(vector_father, macro_2) &&
+                                    is_vector_equal(vector_father, macro_3) && is_vector_equal(vector_father, macro_4) &&
+                                    is_vector_equal(vector_father, macro_5);
                     int isMother_Equal_to_macro =
-                            isVectorEqual(vector_mother, macro_1) && isVectorEqual(vector_mother, macro_2) &&
-                            isVectorEqual(vector_mother, macro_3) && isVectorEqual(vector_mother, macro_4) &&
-                            isVectorEqual(vector_mother, macro_5);
+                            is_vector_equal(vector_mother, macro_1) && is_vector_equal(vector_mother, macro_2) &&
+                                    is_vector_equal(vector_mother, macro_3) && is_vector_equal(vector_mother, macro_4) &&
+                                    is_vector_equal(vector_mother, macro_5);
                     if (isFather_Equal_to_macro && isMother_Equal_to_macro == 1) {
                         if (random_num >= mutation_probability) {
                             std::cout << "cross" << std::endl;
@@ -583,13 +583,13 @@ namespace alice {
                     std::cout << "father2:" << string_father << std::endl;
                     std::cout << "mother2:" << string_mother << std::endl;
                     int isFather_Equal_to_macro =
-                            isVectorEqual(vector_father, macro_1) && isVectorEqual(vector_father, macro_2) &&
-                            isVectorEqual(vector_father, macro_3) && isVectorEqual(vector_father, macro_4) &&
-                            isVectorEqual(vector_father, macro_5);
+                            is_vector_equal(vector_father, macro_1) && is_vector_equal(vector_father, macro_2) &&
+                                    is_vector_equal(vector_father, macro_3) && is_vector_equal(vector_father, macro_4) &&
+                                    is_vector_equal(vector_father, macro_5);
                     int isMother_Equal_to_macro =
-                            isVectorEqual(vector_mother, macro_1) && isVectorEqual(vector_mother, macro_2) &&
-                            isVectorEqual(vector_mother, macro_3) && isVectorEqual(vector_mother, macro_4) &&
-                            isVectorEqual(vector_mother, macro_5);
+                            is_vector_equal(vector_mother, macro_1) && is_vector_equal(vector_mother, macro_2) &&
+                                    is_vector_equal(vector_mother, macro_3) && is_vector_equal(vector_mother, macro_4) &&
+                                    is_vector_equal(vector_mother, macro_5);
                     if (isFather_Equal_to_macro && isMother_Equal_to_macro == true) {
                         if (random_num >= mutation_probability) {
                             std::cout << "cross" << std::endl;

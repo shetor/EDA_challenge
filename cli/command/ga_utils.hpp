@@ -50,7 +50,7 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
     return sequences;
 }
 
-bool isVectorEqual(const std::vector<std::string>& v1, const std::vector<std::string>& v2){
+bool is_vector_equal(const std::vector<std::string>& v1, const std::vector<std::string>& v2){
     if(v1.size() != v2.size()){return true;}
     for(size_t i = 0; i<v1.size(); i++){
         if(v1[i] != v2[i]){return true;}
