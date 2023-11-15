@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 rewrite -z;rewrite -l;balance;rewrite -l;refactor;refactor -l;refactor -v;balance;refactor -l;rewrite -l;refactor;refactor -v;refactor;balance;balance;map_fpga;
+=======
+balance;rewrite -z;refactor -v;refactor -v;refactor -z;rewrite;refactor -l;refactor;refactor -l;refactor -z;balance;refactor -l;balance;refactor -l;rewrite;map_fpga;
+>>>>>>> 94c37e7bd0a83ea96ab163fd22bdc14eeb57aa1e
