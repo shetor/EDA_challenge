@@ -67,7 +67,7 @@ double fitness_func(double current_area, double current_delay, double no_opt_are
     return fitness_value;
 }
 
-std::vector<std::string> find_top_half_strings(const std::unordered_map<std::string,fit_area_delay>& seq_to_fitness_map) {
+std::vector<std::string> find_top_better_strings(const std::unordered_map<std::string,fit_area_delay>& seq_to_fitness_map) {
     std::vector<std::string> sorted_strings;  // 存储按 fitness 排序的字符串
     for (const auto& entry : seq_to_fitness_map) {
         const std::string& str = entry.first;
@@ -87,7 +87,7 @@ std::vector<std::string> find_top_half_strings(const std::unordered_map<std::str
     return sorted_strings;
 }
 ////轮盘赌选择
-std::string ga_select(std::unordered_map<std::string, fit_area_delay> half_seq_to_db_map) {
+std::string ga_select(std::unordered_map<std::string, fit_area_delay> seq_to_db_map) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::string select_sequences;
@@ -96,7 +96,7 @@ std::string ga_select(std::unordered_map<std::string, fit_area_delay> half_seq_t
     double random_num = dis(gen);
 
     double cumulative_probability = 0.0;
-    for (const auto& pair : half_seq_to_db_map) {
+    for (const auto& pair : seq_to_db_map) {
         cumulative_probability += pair.second.fit_prob;
         if (cumulative_probability >= random_num) {
             select_sequences = pair.first; // 返回与选中概率匹配的字符串

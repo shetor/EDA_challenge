@@ -202,8 +202,8 @@ namespace alice {
             double run_time;
             double run_time_of_stage2;
             iFPGA::aig_network initial_aig = store < iFPGA::aig_network > ().current();
-//            int node_num = initial_aig.num_gates();
-            int node_num = 5000;
+            int node_num = initial_aig.num_gates();
+//            int node_num = 5000;
             std::cout<<"node_num:"<<node_num<<std::endl;
 
             //判断case大小来决定运行时间
@@ -261,8 +261,8 @@ namespace alice {
             store < iFPGA::aig_network > ().current()._storage = initial_aig_storage;
             std::unordered_map<std::string, fit_area_delay> seq_to_db_map{};
             std::unordered_map<std::string, fit_area_delay> seq_to_db_map_2{};
-            std::unordered_map<std::string, fit_area_delay> half_seq_to_db_map{};
-            std::unordered_map<std::string, fit_area_delay> half_seq_to_db_map_2{};
+            std::unordered_map<std::string, fit_area_delay> better_seq_to_db_map{};
+            std::unordered_map<std::string, fit_area_delay> better_seq_to_db_map_2{};
             uint64_t algo_num = 5;
             uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
@@ -320,13 +320,13 @@ namespace alice {
             }
 
             ////迭代GA 第一次
-            for (int i = 0; i < 10; ++i) {
+            while(1) {
                 ////初始化sum_fitness
                 sum_fitness = 0;
                 double best_fitness = 0.0;
 //                std::string best_seq{};
-                //// 调用 find_top_half_strings 去找到fitness高的前一半，只有算子序列，无QoR
-                std::vector<std::string> top_half_algo_sequences = find_top_half_strings(seq_to_db_map);
+                //// 调用 find_top_better_strings 去找到fitness高的前一半，只有算子序列，无QoR
+                std::vector<std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map);
                 ////找最好的序列
                 for (const auto &seq: seq_to_db_map) {
                     std::string current_seq = seq.first;
@@ -341,32 +341,32 @@ namespace alice {
                 std::cout << "Best Fitness: " << best_fitness << std::endl;
                 std::cout << "best_area:" << seq_to_db_map.find(best_seq)->second.area << std::endl;
                 std::cout << "best_delay:" << seq_to_db_map.find(best_seq)->second.delay << std::endl;
-                ////得到前一半seq,返回half_seq_to_db_map，这个map是有string以及QoR
-                for (const auto &sequence: top_half_algo_sequences) {
-//                    std::cout << "half_seq:" << sequence << std::endl;
+                ////得到前一半seq,返回better_seq_to_db_map，这个map是有string以及QoR
+                for (const auto &sequence: top_better_algo_sequences) {
+//                    std::cout << "better_seq:" << sequence << std::endl;
                     double fitness = seq_to_db_map.find(sequence)->second.fitness;
-//                    std::cout << "half_top_fitness:" << fitness << std::endl;
+//                    std::cout << "better_top_fitness:" << fitness << std::endl;
                     fit_area_delay tmp_db = seq_to_db_map.find(sequence)->second;
-                    half_seq_to_db_map.emplace(sequence, tmp_db);///将前一半赋给这个map
+                    better_seq_to_db_map.emplace(sequence, tmp_db);///将前一半赋给这个map
                     sum_fitness += fitness;
                 }
 //                std::cout << "sum_fitness:" << sum_fitness << std::endl;
-                ////计算所有fitness_prob，存进half_map的prob
-                for (const auto &seqToDbMap: half_seq_to_db_map) {
-//                    std::cout << "half_seq_db:" << seqToDbMap.first << std::endl;
+                ////计算所有fitness_prob，存进better_map的prob
+                for (const auto &seqToDbMap: better_seq_to_db_map) {
+//                    std::cout << "better_seq_db:" << seqToDbMap.first << std::endl;
                     double fitness = seq_to_db_map.find(seqToDbMap.first)->second.fitness;
                     double fit_prob = fitness / sum_fitness;
-                    half_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob = fit_prob;
+                    better_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob = fit_prob;
                 }
                 ////将前一半seq存进下一个总群next_seq_to_db_map
-                for (const auto &sequence: half_seq_to_db_map) {
+                for (const auto &sequence: better_seq_to_db_map) {
                     next_seq_to_db_map.emplace(sequence.first, sequence.second);
                 }
                 ////得到交叉或者变异之后的child
-                for (uint64_t i = 0; i < (seq_to_db_map.size() - half_seq_to_db_map.size()); ++i) {
-                    std::string string_father = ga_select(half_seq_to_db_map);
+                for (uint64_t i = 0; i < (seq_to_db_map.size() - better_seq_to_db_map.size()); ++i) {
+                    std::string string_father = ga_select(seq_to_db_map);
                     std::vector<std::string> vector_father = string_to_vector(string_father);
-                    std::string string_mother = ga_select(half_seq_to_db_map);
+                    std::string string_mother = ga_select(seq_to_db_map);
                     std::vector<std::string> vector_mother = string_to_vector(string_mother);
                     std::random_device rd;
                     std::mt19937 gen(rd());
@@ -478,7 +478,9 @@ namespace alice {
                 end_time_1 = clock();
                 run_time = (double) (end_time_1 - start_time) / CLOCKS_PER_SEC;
                 std::cout << "run_time: " << run_time << std::endl;
-                if (run_time >= limited_time_1){break;}
+                if (run_time >= limited_time_1){
+                    break;
+                }
             }
 
 
@@ -524,13 +526,13 @@ namespace alice {
                 std::cout << "seq2 delay:" << item.second.delay << std::endl;
             }
             ////GA第二阶
-            for (int i = 0; i < 10; ++i) {
+            while(1) {
                 ////初始化sum_fitness
                 sum_fitness = 0;
                 double best_fitness_of_2 = 0.0;
 //                std::string best_seq{};
-                //// 调用 find_top_half_strings 去找到fitness高的前一半，只有算子序列，无QoR
-                std::vector<std::string> top_half_algo_sequences = find_top_half_strings(seq_to_db_map_2);
+                //// 调用 find_top_better_strings 去找到fitness高的前一半，只有算子序列，无QoR
+                std::vector<std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map_2);
                 ////找最好的序列
                 for (const auto &seq: seq_to_db_map_2) {
                     std::string current_seq = seq.first;
@@ -545,33 +547,33 @@ namespace alice {
                 std::cout << "Best Fitness2: " << best_fitness_of_2 << std::endl;
                 std::cout << "best_area2:" << seq_to_db_map_2.find(best_seq_of_2)->second.area << std::endl;
                 std::cout << "best_delay2:" << seq_to_db_map_2.find(best_seq_of_2)->second.delay << std::endl;
-                ////得到前一半seq,half_seq_to_db_map_2，这个map是有string以及QoR
-                for (const auto &sequence: top_half_algo_sequences) {
-//                    std::cout << "half_seq:" << sequence << std::endl;
+                ////得到前一半seq,better_seq_to_db_map_2，这个map是有string以及QoR
+                for (const auto &sequence: top_better_algo_sequences) {
+//                    std::cout << "better_seq:" << sequence << std::endl;
                     double fitness = seq_to_db_map_2.find(sequence)->second.fitness;
-//                    std::cout << "half_top_fitness:" << fitness << std::endl;
+//                    std::cout << "better_top_fitness:" << fitness << std::endl;
                     fit_area_delay tmp_db = seq_to_db_map_2.find(sequence)->second;
-                    half_seq_to_db_map_2.emplace(sequence, tmp_db);///将前一半赋给这个map
+                    better_seq_to_db_map_2.emplace(sequence, tmp_db);///将前一半赋给这个map
                     sum_fitness += fitness;
                 }
 //                std::cout << "sum_fitness:" << sum_fitness << std::endl;
-                ////计算所有fitness_prob，存进half_map的prob
-                for (const auto &seqToDbMap: half_seq_to_db_map_2) {
-//                    std::cout << "half_seq_db:" << seqToDbMap.first << std::endl;
+                ////计算所有fitness_prob，存进better_map的prob
+                for (const auto &seqToDbMap: better_seq_to_db_map_2) {
+//                    std::cout << "better_seq_db:" << seqToDbMap.first << std::endl;
                     double fitness = seq_to_db_map_2.find(seqToDbMap.first)->second.fitness;
                     double fit_prob = fitness / sum_fitness;
-                    half_seq_to_db_map_2.find(seqToDbMap.first)->second.fit_prob = fit_prob;
+                    better_seq_to_db_map_2.find(seqToDbMap.first)->second.fit_prob = fit_prob;
                 }
                 ////将前一半seq存进下一个总群next_seq_to_db_map
-                for (const auto &sequence: half_seq_to_db_map_2) {
+                for (const auto &sequence: better_seq_to_db_map_2) {
                     next_seq_to_db_map_2.emplace(sequence.first, sequence.second);
                 }
 
                 ////得到交叉或者变异之后的child
-                for (uint64_t i = 0; i < (seq_to_db_map_2.size() - half_seq_to_db_map_2.size()); ++i) {
-                    std::string string_father = ga_select(half_seq_to_db_map_2);
+                for (uint64_t i = 0; i < (seq_to_db_map_2.size() - better_seq_to_db_map_2.size()); ++i) {
+                    std::string string_father = ga_select(seq_to_db_map_2);
                     std::vector<std::string> vector_father = string_to_vector(string_father);
-                    std::string string_mother = ga_select(half_seq_to_db_map_2);
+                    std::string string_mother = ga_select(seq_to_db_map_2);
                     std::vector<std::string> vector_mother = string_to_vector(string_mother);
                     std::random_device rd;
                     std::mt19937 gen(rd());
@@ -681,7 +683,9 @@ namespace alice {
                 end_time_2 = clock();
                 run_time_of_stage2 = (double) (end_time_2 - start_time) / CLOCKS_PER_SEC;
                 std::cout << "run_time_of_stage2: " << run_time_of_stage2 << std::endl;
-                if (run_time >= limited_time_2){break;}
+                if (run_time >= limited_time_2){
+                    break;
+                }
             }
 
             store < iFPGA::aig_network > ().current() = initial_aig;
