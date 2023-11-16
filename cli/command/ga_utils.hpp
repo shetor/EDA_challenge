@@ -12,13 +12,14 @@ struct fit_area_delay{
     double fit_prob = 0;
 };
 std::vector <std::string> get_random_sequence(const std::vector <std::string> &strings, int algo_num) {
-    std::vector<std::string> macro_1 = {"balance;rewrite;rewrite -z;balance;rewrite -z;balance;"};
+    std::vector<std::string> macro_1 = {"balance;","rewrite;","rewrite -z;","balance;","rewrite -z;","balance;"};
     std::vector<std::string> macro_2 = {
-            "balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;"};
-    std::vector<std::string> macro_3 = {"balance;rewrite;balance;rewrite;rewrite -z;balance;rewrite -z;balance;"};
-    std::vector<std::string> macro_4 = {"balance;rewrite -l;rewrite -z -l;rewrite - -z -l;balance;"};
+            "balance;","rewrite;","refactor;","balance;","rewrite;","rewrite -z;","balance;","refactor -z;","rewrite -z;","balance;"};
+    std::vector<std::string> macro_3 = {
+            "balance;","rewrite;","balance;","rewrite;","rewrite -z;","balance;","rewrite -z;","balance;"};
+    std::vector<std::string> macro_4 = {"balance;","rewrite -l;","rewrite -z -l;","rewrite -z -l;","balance;"};
     std::vector<std::string> macro_5 = {
-            "balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;"};
+            "balance;","rewrite -l;","refactor -l;","balance;","rewrite -z -l;","balance;","refactor -z;","rewrite -z;","balance;"};
     std::vector<int> counts(strings.size(), 0);
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -147,20 +148,47 @@ std::string crossover_op(std::vector<std::string> seq_1,std::vector<std::string>
     return string_after_cross_x;
 }
 ////变异
-std::string mutation(std::vector<std::string> sequence){
+std::vector<std::string> mutation(std::vector<std::string> sequence){
     std::vector<std::string> mutated_sequence = sequence;
+    mutated_sequence.pop_back();
+    for (const auto &item: mutated_sequence) {
+        std::cout<<"before mutate seq:"<<item<<std::endl;
+    }
     int seq_num = mutated_sequence.size();
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(1, seq_num);
-    int position = dis(gen);
-    std::vector <std::string> operations = {"balance;", "rewrite;",  "rewrite -z;", "rewrite -v;", "refactor;",
-                                         "refactor -z;", "refactor -v;"};
-    mutated_sequence[position] = operations[dis(gen)%operations.size()];
-    std::string string_mutated_sequence = std::accumulate(mutated_sequence.begin(),mutated_sequence.end(),std::string());
+    std::uniform_int_distribution<> dis_of_position_num(1, seq_num);
+    std::uniform_int_distribution<> dis_of_position(0, seq_num-1);
 
-    return string_mutated_sequence;
+    int position_num = dis_of_position_num(gen);
+    std::cout<<"position_num:"<<position_num<<std::endl;
 
+    int position = dis_of_position(gen);
+//    std::cout<<"position1:"<<position<<std::endl;
+    std::vector<std::int32_t> used_position;
+    used_position.push_back(position);
+    for(int i=1; i <= position_num-1; ++i){
+        std::vector <std::string> operations = {"balance;", "rewrite;",  "rewrite -z;", "rewrite -v;", "refactor;",
+                                                "refactor -z;", "refactor -v;"};
+        mutated_sequence[position] = operations[dis_of_position(gen)%operations.size()];
+
+        do{
+            position = dis_of_position(gen);
+//            std::cout<<"position:"<<position<<std::endl;
+        }while(std::find(used_position.begin(), used_position.end(), position) != used_position.end());
+        used_position.push_back(position);
+//        std::cout<<"position"<<count<<":"<<position<<std::endl;
+    }
+    mutated_sequence.push_back("map_fpga;");
+    for (const auto &item: mutated_sequence) {
+        std::cout<<"after mutate seq:"<<item<<std::endl;
+    }
+    int count = 1;
+    for (const auto &item: used_position) {
+        std::cout<<"position"<<count<<":"<<item<<std::endl;
+        count++;
+    }
+    return mutated_sequence;
 }
 
 

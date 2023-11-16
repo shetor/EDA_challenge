@@ -1,0 +1,41 @@
+Performing C++ SOURCE FILE Test HAS_FCOLOR_DIAGNOSTICS failed with the following output:
+Change Dir: /home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a0a6c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a0a6c.dir/build.make CMakeFiles/cmTC_a0a6c.dir/build
+gmake[1]: Entering directory '/home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a0a6c.dir/src.cxx.o
+/usr/bin/c++ -DHAS_FCOLOR_DIAGNOSTICS  -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O3 -DNDEBUG    -fcolor-diagnostics -o CMakeFiles/cmTC_a0a6c.dir/src.cxx.o -c /home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command-line option '-fcolor-diagnostics'
+gmake[1]: *** [CMakeFiles/cmTC_a0a6c.dir/build.make:78: CMakeFiles/cmTC_a0a6c.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_a0a6c/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test READLINE_WORKS failed with the following compile output:
+Change Dir: /home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ffd48/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ffd48.dir/build.make CMakeFiles/cmTC_ffd48.dir/build
+gmake[1]: Entering directory '/home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ffd48.dir/src.cxx.o
+/usr/bin/c++ -DREADLINE_WORKS  -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O3 -DNDEBUG -Wall  -o CMakeFiles/cmTC_ffd48.dir/src.cxx.o -c /home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp/src.cxx
+/home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp/src.cxx:3:10: fatal error: readline/readline.h: No such file or directory
+    3 | #include <readline/readline.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[1]: *** [CMakeFiles/cmTC_ffd48.dir/build.make:78: CMakeFiles/cmTC_ffd48.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/lzx/Desktop/EDA_challenge/bin/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_ffd48/fast] Error 2
+
+
+...and run output:
+
+Return value: 1
+Source file was:
+
+#include <stdio.h>
+#include <readline/readline.h>
+void foo() { readline("foo"); }
+int main() { return 0; }
+
