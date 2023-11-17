@@ -189,7 +189,7 @@ class rewrite_impl
     // set arrive depth first
     _ntk.foreach_node([&](auto const& n){
       _depth_arrive[n] = -1;     // init each arrive depth be -1
-      if(_ntk.is_pi(n) || _ntk.is_pi(n)) {
+      if(_ntk.is_pi(n) || _ntk.is_constant(n)) {
         _depth_arrive[n] = 0u;
       } else {
         _ntk.foreach_fanin(n, [&](auto const& sc){

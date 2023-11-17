@@ -75,16 +75,10 @@ namespace detail
      */
     Ntk run()
     {
-      //////////////////////////////////////////////////////
-      ///   the algorithm of refactor
-      //////////////////////////////////////////////////////
-      topo_view<Ntk>(_ntk).foreach_gate([&](auto const &n)
-                        {
+      topo_view<Ntk>(_ntk).foreach_gate([&](auto const &n) {
         // skip the nodes with many fanouts and nodes with no fanout
         if (_ntk.is_dead(n) || _ntk.fanout_size(n) > 1000)
-        {
           return;
-        }
 
         // 1、compute a reconvergence-driven cut
         compute_reconvergence_driven_cut(n);
@@ -92,111 +86,123 @@ namespace detail
         // 2、collect MFFC nodes
         collect_cone_nodes(n);
 
-        if (_visited_nodes.size() != 1 && _visited_nodes.size() <= _params.max_cone_size)
-        { // skip cone size 1 and cone size over max cone size
-          // 3、compute the truth table of the cut
-          auto tt = compute_cone_tt(n);
+        // 3、local refactor the cone with the constrained size
+        if (_visited_nodes.size() > 1 && _visited_nodes.size() <= _params.max_cone_size){
+          local_isop_refactor(n);
+        }
+      });
 
-          // 4、Isop refactor and replace sub ntk
-          replace_sub_ntk(n, tt);
-        } });
-
-      // clean up the dangling nodes
+      // clean up the dangling nodes caused by the padded subgraphs
       return cleanup_dangling<Ntk>(_ntk);
     }
 
   private:
     void init()
     {
-      init_nodes_defered_size();
-      compute_depth_info();
-      compute_reverse_depth_info();
-      compute_fanouts_info();
+      set_nodes_refered_value();
+      collect_fanouts();
+      compute_depth();
+      compute_reverse_depth();
     }
 
     /**
-     * @brief initizlize the node's tmp_defered_size with fanout
+     * @brief initizlize the node's refered value by fan-out size
+     * 
+     *  the refered value means how many times used by its fan-out nodes
      */
-    void init_nodes_defered_size()
+    void set_nodes_refered_value()
     {
       _ntk.clear_values();
-      _ntk.foreach_node([&](auto const &n)
-                        { _ntk.set_value(n, _ntk.fanout_size(n)); });
+      _ntk.foreach_node([&](auto const &n) { 
+        _ntk.set_value(n, _ntk.fanout_size(n)); 
+      });
     }
 
     /**
-     * @brief compute depth for each node and _ntk
+     * @brief compute depth for each node
+     *    (depth is seemed as the unit delay model)
+     *    depth(n) = max(depth(n), depth( childred(n) ) + 1 )
      */
-    void compute_depth_info()
+    void compute_depth()
     {
-      topo_view<Ntk>(_ntk).foreach_node([&](auto n)
-                                        {
-      if ( _ntk.is_pi( n ) ) {
-        _depth_map.insert( std::make_pair( n, 0 ) );
+      // set depth of constant
+      _depth_map.insert( std::make_pair(0, 0) );
+      
+      // set the depth of PIs
+      _ntk.foreach_pi([&](auto const& pi){
+        _depth_map.insert( std::make_pair(pi, 0) );
+      });
+
+      // compute the depth of internal node
+      _ntk.foreach_gate([&](auto const& n) {
+        assert( _depth_map.find(n) == _depth_map.end() );
+        uint32_t dmax = 0u;
+        _ntk.foreach_fanin( n, [&](auto const& c){
+          auto nc = _ntk.get_node(c);
+          assert( _depth_map.find(nc) != _depth_map.end() ); 
+          dmax = std::max(dmax, _depth_map[nc] + 1);
+        });
+        _depth_map.insert( std::make_pair(n, dmax) );
+      });
+
+      // compute the max depth of _ntk
+      _ntk.foreach_po([&](auto const& po){
+        auto npo = _ntk.get_node(po);
+        _depth_max = std::max(_depth_max, _depth_map[npo]);
+      });
+    }
+
+    /**
+     * @brief Computes reverse levels for each node (length of the farthest path from n to POs)
+     */
+    void compute_reverse_depth()
+    {
+      std::vector<node<Ntk>> rtopo_nodes(_ntk.num_gates());
+      uint32_t rindex = _ntk.num_gates();
+
+      // collect reverse topo nodes
+      _ntk.foreach_gate([&](auto const& n){
+        rtopo_nodes[rindex-1] = n;
+        rindex -= 1;
+        _rdepth_map.insert( std::make_pair(n, 1) );
+      });
+
+      // init the rdepth of constant
+      _rdepth_map.insert( std::make_pair(0, 1) );
+      
+      // init the rdepth of PIs
+      _ntk.foreach_pi([&](auto const& pi){
+        _rdepth_map.insert( std::make_pair(pi, 1) );
+      });
+
+      
+      // compute the reverse depth of internal nodes
+      for(auto n : rtopo_nodes) {
+        _ntk.foreach_fanin(n, [&](auto const& c){
+          auto nc = _ntk.get_node(c);
+          _rdepth_map[nc] = std::max(_rdepth_map[nc], _rdepth_map[n] + 1);
+        });
       }
-      // root node's depth is deeper child's depth + 1
-      uint32_t max_depth = 0;
-      _ntk.foreach_fanin( n, [&]( auto const& f ) {
-        auto child       = _ntk.get_node( f );
-        auto child_depth = _depth_map.find( child )->second;
-        if ( child_depth + 1 > max_depth ) {
-          max_depth = child_depth + 1;
-        }
-      } );
-      _depth_map.insert( std::make_pair( n, max_depth ) );
-      // save max depth of _ntk as _ntk's depth
-      if ( max_depth > _depth_max ) {
-        _depth_max = max_depth;
-      } });
     }
 
     /**
-     * @brief Computes reverse levels for each node(length of the farthest path from n to POs)
+     * @brief collect the fanout nodes for each node
      */
-    void compute_reverse_depth_info()
+    void collect_fanouts()
     {
-      // get reverse topo index and init
-      std::vector<node<Ntk>> r_topo_order;
-      topo_view<Ntk>(_ntk).foreach_node([&](auto n)
-                                        {
-      r_topo_order.insert( r_topo_order.begin(), n );
-      if ( !_ntk.is_pi( n ) ) {
-        _r_depth_map.insert( std::make_pair( _ntk.index_to_node( n ), 1 ) );
-      } });
-
-      // compute reverse level
-      for (auto cur_node : r_topo_order)
-      {
-        if (_ntk.is_pi(cur_node))
-        {
-          continue;
-        }
-        uint32_t cur_depth = _r_depth_map.find(cur_node)->second;
-        _ntk.foreach_fanin(cur_node, [&](auto const &f)
-                           {
-        auto child_iter = _r_depth_map.find( _ntk.get_node( f ) );
-        if ( !_ntk.is_pi( _ntk.get_node( f ) ) && child_iter->second < cur_depth + 1 ) {
-          child_iter->second = cur_depth + 1;
-        } });
-      }
-    }
-
-    /**
-     * @brief Computes fanouts nodes of each node in _ntk
-     */
-    void compute_fanouts_info()
-    {
-      _ntk.foreach_node([&](auto n)
-                        { _ntk.foreach_fanin(n, [&](auto const &f)
-                                             {
-        auto iter = _fanouts_map.find( _ntk.get_node( f ) );
-        if ( iter != _fanouts_map.end() ) {
-          iter->second.insert( n );
-        } else {
-          std::unordered_set<node<Ntk>> new_set;
-          new_set.insert( n );
-          _fanouts_map.insert( std::make_pair( _ntk.get_node( f ), new_set ) );
-        } }); });
+      _ntk.foreach_node([&](auto const& n) { 
+        _ntk.foreach_fanin(n, [&](auto const& c) {
+          auto nc = _ntk.get_node(c);
+          auto iter = _fanouts_map.find(nc);
+          if( iter != _fanouts_map.end() ) {
+            iter->second.insert( n );
+          } else {
+            std::unordered_set<node<Ntk>> new_set;
+            new_set.insert( n );
+            _fanouts_map.insert( std::make_pair(nc, new_set ) );
+          } 
+        }); 
+      });
     }
 
     /**
@@ -416,20 +422,24 @@ namespace detail
     }
 
     /**
-     * @brief  Isop refactor and replace sub ntk
+     * @brief perform the local refactor based on isop optimization
      */
-    void replace_sub_ntk(node<Ntk> root, kitty::dynamic_truth_table const &tt)
+    void local_isop_refactor(node<Ntk> root)
     {
-      // TODO::constant tt
+      auto tt = compute_cone_tt(root);
+
+      // skip the constant truth table
+      if ( kitty::is_const0(tt) ) {
+        return;
+      }
+
       // collect cut
       std::vector<signal<Ntk>> cut;
-      for (auto leaf : _leaves_nodes)
-      {
+      for (auto leaf : _leaves_nodes) {
         cut.push_back(_ntk.make_signal(leaf));
       }
 
-      const auto on_signal = [&](auto const &f_new)
-      {
+      const auto on_signal = [&](auto const &f_new){
         // compute gain
         // compute old sub ntk's cost(reconvergence driven cut size)
         auto num_nodes_save = deref_node_recursive<Ntk, NodeCostFn>(_ntk, root);
@@ -437,18 +447,18 @@ namespace detail
         int gain = num_nodes_save - num_nodes_added;
 
         // compute depth
-        auto reuqire_depth = _depth_max + 1 - _r_depth_map.find(root)->second;
+        assert( _rdepth_map.find(root) != _rdepth_map.end() );
+
+        auto reuqire_depth = _depth_max + 1 - _rdepth_map[root];
         auto cur_depth = update_depth(_ntk.get_node(f_new));
 
         if ((gain > 0 || (_params.allow_zero_gain && gain == 0)) // area
-            && ((cur_depth <= reuqire_depth) || _params.allow_depth_up) && root != _ntk.get_node(f_new))
-        { // depth
-          sub_ntk_replace(root, f_new);
+            && ((cur_depth <= reuqire_depth) || _params.allow_depth_up) && root != _ntk.get_node(f_new))  // depth
+        { 
+          repalce_subgraph(root, f_new);
           update_fanouts_info(root, f_new);
           recursive_update_fanouts_depth(_ntk.get_node(f_new));
-        }
-        else
-        {
+        }  else {
           deref_node_recursive<Ntk, NodeCostFn>(_ntk, _ntk.get_node(f_new));
           ref_node_recursive<Ntk, NodeCostFn>(_ntk, root);
         }
@@ -461,9 +471,11 @@ namespace detail
     }
 
     /**
-     * @brief new sub ntk replace old sub ntk
+     * @brief replace the root by the new signal, thus the original subgraph will be replaced by 
+     * @param old_n old root
+     * @param new_s new signal 
      */
-    void sub_ntk_replace(node<Ntk> old_n, signal<Ntk> new_s)
+    void repalce_subgraph(node<Ntk> old_n, signal<Ntk> new_s)
     {
       auto new_n = _ntk.get_node(new_s);
 
@@ -496,23 +508,20 @@ namespace detail
       uint32_t cur_depth = 0;
 
       // compute current max depth
-      _ntk.foreach_fanin(root, [&](auto const &s, auto i)
-                         {
-      auto child = _ntk.get_node( s );
-      if ( leaves_set.find( child ) != leaves_set.end() ) {  // leaves node
-        cur_depth = std::max( cur_depth, 1 + _depth_map.find( child )->second );
-      } else {  // internal node
-        cur_depth = std::max( cur_depth, 1 + recursive_update_depth( child, leaves_set ) );
-      } });
+      _ntk.foreach_fanin(root, [&](auto const &s, auto i) {
+        auto child = _ntk.get_node( s );
+        if ( leaves_set.find( child ) != leaves_set.end() ) {  // leaves node
+          cur_depth = std::max( cur_depth, 1 + _depth_map.find( child )->second );
+        } else {  // internal node
+          cur_depth = std::max( cur_depth, 1 + recursive_update_depth( child, leaves_set ) );
+        } 
+      });
 
       // update depth info
       auto iter = _depth_map.find(root);
-      if (iter == _depth_map.end())
-      { // newly node
+      if (iter == _depth_map.end()) { // newly node
         _depth_map.insert(std::make_pair(root, cur_depth));
-      }
-      else
-      {
+      } else {
         iter->second = cur_depth;
       }
 
@@ -550,23 +559,22 @@ namespace detail
 
     /**
      * @brief recursive update fanouts depth
+     * 
+     * 这里貌似挺耗时的！
      */
     void recursive_update_fanouts_depth(node<Ntk> root)
     {
-      auto fanouts_iter = _fanouts_map.find(root);
-      if (fanouts_iter == _fanouts_map.end())
-      {
+      auto iter_fanout = _fanouts_map.find(root);
+      if (iter_fanout == _fanouts_map.end())
         return;
-      }
 
-      auto fanouts_set = fanouts_iter->second;
+      auto fanouts_set = iter_fanout->second;
       auto root_dp = _depth_map.find(root)->second;
-      for (auto fanout : fanouts_set)
-      {
-        auto depth_iter = _depth_map.find(fanout);
-        if (depth_iter->second < root_dp + 1)
-        {
-          depth_iter->second = root_dp + 1;
+      
+      for (auto fanout : fanouts_set) {
+        auto iter_depth = _depth_map.find(fanout);
+        if (iter_depth->second < root_dp + 1)  { //FIXME: BUG HERE!
+          iter_depth->second = root_dp + 1;
           recursive_update_fanouts_depth(fanout);
         }
       }
@@ -581,7 +589,7 @@ namespace detail
     std::vector<node<Ntk>> _visited_nodes;
     std::vector<node<Ntk>> _leaves_nodes;
     std::unordered_map<node<Ntk>, uint32_t> _depth_map;
-    std::unordered_map<node<Ntk>, uint32_t> _r_depth_map;
+    std::unordered_map<node<Ntk>, uint32_t> _rdepth_map;
     std::unordered_map<node<Ntk>, std::unordered_set<node<Ntk>>> _fanouts_map;
     uint32_t _depth_max = 0;
   }; // end class refactor_impl
