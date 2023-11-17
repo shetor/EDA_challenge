@@ -49,6 +49,7 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
         if (random_num>=0.1 && random_num<0.2){sequences = macro_4;std::cout<<"macro4"<<std::endl;}
         if (random_num>=0.0 && random_num<0.1){sequences = macro_5;std::cout<<"macro5"<<std::endl;}
     }
+    sequences.push_back("map_fpga;");
     return sequences;
 }
 ////判断父母是否等于macro
@@ -89,22 +90,23 @@ std::vector<std::string> find_top_better_strings(const std::unordered_map<std::s
     return better_seq;
 }
 ////轮盘赌选择
-std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db_map) {
+std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db_map, const std::vector<std::string>& current_population_v) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::string select_sequences;
     // 生成一个0到总概率之间的随机数
     std::uniform_real_distribution<> dis(0.0, 1.0);
     double random_num = dis(gen);
-
+    std::cout<<"ga_select random num:"<<random_num<<std::endl;
     double cumulative_probability = 0.0;
-    for (const auto& pair : seq_to_db_map) {
-        cumulative_probability += pair.second.fit_prob;
+    for (const auto& string : current_population_v) {
+        cumulative_probability += seq_to_db_map.find(string)->second.fit_prob;
         if (cumulative_probability >= random_num) {
-            select_sequences = pair.first; // 返回与选中概率匹配的字符串
+            select_sequences = string; // 返回与选中概率匹配的字符串
             break;
         }
     }
+    std::cout<<"select_sequence:"<<select_sequences<<std::endl;
     return select_sequences;
 }
 ////将以；为间隔的算子字符串转换为以vector type
@@ -152,10 +154,10 @@ std::string crossover_op(std::vector<std::string> seq_1,std::vector<std::string>
 ////变异
 std::vector<std::string> mutation(const std::vector<std::string> sequence){
     std::vector<std::string> mutated_sequence = sequence;
-
-    for (const auto &item: mutated_sequence) {
-        std::cout<<"before mutate seq:"<<item<<std::endl;
-    }
+//
+//    for (const auto &item: mutated_sequence) {
+//        std::cout<<"before mutate seq:"<<item<<std::endl;
+//    }
     int seq_num = mutated_sequence.size();
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -182,14 +184,14 @@ std::vector<std::string> mutation(const std::vector<std::string> sequence){
 //        std::cout<<"position"<<count<<":"<<position<<std::endl;
     }
     mutated_sequence.push_back("map_fpga;");
-    for (const auto &item: mutated_sequence) {
-        std::cout<<"after mutate seq:"<<item<<std::endl;
-    }
-    int count = 1;
-    for (const auto &item: used_position) {
-        std::cout<<"position"<<count<<":"<<item<<std::endl;
-        count++;
-    }
+//    for (const auto &item: mutated_sequence) {
+//        std::cout<<"after mutate seq:"<<item<<std::endl;
+//    }
+//    int count = 1;
+//    for (const auto &item: used_position) {
+//        std::cout<<"position"<<count<<":"<<item<<std::endl;
+//        count++;
+//    }
     return mutated_sequence;
 }
 
