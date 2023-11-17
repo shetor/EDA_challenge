@@ -80,7 +80,7 @@ std::vector<std::string> find_top_better_strings(const std::unordered_map<std::s
         });
     }
     std::vector<std::string> better_seq;
-    int count = 1;
+    int count = 0;
     for (const auto &item: sorted_strings) {
         better_seq.push_back(item);
         count++;

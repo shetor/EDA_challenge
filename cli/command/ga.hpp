@@ -199,8 +199,8 @@ namespace alice {
         }
         void execute() {
             auto start = std::chrono::steady_clock::now();
-            double run_time;
-            double run_time_of_stage2;
+//            double run_time;
+//            double run_time_of_stage2;
             iFPGA::aig_network initial_aig = store < iFPGA::aig_network > ().current();
             int node_num = initial_aig.num_gates();
 //            int node_num = 5000;
@@ -286,8 +286,8 @@ namespace alice {
             std::unordered_map<std::string, fit_area_delay> next_seq_to_db_map_2{};
             std::string best_seq{};
             std::string best_seq_of_2{};
-            double mutation_probability;
-            double cross_probability;
+            double mutation_probability = 0;
+            double cross_probability = 0;
 
             int count = 0;
 //            start_time = clock();
@@ -332,7 +332,7 @@ namespace alice {
                 double best_fitness = 0.0;
 //                std::string best_seq{};
                 //// 调用 find_top_better_strings 去找到fitness高的前一半，只有算子序列，无QoR
-                std::vector<std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map);
+//                std::vector<std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map);
                 ////找最好的序列
                 for (const auto &seq: seq_to_db_map) {
                     std::string current_seq = seq.first;
@@ -394,6 +394,23 @@ namespace alice {
                     double fit_prob = fitness / sum_fitness;
                     seq_to_db_map.find(dbMap.first)->second.fit_prob = fit_prob;
                 }
+                ////选出前三个
+                std::vector<std::string> better_seqs = find_top_better_strings(seq_to_db_map);
+                for (const auto &item: better_seqs) {
+                    double better_area = seq_to_db_map.find(item)->second.area;
+                    double better_delay = seq_to_db_map.find(item)->second.delay;
+                    double better_fitness = seq_to_db_map.find(item)->second.fitness;
+                    std::string combined_algo_seq_string = std::accumulate(item.begin(), item.end(),
+                                                                           std::string());
+
+                    fit_area_delay tmp_fit_area_delay;
+                    tmp_fit_area_delay.fitness = better_fitness;
+                    tmp_fit_area_delay.area = better_area;
+                    tmp_fit_area_delay.delay = better_delay;
+                    better_seq_to_db_map.emplace(combined_algo_seq_string, tmp_fit_area_delay);
+                }
+                std::cout<<"better_seq_to_db_map_size="<<better_seq_to_db_map.size()<<std::endl;
+
                 ////将前3seq存进下一个总群next_seq_to_db_map
                 for (const auto &sequence: better_seq_to_db_map) {
                     next_seq_to_db_map.emplace(sequence.first, sequence.second);
@@ -405,17 +422,19 @@ namespace alice {
                 double K4=0.5;
                 double K5=0.4;  ////K5>K6
                 double K6=0.3;
-
+                std::cout<<"seq_to_db_map.size() - better_seq_to_db_map.size="<<seq_to_db_map.size() - better_seq_to_db_map.size()<<std::endl;
+                std::cout<<"seq_num-better_seq.size="<<sequence_num-better_seqs.size()<<std::endl;
                 ////得到交叉或者变异之后的child
-                for (uint64_t i = 0; i < (seq_to_db_map.size() - better_seq_to_db_map.size()); ++i) {
+                for (uint64_t i = 0; i < (sequence_num-better_seqs.size()); ++i) {
+                    std::cout<<"teat0"<<std::endl;
                     std::string string_father = ga_select(seq_to_db_map);
                     std::vector<std::string> vector_father = string_to_vector(string_father);
                     std::string string_mother = ga_select(seq_to_db_map);
                     std::vector<std::string> vector_mother = string_to_vector(string_mother);
 
                     ////自适应
-                    double father_fitness;
-                    double mother_fitness;
+                    double father_fitness = 0;
+                    double mother_fitness = 0;
                     for (const auto &item: seq_to_db_map) {
                         if(string_father == item.first){
                             father_fitness = item.second.fitness;
@@ -430,7 +449,7 @@ namespace alice {
                     std::cout<<"mother_fitness:"<<mother_fitness<<std::endl;
                     double max_fitness_of_parents = std::max(father_fitness, mother_fitness);
                     std::cout<<"max_fitness_of_parents:"<<max_fitness_of_parents<<std::endl;
-                    if (max_fitness_of_parents != father_fitness && max_fitness_of_parents !=mother_fitness){
+                    if (max_fitness_of_parents != min_fitness && max_fitness_of_parents != max_fitness){
                         cross_probability = K1*((max_fitness - max_fitness_of_parents) / (max_fitness - min_fitness));
                         mutation_probability = K4*((max_fitness - max_fitness_of_parents) / (max_fitness - min_fitness));
                     } else if (max_fitness_of_parents == min_fitness){
@@ -468,12 +487,10 @@ namespace alice {
                     std::cout << "mother1:" << string_mother << std::endl;
                     std::cout<<"is_not_father_equal_to_macro:"<<is_not_father_equal_to_macro<<std::endl;
                     std::cout<<"is_not_mother_equal_to_macro:"<<is_not_mother_equal_to_macro<<std::endl;
-                    if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro) {
-                        if (random_num<cross_probability) {
+                    if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro && random_num<cross_probability) {
                             std::cout << "cross" << std::endl;
                             child = crossover_op(vector_father, vector_mother);
                             std::cout << "child:" << child << std::endl;
-                        }
                     }else{
                         std::vector<std::string> child_temp = get_random_sequence(strings, algo_num);
                         child_temp.push_back("map_fpga;");
@@ -664,10 +681,10 @@ namespace alice {
                 auto norm_find_min_fitness = std::min_element(seq_to_db_map_2.begin(), seq_to_db_map_2.end(), [](const auto& pair1, const auto& pair2){
                     return pair1.second.fitness < pair2.second.fitness;;
                 });
-                double max_fitness = norm_find_max_fitness->second.fitness;
-                double min_fitness = norm_find_min_fitness->second.fitness;
-                std::cout<<"max fitness:"<<max_fitness<<std::endl;
-                std::cout<<"min fitness:"<<min_fitness<<std::endl;
+                double max_fitness_2 = norm_find_max_fitness->second.fitness;
+                double min_fitness_2 = norm_find_min_fitness->second.fitness;
+                std::cout<<"max fitness:"<<max_fitness_2<<std::endl;
+                std::cout<<"min fitness:"<<min_fitness_2<<std::endl;
 
                 ////归一化后测试
                 for (const auto &item: seq_to_db_map_2) {
@@ -687,7 +704,24 @@ namespace alice {
                     seq_to_db_map_2.find(seqToDbMap.first)->second.fit_prob = fit_prob;
                 }
                 std::cout << "testB" << std::endl;
-                ////将前一半seq存进下一个总群next_seq_to_db_map
+
+                std::vector<std::string> better_seqs_2 = find_top_better_strings(seq_to_db_map_2);
+                std::cout<<"better_seqs_2 size="<<better_seqs_2.size()<<std::endl;
+                for (const auto &item: better_seqs_2) {
+                    double better_area_2 = seq_to_db_map_2.find(item)->second.area;
+                    double better_delay_2 = seq_to_db_map_2.find(item)->second.delay;
+                    double better_fitness_2 = seq_to_db_map_2.find(item)->second.fitness;
+                    std::string combined_algo_seq_string = std::accumulate(item.begin(), item.end(),
+                                                                           std::string());
+
+                    fit_area_delay better_fit_area_delay_2;
+                    better_fit_area_delay_2.fitness = better_fitness_2;
+                    better_fit_area_delay_2.area = better_area_2;
+                    better_fit_area_delay_2.delay = better_delay_2;
+                    better_seq_to_db_map_2.emplace(combined_algo_seq_string, better_fit_area_delay_2);
+                }
+                std::cout<<"better_seq_to_db_map_2_size="<<better_seq_to_db_map_2.size()<<std::endl;
+                ////将前3seq存进下一个总群next_seq_to_db_map_2
                 for (const auto &sequence: better_seq_to_db_map_2) {
                     next_seq_to_db_map_2.emplace(sequence.first, sequence.second);
                 }
@@ -700,9 +734,10 @@ namespace alice {
                 double K4=0.5;
                 double K5=0.4;  ////K5>K6
                 double K6=0.3;
-
+                std::cout<<"seq_to_db_map_2.size-better_seq_to_db_map_2="<<seq_to_db_map_2.size() - better_seq_to_db_map_2.size()<<std::endl;
+                std::cout<<"seq_num-better_seq_2.size="<<sequence_num-better_seqs_2.size()<<std::endl;
                 ////得到交叉或者变异之后的child
-                for (uint64_t i = 0; i < (seq_to_db_map_2.size() - better_seq_to_db_map_2.size()); ++i) {
+                for (uint64_t i = 0; i < (sequence_num - better_seqs_2.size()); ++i) {
                     std::cout << "testD" << std::endl;
 
                     std::string string_father = ga_select(seq_to_db_map_2);
@@ -711,29 +746,29 @@ namespace alice {
                     std::vector<std::string> vector_mother = string_to_vector(string_mother);
 
                     ////自适应
-                    double father_fitness;
-                    double mother_fitness;
+                    double father_fitness_2 = 0;
+                    double mother_fitness_2 = 0;
                     for (const auto &item: seq_to_db_map_2) {
                         if(string_father == item.first){
-                            father_fitness = item.second.fitness;
+                            father_fitness_2 = item.second.fitness;
                         }
                     }
-                    std::cout<<"father_fitness:"<<father_fitness<<std::endl;
+                    std::cout<<"father_fitness_2:"<<father_fitness_2<<std::endl;
                     for (const auto &item: seq_to_db_map_2) {
                         if(string_mother == item.first){
-                            mother_fitness = item.second.fitness;
+                            mother_fitness_2 = item.second.fitness;
                         }
                     }
-                    std::cout<<"mother_fitness:"<<mother_fitness<<std::endl;
-                    double max_fitness_of_parents = std::max(father_fitness, mother_fitness);
+                    std::cout<<"mother_fitness_2:"<<mother_fitness_2<<std::endl;
+                    double max_fitness_of_parents = std::max(father_fitness_2, mother_fitness_2);
                     std::cout<<"max_fitness_of_parents:"<<max_fitness_of_parents<<std::endl;
-                    if (max_fitness_of_parents != father_fitness && max_fitness_of_parents !=mother_fitness){
-                        cross_probability = K1*((max_fitness - max_fitness_of_parents) / (max_fitness - min_fitness));
-                        mutation_probability = K4*((max_fitness - max_fitness_of_parents) / (max_fitness - min_fitness));
-                    } else if (max_fitness_of_parents == min_fitness){
+                    if (max_fitness_of_parents != min_fitness_2 && max_fitness_of_parents != max_fitness_2){
+                        cross_probability = K1*((max_fitness_2 - max_fitness_of_parents) / (max_fitness_2 - min_fitness_2));
+                        mutation_probability = K4*((max_fitness_2 - max_fitness_of_parents) / (max_fitness_2 - min_fitness_2));
+                    } else if (max_fitness_of_parents == min_fitness_2){
                         cross_probability = K2;
                         mutation_probability = K5;
-                    } else if (max_fitness_of_parents == max_fitness){
+                    } else if (max_fitness_of_parents == max_fitness_2){
                         cross_probability = K3;
                         mutation_probability = K6;
                     }
@@ -764,12 +799,10 @@ namespace alice {
 
                     std::cout<<"is_not_father_equal_to_macro:"<<is_not_father_equal_to_macro<<std::endl;
                     std::cout<<"is_not_mother_equal_to_macro:"<<is_not_mother_equal_to_macro<<std::endl;
-                    if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro) {
-                        if (random_num<cross_probability) {
+                    if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro && random_num<cross_probability) {
                             std::cout << "cross" << std::endl;
                             child = crossover_op(vector_father, vector_mother);
                             std::cout << "test" << std::endl;
-                        }
                     }else{
                         std::vector<std::string> child_temp = get_random_sequence(strings, algo_num_of_stage_2);
                         child_temp.push_back("map_fpga;");
