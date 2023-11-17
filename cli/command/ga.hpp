@@ -19,6 +19,7 @@
 #include "include/operations/optimization/and_balance.hpp"
 #include <fstream>
 #include <ctime>
+#include <chrono>
 
 namespace alice {
 
@@ -197,8 +198,7 @@ namespace alice {
             }
         }
         void execute() {
-            clock_t start_time, end_time_1, end_time_2;
-            start_time = clock();
+            auto start = std::chrono::steady_clock::now();
             double run_time;
             double run_time_of_stage2;
             iFPGA::aig_network initial_aig = store < iFPGA::aig_network > ().current();
@@ -207,21 +207,23 @@ namespace alice {
             std::cout<<"node_num:"<<node_num<<std::endl;
 
             //判断case大小来决定运行时间
-            double limited_time_1 ;
-            double limited_time_2 ;
+            int limited_second_1;
+            int limited_second_2;
             if (node_num<=1000){
-                limited_time_1 = 30.0;
-                limited_time_2 = 57.0;
+                limited_second_1 = 30;
+                limited_second_2 = 57;
             } else if (1000<node_num && node_num<=10000){
-                limited_time_1 = 150.0;
-                limited_time_2 = 290.0;
+                limited_second_1 = 300;
+                limited_second_2 = 590;
             } else{
-                limited_time_1 = 1800.0;
-                limited_time_2 = 3590.0;
+                limited_second_1 = 1800;
+                limited_second_2 = 3590;
             }
+            std::chrono::duration<int, std::ratio<1>> limited_time_1(limited_second_1);
+            std::chrono::duration<int, std::ratio<1>> limited_time_2(limited_second_2);
 
-            std::cout<<"limit time 1:"<<limited_time_1<<std::endl;
-            std::cout<<"limit time 2:"<<limited_time_2<<std::endl;
+            std::cout<<"limit time1:"<<limited_time_1.count()<<std::endl;
+            std::cout<<"limit time2:"<<limited_time_2.count()<<std::endl;
 
             std::shared_ptr<iFPGA::storage<iFPGA::fixed_node<2, 2>, iFPGA::aig_storage_data>> initial_aig_storage =
                     store < iFPGA::aig_network > ().current()._storage;
@@ -277,6 +279,9 @@ namespace alice {
             std::vector<std::string> macro_5 = {
                     "balance;","rewrite -l;","refactor -l;","balance;","rewrite -z -l;","balance;","refactor -z;","rewrite -z;","balance;"};
 
+            std::vector<std::string> store_seq_1;
+            std::vector<std::string> store_seq_2;
+
             std::unordered_map<std::string, fit_area_delay> next_seq_to_db_map{};
             std::unordered_map<std::string, fit_area_delay> next_seq_to_db_map_2{};
             std::string best_seq{};
@@ -294,6 +299,7 @@ namespace alice {
                 ////turn vector to string
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(), algo_sequence.end(),
                                                                        std::string());
+                store_seq_1.push_back(combined_algo_seq_string);
 //                std::cout<<"Combined String:"<<combined_algo_seq_string<<std::endl;
                 iFPGA::klut_network klut = store < iFPGA::klut_network > ().current()._storage;
                 iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
@@ -341,24 +347,20 @@ namespace alice {
                 std::cout << "Best Fitness: " << best_fitness << std::endl;
                 std::cout << "best_area:" << seq_to_db_map.find(best_seq)->second.area << std::endl;
                 std::cout << "best_delay:" << seq_to_db_map.find(best_seq)->second.delay << std::endl;
-                ////得到前一半seq,返回better_seq_to_db_map，这个map是有string以及QoR
-                for (const auto &sequence: top_better_algo_sequences) {
+                for (const auto &sequence: seq_to_db_map) {
 //                    std::cout << "better_seq:" << sequence << std::endl;
-                    double fitness = seq_to_db_map.find(sequence)->second.fitness;
+                    double fitness = seq_to_db_map.find(sequence.first)->second.fitness;
 //                    std::cout << "better_top_fitness:" << fitness << std::endl;
-                    fit_area_delay tmp_db = seq_to_db_map.find(sequence)->second;
-                    better_seq_to_db_map.emplace(sequence, tmp_db);///将前一半赋给这个map
                     sum_fitness += fitness;
                 }
 //                std::cout << "sum_fitness:" << sum_fitness << std::endl;
                 ////计算所有fitness_prob，存进better_map的prob
-                for (const auto &seqToDbMap: better_seq_to_db_map) {
-//                    std::cout << "better_seq_db:" << seqToDbMap.first << std::endl;
-                    double fitness = seq_to_db_map.find(seqToDbMap.first)->second.fitness;
+                for (const auto &dbMap: seq_to_db_map) {
+                    double fitness = seq_to_db_map.find(dbMap.first)->second.fitness;
                     double fit_prob = fitness / sum_fitness;
-                    better_seq_to_db_map.find(seqToDbMap.first)->second.fit_prob = fit_prob;
+                    seq_to_db_map.find(dbMap.first)->second.fit_prob = fit_prob;
                 }
-                ////将前一半seq存进下一个总群next_seq_to_db_map
+                ////将前3seq存进下一个总群next_seq_to_db_map
                 for (const auto &sequence: better_seq_to_db_map) {
                     next_seq_to_db_map.emplace(sequence.first, sequence.second);
                 }
@@ -375,30 +377,42 @@ namespace alice {
                     std::string child = "";
                     std::cout << "father1:" << string_father << std::endl;
                     std::cout << "mother1:" << string_mother << std::endl;
+                    vector_father.pop_back();
+                    vector_mother.pop_back();
+                    bool is_not_father_equal_to_macro =
+                            is_not_vector_equal(vector_father, macro_1) && is_not_vector_equal(vector_father, macro_2) &&
+                                    is_not_vector_equal(vector_father, macro_3) && is_not_vector_equal(vector_father, macro_4) &&
+                                    is_not_vector_equal(vector_father, macro_5);
+                    bool is_not_mother_equal_to_macro =
+                            is_not_vector_equal(vector_mother, macro_1) && is_not_vector_equal(vector_mother, macro_2) &&
+                                    is_not_vector_equal(vector_mother, macro_3) && is_not_vector_equal(vector_mother, macro_4) &&
+                                    is_not_vector_equal(vector_mother, macro_5);
+                    vector_father.push_back("map_fpga;");
+                    vector_mother.push_back("map_fpga;");
 
-                    int isFather_Equal_to_macro =
-                            is_vector_equal(vector_father, macro_1) && is_vector_equal(vector_father, macro_2) &&
-                                    is_vector_equal(vector_father, macro_3) && is_vector_equal(vector_father, macro_4) &&
-                                    is_vector_equal(vector_father, macro_5);
-                    int isMother_Equal_to_macro =
-                            is_vector_equal(vector_mother, macro_1) && is_vector_equal(vector_mother, macro_2) &&
-                                    is_vector_equal(vector_mother, macro_3) && is_vector_equal(vector_mother, macro_4) &&
-                                    is_vector_equal(vector_mother, macro_5);
-
-                    if (isFather_Equal_to_macro && isMother_Equal_to_macro == 1) {
-
+                    std::cout << "father1:" << string_father << std::endl;
+                    std::cout << "mother1:" << string_mother << std::endl;
+                    std::cout<<"is_not_father_equal_to_macro:"<<is_not_father_equal_to_macro<<std::endl;
+                    std::cout<<"is_not_mother_equal_to_macro:"<<is_not_mother_equal_to_macro<<std::endl;
+                    if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro) {
                         std::cout << "cross" << std::endl;
                         child = crossover_op(vector_father, vector_mother);
-                        std::cout << "test1" << std::endl;
-
+                        std::cout << "child:" <<child<< std::endl;
+                    }else{
+                        std::vector<std::string> child_temp = get_random_sequence(strings, algo_num);
+                        child_temp.push_back("map_fpga;");
+                        std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
+                                                                               child_temp.end(),
+                                                                               std::string());
+                        child = combined_algo_seq_string;
                     }
                     if (random_num < mutation_probability) {
                         std::cout << "mutation" << std::endl;
                         std::vector<std::string> v_child = string_to_vector(child);
+                        v_child.pop_back();
                         std::vector<std::string> mutation_child = mutation(v_child);
-
+                        v_child.push_back("map_fpga;");
 //                        std::vector<std::string> algo_sequence = get_random_sequence(strings, algo_num);
-                        mutation_child.push_back("map_fpga;");
                         std::string combined_algo_seq_string = std::accumulate(mutation_child.begin(),
                                                                                mutation_child.end(),
                                                                                std::string());
@@ -475,10 +489,12 @@ namespace alice {
                 seq_to_db_map = std::move(next_seq_to_db_map);
                 count += 1;
                 std::cout << "count: " << count << std::endl;
-                end_time_1 = clock();
-                run_time = (double) (end_time_1 - start_time) / CLOCKS_PER_SEC;
-                std::cout << "run_time: " << run_time << std::endl;
-                if (run_time >= limited_time_1){
+//                end_time_1 = clock();
+                auto end = std::chrono::steady_clock::now();
+                std::chrono::duration<double> run_time_1 = end-start;
+//                run_time = (double) (end_time_1 - start_time) / CLOCKS_PER_SEC;
+                std::cout << "run_time: " << run_time_1.count() << std::endl;
+                if (run_time_1.count()>=limited_time_1.count()){
                     break;
                 }
             }
@@ -504,6 +520,7 @@ namespace alice {
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence_of_2.begin(),
                                                                        algo_sequence_of_2.end(),
                                                                        std::string());
+                store_seq_2.push_back(combined_algo_seq_string);
 
                 iFPGA::klut_network klut = store < iFPGA::klut_network > ().current()._storage;
                 iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
@@ -548,29 +565,30 @@ namespace alice {
                 std::cout << "best_area2:" << seq_to_db_map_2.find(best_seq_of_2)->second.area << std::endl;
                 std::cout << "best_delay2:" << seq_to_db_map_2.find(best_seq_of_2)->second.delay << std::endl;
                 ////得到前一半seq,better_seq_to_db_map_2，这个map是有string以及QoR
-                for (const auto &sequence: top_better_algo_sequences) {
+                for (const auto &sequence: seq_to_db_map_2) {
 //                    std::cout << "better_seq:" << sequence << std::endl;
-                    double fitness = seq_to_db_map_2.find(sequence)->second.fitness;
+                    double fitness = seq_to_db_map_2.find(sequence.first)->second.fitness;
 //                    std::cout << "better_top_fitness:" << fitness << std::endl;
-                    fit_area_delay tmp_db = seq_to_db_map_2.find(sequence)->second;
-                    better_seq_to_db_map_2.emplace(sequence, tmp_db);///将前一半赋给这个map
                     sum_fitness += fitness;
                 }
-//                std::cout << "sum_fitness:" << sum_fitness << std::endl;
+                std::cout << "testA" << std::endl;
                 ////计算所有fitness_prob，存进better_map的prob
-                for (const auto &seqToDbMap: better_seq_to_db_map_2) {
+                for (const auto &seqToDbMap: seq_to_db_map_2) {
 //                    std::cout << "better_seq_db:" << seqToDbMap.first << std::endl;
                     double fitness = seq_to_db_map_2.find(seqToDbMap.first)->second.fitness;
                     double fit_prob = fitness / sum_fitness;
-                    better_seq_to_db_map_2.find(seqToDbMap.first)->second.fit_prob = fit_prob;
+                    seq_to_db_map_2.find(seqToDbMap.first)->second.fit_prob = fit_prob;
                 }
+                std::cout << "testB" << std::endl;
                 ////将前一半seq存进下一个总群next_seq_to_db_map
                 for (const auto &sequence: better_seq_to_db_map_2) {
                     next_seq_to_db_map_2.emplace(sequence.first, sequence.second);
                 }
-
+                std::cout << "testC" << std::endl;
                 ////得到交叉或者变异之后的child
                 for (uint64_t i = 0; i < (seq_to_db_map_2.size() - better_seq_to_db_map_2.size()); ++i) {
+                    std::cout << "testD" << std::endl;
+
                     std::string string_father = ga_select(seq_to_db_map_2);
                     std::vector<std::string> vector_father = string_to_vector(string_father);
                     std::string string_mother = ga_select(seq_to_db_map_2);
@@ -583,27 +601,42 @@ namespace alice {
                     std::cout << "father2:" << string_father << std::endl;
                     std::cout << "mother2:" << string_mother << std::endl;
 
-                    int isFather_Equal_to_macro =
-                            is_vector_equal(vector_father, macro_1) && is_vector_equal(vector_father, macro_2) &&
-                                    is_vector_equal(vector_father, macro_3) && is_vector_equal(vector_father, macro_4) &&
-                                    is_vector_equal(vector_father, macro_5);
-                    int isMother_Equal_to_macro =
-                            is_vector_equal(vector_mother, macro_1) && is_vector_equal(vector_mother, macro_2) &&
-                                    is_vector_equal(vector_mother, macro_3) && is_vector_equal(vector_mother, macro_4) &&
-                                    is_vector_equal(vector_mother, macro_5);
+                    vector_father.pop_back();
+                    vector_mother.pop_back();
+                    bool is_not_father_equal_to_macro =
+                            is_not_vector_equal(vector_father, macro_1) && is_not_vector_equal(vector_father, macro_2) &&
+                                    is_not_vector_equal(vector_father, macro_3) && is_not_vector_equal(vector_father, macro_4) &&
+                                    is_not_vector_equal(vector_father, macro_5);
+                    bool is_not_mother_equal_to_macro =
+                            is_not_vector_equal(vector_mother, macro_1) && is_not_vector_equal(vector_mother, macro_2) &&
+                                    is_not_vector_equal(vector_mother, macro_3) && is_not_vector_equal(vector_mother, macro_4) &&
+                                    is_not_vector_equal(vector_mother, macro_5);
+                    vector_father.push_back("map_fpga;");
+                    vector_mother.push_back("map_fpga;");
 
-                    if (isFather_Equal_to_macro && isMother_Equal_to_macro == true) {
+                    std::cout<<"is_not_father_equal_to_macro:"<<is_not_father_equal_to_macro<<std::endl;
+                    std::cout<<"is_not_mother_equal_to_macro:"<<is_not_mother_equal_to_macro<<std::endl;
+                    if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro) {
                         std::cout << "cross" << std::endl;
                         child = crossover_op(vector_father, vector_mother);
                         std::cout << "test" << std::endl;
+                    }else{
+                        std::vector<std::string> child_temp = get_random_sequence(strings, algo_num_of_stage_2);
+                        child_temp.push_back("map_fpga;");
+                        std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
+                                                                               child_temp.end(),
+                                                                               std::string());
+                        child = combined_algo_seq_string;
                     }
+                    std::cout << "testE" << std::endl;
                     if (random_num < mutation_probability) {
                         std::cout << "mutation" << std::endl;
                         std::vector<std::string> v_child = string_to_vector(child);
+                        v_child.pop_back();
                         std::vector<std::string> mutation_child = mutation(v_child);
-
+                        v_child.push_back("map_fpga");
 //                        std::vector<std::string> algo_sequence = get_random_sequence(strings, algo_num);
-                        mutation_child.push_back("map_fpga;");
+
                         std::string combined_algo_seq_string = std::accumulate(mutation_child.begin(),
                                                                                mutation_child.end(),
                                                                                std::string());
@@ -678,12 +711,12 @@ namespace alice {
                 seq_to_db_map_2 = std::move(next_seq_to_db_map_2);
 
                 count2 += 1;
-                std::cout << "count2: " << count2 << std::endl;
-
-                end_time_2 = clock();
-                run_time_of_stage2 = (double) (end_time_2 - start_time) / CLOCKS_PER_SEC;
-                std::cout << "run_time_of_stage2: " << run_time_of_stage2 << std::endl;
-                if (run_time >= limited_time_2){
+                std::cout << "count2: " << count2 << std::endl;auto end_2=std::chrono::steady_clock::now();
+                std::chrono::duration<double> run_time_2= end_2-start;
+                std::cout << "run_time: " << run_time_2.count()<< std::endl;
+//                run_time_of_stage2 = (double) (end_time_2 - start_time) / CLOCKS_PER_SEC;
+//                std::cout << "run_time_of_stage2: " << run_time_of_stage2 << std::endl;
+                if (run_time_2.count()>=limited_time_2.count()){
                     break;
                 }
             }

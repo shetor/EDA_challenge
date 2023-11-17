@@ -51,7 +51,7 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
     return sequences;
 }
 
-bool is_vector_equal(const std::vector<std::string>& v1, const std::vector<std::string>& v2){
+bool is_not_vector_equal(const std::vector<std::string>& v1, const std::vector<std::string>& v2){
     if(v1.size() != v2.size()){return true;}
     for(size_t i = 0; i<v1.size(); i++){
         if(v1[i] != v2[i]){return true;}
@@ -79,15 +79,21 @@ std::vector<std::string> find_top_better_strings(const std::unordered_map<std::s
         });
 
         // 保持 vector 的大小为前一半
-        if (sorted_strings.size() > seq_to_fitness_map.size() / 3 ) {
-            sorted_strings.pop_back();
-        }
+//        if (sorted_strings.size() > seq_to_fitness_map.size() / 3 ) {
+//            sorted_strings.pop_back();
+//        }
     }
-
-    return sorted_strings;
+    std::vector<std::string> better_seq;
+    int count = 1;
+    for (const auto &item: sorted_strings) {
+        better_seq.push_back(item);
+        count++;
+        if (count==3){ break;}
+    }
+    return better_seq;
 }
 ////轮盘赌选择
-std::string ga_select(std::unordered_map<std::string, fit_area_delay> seq_to_db_map) {
+std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db_map) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::string select_sequences;
@@ -148,9 +154,9 @@ std::string crossover_op(std::vector<std::string> seq_1,std::vector<std::string>
     return string_after_cross_x;
 }
 ////变异
-std::vector<std::string> mutation(std::vector<std::string> sequence){
+std::vector<std::string> mutation(const std::vector<std::string> sequence){
     std::vector<std::string> mutated_sequence = sequence;
-    mutated_sequence.pop_back();
+
     for (const auto &item: mutated_sequence) {
         std::cout<<"before mutate seq:"<<item<<std::endl;
     }
@@ -166,7 +172,7 @@ std::vector<std::string> mutation(std::vector<std::string> sequence){
     int position = dis_of_position(gen);
 //    std::cout<<"position1:"<<position<<std::endl;
     std::vector<std::int32_t> used_position;
-    used_position.push_back(position);
+
     for(int i=1; i <= position_num-1; ++i){
         std::vector <std::string> operations = {"balance;", "rewrite;",  "rewrite -z;", "rewrite -v;", "refactor;",
                                                 "refactor -z;", "refactor -v;"};
