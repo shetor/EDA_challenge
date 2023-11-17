@@ -11,6 +11,7 @@ struct fit_area_delay{
     double delay = 0;
     double fit_prob = 0;
 };
+////随机生成初始序列
 std::vector <std::string> get_random_sequence(const std::vector <std::string> &strings, int algo_num) {
     std::vector<std::string> macro_1 = {"balance;","rewrite;","rewrite -z;","balance;","rewrite -z;","balance;"};
     std::vector<std::string> macro_2 = {
@@ -50,7 +51,7 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
     }
     return sequences;
 }
-
+////判断父母是否等于macro
 bool is_not_vector_equal(const std::vector<std::string>& v1, const std::vector<std::string>& v2){
     if(v1.size() != v2.size()){return true;}
     for(size_t i = 0; i<v1.size(); i++){
@@ -58,30 +59,25 @@ bool is_not_vector_equal(const std::vector<std::string>& v1, const std::vector<s
     }
     return false;
 }
+
 double reward_func(double current_area, double current_delay, double no_opt_area, double no_opt_delay) {
     double qor = 0.4 * (double) (current_area / no_opt_area) + 0.6 * (double) (current_delay / no_opt_delay);
     return qor;
 }
+////计算适应度
 double fitness_func(double current_area, double current_delay, double no_opt_area, double no_opt_delay) {
     double fitness_value = 1 / reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
     return fitness_value;
 }
-
+////选取适应度高的几个序列
 std::vector<std::string> find_top_better_strings(const std::unordered_map<std::string,fit_area_delay>& seq_to_fitness_map) {
     std::vector<std::string> sorted_strings;  // 存储按 fitness 排序的字符串
     for (const auto& entry : seq_to_fitness_map) {
         const std::string& str = entry.first;
-
-
         sorted_strings.push_back(str);
         std::sort(sorted_strings.begin(), sorted_strings.end(), [&](const std::string& a, const std::string& b) {
             return seq_to_fitness_map.find(a)->second.fitness >= seq_to_fitness_map.find(b)->second.fitness;
         });
-
-        // 保持 vector 的大小为前一半
-//        if (sorted_strings.size() > seq_to_fitness_map.size() / 3 ) {
-//            sorted_strings.pop_back();
-//        }
     }
     std::vector<std::string> better_seq;
     int count = 1;
