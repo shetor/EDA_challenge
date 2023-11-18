@@ -10,6 +10,7 @@ struct fit_area_delay{
     double area =0;
     double delay = 0;
     double fit_prob = 0;
+    double norm_fitness = 0;
 };
 ////随机生成初始序列
 std::vector <std::string> get_random_sequence(const std::vector <std::string> &strings, int algo_num) {
@@ -27,7 +28,7 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
 
     std::uniform_real_distribution<> dis(0.0, 1.0);
     double random_num = dis(gen);
-    std::cout<<"random num:"<<random_num<<std::endl;
+//    std::cout<<"random num:"<<random_num<<std::endl;
     for (int i = 0; i < algo_num; i++) {
         int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
         counts[index]++;
@@ -43,11 +44,11 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
 
         std::shuffle(sequences.begin(), sequences.end(), gen);
     }else{
-        if (random_num>=0.4){sequences = macro_1;std::cout<<"macro1"<<std::endl;}
-        if (random_num>=0.3 && random_num<0.4){sequences = macro_2;std::cout<<"macro2"<<std::endl;}
-        if (random_num>=0.2 && random_num<0.3){sequences = macro_3;std::cout<<"macro3"<<std::endl;}
-        if (random_num>=0.1 && random_num<0.2){sequences = macro_4;std::cout<<"macro4"<<std::endl;}
-        if (random_num>=0.0 && random_num<0.1){sequences = macro_5;std::cout<<"macro5"<<std::endl;}
+        if (random_num>=0.4){sequences = macro_1;}
+        if (random_num>=0.3 && random_num<0.4){sequences = macro_2;}
+        if (random_num>=0.2 && random_num<0.3){sequences = macro_3;}
+        if (random_num>=0.1 && random_num<0.2){sequences = macro_4;}
+        if (random_num>=0.0 && random_num<0.1){sequences = macro_5;}
     }
     sequences.push_back("map_fpga;");
     return sequences;
@@ -67,7 +68,7 @@ double reward_func(double current_area, double current_delay, double no_opt_area
 }
 ////计算适应度
 double fitness_func(double current_area, double current_delay, double no_opt_area, double no_opt_delay) {
-    double fitness_value = 1 / reward_func(current_area, current_delay, no_opt_area, no_opt_delay);
+    double fitness_value = 1 - pow(reward_func(current_area, current_delay, no_opt_area, no_opt_delay),2) ;
     return fitness_value;
 }
 ////选取适应度高的几个序列
@@ -97,7 +98,7 @@ std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db
     // 生成一个0到总概率之间的随机数
     std::uniform_real_distribution<> dis(0.0, 1.0);
     double random_num = dis(gen);
-    std::cout<<"ga_select random num:"<<random_num<<std::endl;
+//    std::cout<<"ga_select random num:"<<random_num<<std::endl;
     double cumulative_probability = 0.0;
     for (const auto& string : current_population_v) {
         cumulative_probability += seq_to_db_map.find(string)->second.fit_prob;
@@ -106,7 +107,7 @@ std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db
             break;
         }
     }
-    std::cout<<"select_sequence:"<<select_sequences<<std::endl;
+//    std::cout<<"select_sequence:"<<select_sequences<<std::endl;
     return select_sequences;
 }
 ////将以；为间隔的算子字符串转换为以vector type
@@ -165,7 +166,7 @@ std::vector<std::string> mutation(const std::vector<std::string> sequence){
     std::uniform_int_distribution<> dis_of_position(0, seq_num-1);
 
     int position_num = dis_of_position_num(gen);
-    std::cout<<"position_num:"<<position_num<<std::endl;
+//    std::cout<<"position_num:"<<position_num<<std::endl;
 
     int position = dis_of_position(gen);
 //    std::cout<<"position1:"<<position<<std::endl;
