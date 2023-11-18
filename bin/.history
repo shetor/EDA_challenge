@@ -26,3 +26,12 @@ ga -O "../output/1.txt"
 read_aiger -f ../benchmark/b03_comb/b03_comb.aig
 rewrite -l;balance;refactor;rewrite -z;refactor -v;refactor -l;rewrite -z;rewrite -z;refactor;refactor -v;refactor -l;refactor;rewrite -l;refactor -v;refactor -v;map_fpga;
 print_stats -t 1
+read_aiger -f ../benchmark/b03_comb/b03_comb.aig
+ga
+read_aiger -f "../../Small/ADDERFDS_comb/ADDERFDS_comb.aig"
+read_aiger -f "ADDERFDS_comb/ADDERFDS_comb.aig"
+read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
+read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
+read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
+read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
+ga

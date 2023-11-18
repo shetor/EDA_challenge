@@ -1,2 +1,0 @@
-level: 7
-area: 25

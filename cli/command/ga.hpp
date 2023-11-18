@@ -36,6 +36,28 @@ namespace alice {
                 if (str == "balance;") {
                     store<iFPGA::aig_network>().current() = iFPGA::balance_and(store<iFPGA::aig_network>().current());
                 }
+                if (str == "lut_opt;"){
+                    uint32_t cut_size = 6u;
+                    uint32_t priority_size = 10u;
+                    uint32_t iFlowIter = 1;
+                    uint32_t iAreaIter = 2;
+                    bool zero_gain = false;
+                    bool verbose = false;
+                    iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+                    iFPGA::aig_with_choice awc(aig);
+                    iFPGA::mapping_view<iFPGA::aig_with_choice, true, false> mapped_aig(awc);
+                    iFPGA::klut_mapping_params params;
+                    params.cut_enumeration_ps.cut_size = cut_size;
+                    params.cut_enumeration_ps.cut_limit = priority_size;
+                    params.uFlowIters = iFlowIter;
+                    params.uAreaIters = iAreaIter;
+                    params.bZeroGain = zero_gain;
+                    params.verbose = verbose;
+                    iFPGA_NAMESPACE::klut_mapping<decltype(mapped_aig), true>(mapped_aig, params);
+                    const auto kluts = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>( mapped_aig );
+                    iFPGA::aig_network res = iFPGA::convert_klut_to_aig( kluts );
+                    store<iFPGA::aig_network>().current() = res;
+                }
                 if (str == "rewrite;") {
                     uint32_t cut_size = 4u;
                     uint32_t priority_size = 10u;
@@ -49,7 +71,6 @@ namespace alice {
                     params.cut_enumeration_ps.cut_limit = priority_size;
                     aig = iFPGA::rewrite(aig, params);
                     store<iFPGA::aig_network>().current() = aig;
-
                 }
                 if (str == "rewrite -z;") {
                     uint32_t cut_size = 4u;
@@ -64,7 +85,6 @@ namespace alice {
                     params.cut_enumeration_ps.cut_limit = priority_size;
                     aig = iFPGA::rewrite(aig, params);
                     store<iFPGA::aig_network>().current() = aig;
-
                 }
                 if (str == "rewrite -l;") {
                     uint32_t cut_size = 4u;
@@ -79,7 +99,6 @@ namespace alice {
                     params.cut_enumeration_ps.cut_limit = priority_size;
                     aig = iFPGA::rewrite(aig, params);
                     store<iFPGA::aig_network>().current() = aig;
-
                 }
                 if (str == "rewrite -z -l;") {
                     uint32_t cut_size = 4u;
@@ -94,9 +113,7 @@ namespace alice {
                     params.cut_enumeration_ps.cut_limit = priority_size;
                     aig = iFPGA::rewrite(aig, params);
                     store<iFPGA::aig_network>().current() = aig;
-
                 }
-
                 if (str == "refactor;") {
                     uint32_t input_size = 10u;
                     uint32_t cone_size = 16u;
@@ -113,7 +130,6 @@ namespace alice {
                     aig = iFPGA::refactor(aig, params);
 
                     store<iFPGA::aig_network>().current() = aig;
-
                 }
                 if (str == "refactor -z;") {
                     uint32_t input_size = 10u;
@@ -131,7 +147,6 @@ namespace alice {
                     aig = iFPGA::refactor(aig, params);
 
                     store<iFPGA::aig_network>().current() = aig;
-
                 }
                 if (str == "refactor -l;") {
                     uint32_t input_size = 10u;
@@ -198,7 +213,6 @@ namespace alice {
 
         void execute() {
             auto start = std::chrono::steady_clock::now();
-
             iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
             std::shared_ptr < iFPGA::storage < iFPGA::fixed_node < 2, 2 >,
                     iFPGA::aig_storage_data >> initial_aig_storage =
@@ -218,8 +232,6 @@ namespace alice {
             iFPGA_NAMESPACE::klut_mapping<decltype(restore_mapped_aig_1), true>(restore_mapped_aig_1, param_mapping);
             const auto initial_kluts_1 = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>(
                     restore_mapped_aig_1);
-
-
             int node_num = initial_aig.num_gates();
 
             //判断case大小来决定运行时间
@@ -273,12 +285,14 @@ namespace alice {
             std::vector <std::string> current_population_v_2;
             std::vector <std::string> next_population_v;
             std::vector <std::string> next_population_v_2;
-
+            bool continue_not_opt_flag = true;
             uint64_t algo_num = 5;
             uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
             std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
-                                                 "refactor -z;", "refactor -v;", "refactor -l;", "rewrite -z -l;"};
+                                                 "refactor -z;", "refactor -v;", "refactor -l;"};
+            std::vector <std::string> add_lut_strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
+                                                 "refactor -z;", "refactor -v;", "refactor -l;","lut_opt;"};
             std::vector <std::string> macro_1 = {"balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
                                                  "balance;"};
             std::vector <std::string> macro_2 = {
@@ -308,7 +322,23 @@ namespace alice {
             int count = 0;
             ////生成初始序列,返回seq_to_db_map
             for (uint64_t i = 0; i < sequence_num; ++i) {
-                std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
+                if (seq_to_db_map.size()==3){
+                    double first_area = seq_to_db_map.begin()->second.area;
+                    double first_delay = seq_to_db_map.begin()->second.delay;
+                    for (const auto &dbMap: seq_to_db_map) {
+                        if (dbMap.second.area!=first_area||dbMap.second.delay!=first_delay){
+                            continue_not_opt_flag = false;
+                            break;
+                        }
+                    }
+                }
+                std::vector <std::string> algo_sequence;
+                if (continue_not_opt_flag ){
+                    algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
+                }
+                else{
+                    algo_sequence = get_random_sequence(strings, algo_num);
+                }
                 run_algo_seq(algo_sequence);
                 ////turn vector to string
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence.begin(), algo_sequence.end(),
@@ -337,7 +367,6 @@ namespace alice {
                 const auto initial_kluts_3 = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>(
                         restore_mapped_aig_3);
                 store<iFPGA::klut_network>().current() = initial_kluts_3;
-
                 iFPGA::klut_network initial_klut_1 = store<iFPGA::klut_network>().current()._storage;
                 iFPGA::depth_view <iFPGA::klut_network> initial_dklut_1(initial_klut_1);
             }
@@ -380,7 +409,6 @@ namespace alice {
 //                    std::cout<<"sum_mormal_fitness_prob: "<<fit_prob<<std::endl;
                     seq_to_db_map.find(dbMap.first)->second.fit_prob = fit_prob;
                 }
-
                 ////归一后的最大最小fitness
                 auto norm_find_max_fitness = std::max_element(seq_to_db_map.begin(), seq_to_db_map.end(), [](const auto& pair1, const auto& pair2){
                     return pair1.second.fitness < pair2.second.fitness;
@@ -420,7 +448,6 @@ namespace alice {
                     better_seq_to_db_map.emplace(sequence, tmp_fit_area_delay);
                     next_population_v.push_back(sequence);
                 }
-
                 ////得到交叉或者变异之后的child
                 for (uint64_t i = 0; i < (current_population_v.size() - top_better_algo_sequences.size()); ++i) {
                     std::string string_father = ga_select(seq_to_db_map, current_population_v);
@@ -488,7 +515,13 @@ namespace alice {
                         random_num < cross_probability) {
                         child = crossover_op(vector_father, vector_mother);
                     } else {
-                        std::vector <std::string> child_temp = get_random_sequence(strings, algo_num);
+                        std::vector <std::string> child_temp;
+                        if (continue_not_opt_flag){
+                            child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num);
+                        }
+                        else{
+                            child_temp = get_random_sequence(strings, algo_num);
+                        }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
                                                                                child_temp.end(),
                                                                                std::string());
@@ -509,7 +542,14 @@ namespace alice {
                     std::cout << "child1:" << child << std::endl;
                     if (child == string_father || child == string_mother) {
                         std::cout << "child == parents" << std::endl;
-                        std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num);
+                        std::vector <std::string> algo_sequence;
+                        if (continue_not_opt_flag){
+                            algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
+                        }else{
+                            algo_sequence = get_random_sequence(strings, algo_num);
+
+                        }
+
 
                         ////turn vector to string
                         std::string same_pare_child = std::accumulate(algo_sequence.begin(),
@@ -562,7 +602,7 @@ namespace alice {
                     for (const auto &dbMap: better_seq_to_db_map) {
                         std::string current_seq = dbMap.first;
                         double current_fitness = dbMap.second.fitness;
-                        if (current_fitness > best_fitness) {
+                        if (current_fitness >= best_fitness) {
                             best_seq = current_seq;
                             best_fitness = current_fitness;
                         }
@@ -596,9 +636,6 @@ namespace alice {
                     break;
                 }
             }
-
-
-
             ////第二个阶段初始种群
             int count2 = 0;
             sum_normal_fitness = 0;
@@ -610,7 +647,13 @@ namespace alice {
             stage2_initial_aig = store<iFPGA::aig_network>().current();
             stage2_initial_aig_storage = store<iFPGA::aig_network>().current()._storage;
             for (uint64_t i = 0; i < sequence_num; ++i) {
-                std::vector <std::string> algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2);
+                std::vector <std::string> algo_sequence_of_2;
+                if (continue_not_opt_flag){
+                    algo_sequence_of_2 = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
+                }
+                else{
+                    algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2);
+                }
                 run_algo_seq(algo_sequence_of_2);
                 ////turn vector to string
                 std::string combined_algo_seq_string = std::accumulate(algo_sequence_of_2.begin(),
@@ -648,8 +691,6 @@ namespace alice {
                 sum_normal_fitness = 0;
                 double best_fitness_of_2 = 0.0;
 //                std::string best_seq{};
-
-
                 ////归一前最大最小fitness
                 auto initial_find_max_fitness_2 = std::max_element(seq_to_db_map_2.begin(), seq_to_db_map_2.end(),
                                                                    [](const auto &pair1, const auto &pair2) {
@@ -773,7 +814,13 @@ namespace alice {
                         random_num < cross_probability) {
                         child = crossover_op(vector_father, vector_mother);
                     } else {
-                        std::vector <std::string> child_temp = get_random_sequence(strings, algo_num_of_stage_2);
+                        std::vector <std::string> child_temp;
+                        if (continue_not_opt_flag){
+                            child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
+                        }
+                        else{
+                            child_temp = get_random_sequence(strings, algo_num_of_stage_2);
+                        }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
                                                                                child_temp.end(),
                                                                                std::string());
@@ -796,7 +843,13 @@ namespace alice {
                     ////存入下一次种群,得到一个完整的next_seq_to_de_map
                     if (child == string_father || child == string_mother) {
 //                        std::cout<<"child == pareants"<<std::endl;
-                        std::vector <std::string> algo_sequence = get_random_sequence(strings, algo_num_of_stage_2);
+                        std::vector <std::string> algo_sequence;
+                        if (continue_not_opt_flag){
+                            algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
+                        }
+                        else{
+                            algo_sequence = get_random_sequence(strings, algo_num_of_stage_2);
+                        }
                         run_algo_seq(algo_sequence);
                         ////turn vector to string
                         std::string same_pare_child = std::accumulate(algo_sequence.begin(),
