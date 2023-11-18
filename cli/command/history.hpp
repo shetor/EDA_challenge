@@ -10,8 +10,8 @@ public:
         add_flag("--clear, -c", cclear, "toggles of clear the history AIG files");
         add_flag("--size, -s", csize, "toggles of show the history size of AIG files");
         add_flag("--add, -a", cadd, "toggles of add the previous optimized AIG file");
-        add_option("--replace_the_history, -r", index_replace_history, "Options of replace the previous optimized AIG by current AIG");
-        add_option("--backup_to_current, -b", index_replace_current, "Options of replace the current AIG by the previous optimized AIG");
+        add_option("--replace, -r", index_replace_history, "Options of replace the previous optimized AIG by current AIG");
+        add_option("--backup, -b", index_replace_current, "Options of replace the current AIG by the previous optimized AIG");
     }
 
     rules validity_rules() const {
@@ -19,7 +19,7 @@ public:
     }
 
 protected:
-    void execute() {    
+    void execute() {
         if (store<iFPGA::aig_network>().empty()) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
@@ -49,8 +49,7 @@ protected:
             // do nothing
         } else if (index_replace_current > history_index) {
             printf("WARN: the history index is out of range, please refer to the command \"history -h\"\n");
-        }
-        else {
+        } else {
             store<iFPGA::aig_network>()[5] = store<iFPGA::aig_network>()[index_replace_current];
         }
 
@@ -59,21 +58,21 @@ protected:
         }
 
         if (csize) {
-            printf("INFO: the history size is %d\n", history_index+1 ); // current aig are the latest version of optimized AIG, and the previous indexed AIGs are the history AIGs.
+            printf("INFO: the history size is %d\n", history_index + 1); // current aig are the latest version of optimized AIG, and the previous indexed AIGs are the history AIGs.
         }
-        
+
         cclear = false;
         csize = false;
         cadd = false;
         index_replace_history = -1;
         index_replace_current = -1;
-        
+
         return;
     }
 
 private:
-    int max_size = 5;          // the history AIGs are indexed with {0,1,2,3,4}
-    int history_index = -1;    
+    int max_size = 5; // the history AIGs are indexed with {0,1,2,3,4}
+    int history_index = -1;
     bool cclear = false;
     bool csize = false;
     bool cadd = false;
