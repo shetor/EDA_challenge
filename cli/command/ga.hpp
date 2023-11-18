@@ -210,7 +210,6 @@ namespace alice {
                 }
             }
         }
-
         void execute() {
             auto start = std::chrono::steady_clock::now();
             iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
@@ -285,7 +284,7 @@ namespace alice {
             std::vector <std::string> current_population_v_2;
             std::vector <std::string> next_population_v;
             std::vector <std::string> next_population_v_2;
-            bool continue_not_opt_flag = true;
+            bool continue_not_opt_flag;
             uint64_t algo_num = 5;
             uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
@@ -323,6 +322,8 @@ namespace alice {
             ////生成初始序列,返回seq_to_db_map
             for (uint64_t i = 0; i < sequence_num; ++i) {
                 if (seq_to_db_map.size()==3){
+                    std::cout<<"seq_to_db_map_size_3"<<seq_to_db_map.size()<<std::endl;
+                    continue_not_opt_flag = true;
                     double first_area = seq_to_db_map.begin()->second.area;
                     double first_delay = seq_to_db_map.begin()->second.delay;
                     for (const auto &dbMap: seq_to_db_map) {
@@ -549,8 +550,6 @@ namespace alice {
                             algo_sequence = get_random_sequence(strings, algo_num);
 
                         }
-
-
                         ////turn vector to string
                         std::string same_pare_child = std::accumulate(algo_sequence.begin(),
                                                                       algo_sequence.end(),
@@ -607,11 +606,10 @@ namespace alice {
                             best_fitness = current_fitness;
                         }
                     }
-                    if (fitness > best_fitness) {
+                    if (fitness >= best_fitness) {
                         best_seq = next_population_string;
                         best_fitness = fitness;
                     }
-
                     seq_to_db_map.emplace(next_population_string, tmp_fit_area_delay);
                 }
                 //// 输出最佳序列和最佳适应度
@@ -903,12 +901,12 @@ namespace alice {
                     for (const auto &dbMap: better_seq_to_db_map_2) {
                         std::string current_seq = dbMap.first;
                         double current_fitness = dbMap.second.fitness;
-                        if (current_fitness > best_fitness_of_2) {
+                        if (current_fitness >= best_fitness_of_2) {
                             best_seq_of_2 = current_seq;
                             best_fitness_of_2 = current_fitness;
                         }
                     }
-                    if (fitness > best_fitness_of_2) {
+                    if (fitness >= best_fitness_of_2) {
                         best_seq_of_2 = next_population_string_2;
                         best_fitness_of_2 = fitness;
                     }
@@ -977,7 +975,6 @@ namespace alice {
                 std::cout << bestSeqOf1;
             }
             std::cout << " " << std::endl;
-
             std::ofstream output(outfile_path);
             if (output.is_open()) {
                 for (const auto &bestSeqOf1: vector_best_seq_of_1) {
@@ -989,8 +986,6 @@ namespace alice {
                 output.close();
             }
         }
-
-
     private:
         std::string outfile_path = "";
     };
