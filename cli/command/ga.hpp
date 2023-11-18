@@ -439,7 +439,7 @@ namespace alice {
                 }
                 ////初始化sum_fitness
                 sum_normal_fitness = 0;
-                double best_fitness = 0.0;
+                double best_fitness = -1000.0;
                 //// 调用 find_top_better_strings 去找到fitness高的前3个，只有算子序列，无QoR
                 std::vector <std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map);
                 better_seq_to_db_map.clear();
