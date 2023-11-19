@@ -405,6 +405,7 @@ namespace alice {
                     item.second.norm_fitness = norm_fitness;
                     sum_normal_fitness += norm_fitness;
                 }
+                sum_normal_fitness += 0.00001;
 //                std::cout<<"sum_normal_fitness: "<<sum_normal_fitness<<std::endl;
                 ////计算所有fitness_prob，存进seq_map的prob
                 for (const auto &dbMap: seq_to_db_map) {
@@ -569,7 +570,7 @@ namespace alice {
 
 
                 // 清空 seq_to_db_map
-                sum_normal_fitness = 0;
+//                sum_normal_fitness = 0;
                 seq_to_db_map.clear();
                 std::cout << "seq_map_clear_size:" << seq_to_db_map.size() << std::endl;
                 for (const auto &dbMap: better_seq_to_db_map) {
@@ -642,7 +643,7 @@ namespace alice {
             }
             ////第二个阶段初始种群
             int count2 = 0;
-            sum_normal_fitness = 0;
+//            sum_normal_fitness = 0;
 
             std::vector <std::string> v_best_seq_1 = string_to_vector(best_seq);
             v_best_seq_1.pop_back();
@@ -724,6 +725,7 @@ namespace alice {
                     item.second.norm_fitness = norm_fitness;
                     sum_normal_fitness += norm_fitness;
                 }
+                sum_normal_fitness += 0.00001;
                 for (const auto &toDbMap2: seq_to_db_map_2) {
                     double norm_fitness = seq_to_db_map_2.find(toDbMap2.first)->second.norm_fitness;
                     double fit_prob = norm_fitness / sum_normal_fitness;

@@ -116,6 +116,18 @@ std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db
     // 生成一个0到总概率之间的随机数
     std::uniform_real_distribution<> dis(0.0, 1.0);
     double random_num = dis(gen);
+    bool not_all_zero_flag = false;
+    for (const auto &item: seq_to_db_map) {
+        if (item.second.fit_prob!=0){
+            not_all_zero_flag = true;
+            break;
+        }
+    }
+    if (!not_all_zero_flag){
+        for (auto &item: seq_to_db_map) {
+            item.second.fit_prob = 1/current_population_v.size();
+        }
+    }
 //    std::cout<<"ga_select random num:"<<random_num<<std::endl;
     double cumulative_probability = 0.0;
     for (const auto& string : current_population_v) {
