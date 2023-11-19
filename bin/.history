@@ -35,3 +35,16 @@ read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
 read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
 read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
 ga
+read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Middle/C3540.iscas_comb/C3540.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Middle/C6288.iscas_comb/C6288.iscas_comb.aig"
+ga
+read_aiger -f /home/lzx/Desktop/adder/adder.aig
+lut_opt;lut_opt;refactor -l;rewrite -z;refactor;rewrite -z;balance;balance;rewrite -l;refactor -z;rewrite -l;refactor;rewrite;lut_opt;refactor -v;map_fpga;
+print_stats -t 1

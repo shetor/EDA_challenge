@@ -1,3 +1,0 @@
-iMAP v0.1 by PCL, CECA and Anlogic
-imap> read_aiger -f "../benchmark/Small/C432.iscas_comb/C432.iscas_comb.aig"
-imap> ga

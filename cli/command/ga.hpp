@@ -213,12 +213,12 @@ namespace alice {
         void execute() {
             auto start = std::chrono::steady_clock::now();
             iFPGA::aig_network initial_aig = store<iFPGA::aig_network>().current();
-            std::shared_ptr < iFPGA::storage < iFPGA::fixed_node < 2, 2 >,
+            std::shared_ptr<iFPGA::storage<iFPGA::fixed_node<2, 2>,
                     iFPGA::aig_storage_data >> initial_aig_storage =
-                            store<iFPGA::aig_network>().current()._storage;
+                    store<iFPGA::aig_network>().current()._storage;
             iFPGA::aig_network stage2_initial_aig;
-            std::shared_ptr < iFPGA::storage < iFPGA::fixed_node < 2, 2 >, iFPGA::aig_storage_data
-                    >> stage2_initial_aig_storage;
+            std::shared_ptr<iFPGA::storage<iFPGA::fixed_node<2, 2>, iFPGA::aig_storage_data
+            >> stage2_initial_aig_storage;
 
             iFPGA::klut_mapping_params param_mapping;
             param_mapping.cut_enumeration_ps.cut_size = 6u;
@@ -261,7 +261,7 @@ namespace alice {
             store<iFPGA::klut_network>().current() = initial_kluts_2;
 
             iFPGA::klut_network initial_klut = store<iFPGA::klut_network>().current()._storage;
-            iFPGA::depth_view <iFPGA::klut_network> initial_dklut(initial_klut);
+            iFPGA::depth_view<iFPGA::klut_network> initial_dklut(initial_klut);
             double no_opt_area = initial_klut.num_gates();
             double no_opt_delay = initial_dklut.depth();
             double sum_normal_fitness = 0;
@@ -276,33 +276,34 @@ namespace alice {
 //            const auto initial_kluts = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>( mapped_aig );
 //            store<iFPGA::klut_network>().current() = initial_kluts;
 
-            std::unordered_map <std::string, fit_area_delay> seq_to_db_map{};
-            std::unordered_map <std::string, fit_area_delay> seq_to_db_map_2{};
-            std::unordered_map <std::string, fit_area_delay> better_seq_to_db_map{};
-            std::unordered_map <std::string, fit_area_delay> better_seq_to_db_map_2{};
-            std::vector <std::string> current_population_v;
-            std::vector <std::string> current_population_v_2;
-            std::vector <std::string> next_population_v;
-            std::vector <std::string> next_population_v_2;
+            std::unordered_map<std::string, fit_area_delay> seq_to_db_map{};
+            std::unordered_map<std::string, fit_area_delay> seq_to_db_map_2{};
+            std::unordered_map<std::string, fit_area_delay> better_seq_to_db_map{};
+            std::unordered_map<std::string, fit_area_delay> better_seq_to_db_map_2{};
+            std::vector<std::string> current_population_v;
+            std::vector<std::string> current_population_v_2;
+            std::vector<std::string> next_population_v;
+            std::vector<std::string> next_population_v_2;
             bool continue_not_opt_flag;
             uint64_t algo_num = 5;
             uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
-            std::vector <std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
-                                                 "refactor -z;", "refactor -v;", "refactor -l;"};
-            std::vector <std::string> add_lut_strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
-                                                 "refactor -z;", "refactor -v;", "refactor -l;","lut_opt;"};
-            std::vector <std::string> macro_1 = {"balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
-                                                 "balance;"};
-            std::vector <std::string> macro_2 = {
+            std::vector<std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
+                                                "refactor -z;", "refactor -v;", "refactor -l;"};
+            std::vector<std::string> add_lut_strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;",
+                                                        "refactor;",
+                                                        "refactor -z;", "refactor -v;", "refactor -l;", "lut_opt;"};
+            std::vector<std::string> macro_1 = {"balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
+                                                "balance;"};
+            std::vector<std::string> macro_2 = {
                     "balance;", "rewrite;", "refactor;", "balance;", "rewrite;", "rewrite -z;", "balance;",
                     "refactor -z;", "rewrite -z;", "balance;"};
-            std::vector <std::string> macro_3 = {
+            std::vector<std::string> macro_3 = {
                     "balance;", "rewrite;", "balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
                     "balance;"};
-            std::vector <std::string> macro_4 = {"balance;", "rewrite -l;", "rewrite -z -l;", "rewrite -z -l;",
-                                                 "balance;"};
-            std::vector <std::string> macro_5 = {
+            std::vector<std::string> macro_4 = {"balance;", "rewrite -l;", "rewrite -z -l;", "rewrite -z -l;",
+                                                "balance;"};
+            std::vector<std::string> macro_5 = {
                     "balance;", "rewrite -l;", "refactor -l;", "balance;", "rewrite -z -l;", "balance;", "refactor -z;",
                     "rewrite -z;", "balance;"};
 
@@ -321,23 +322,22 @@ namespace alice {
             int count = 0;
             ////生成初始序列,返回seq_to_db_map
             for (uint64_t i = 0; i < sequence_num; ++i) {
-                if (seq_to_db_map.size()==3){
-                    std::cout<<"seq_to_db_map_size_3"<<seq_to_db_map.size()<<std::endl;
+                if (seq_to_db_map.size() == 3) {
+                    std::cout << "seq_to_db_map_size_3" << seq_to_db_map.size() << std::endl;
                     continue_not_opt_flag = true;
                     double first_area = seq_to_db_map.begin()->second.area;
                     double first_delay = seq_to_db_map.begin()->second.delay;
                     for (const auto &dbMap: seq_to_db_map) {
-                        if (dbMap.second.area!=first_area||dbMap.second.delay!=first_delay){
+                        if (dbMap.second.area != first_area || dbMap.second.delay != first_delay) {
                             continue_not_opt_flag = false;
                             break;
                         }
                     }
                 }
-                std::vector <std::string> algo_sequence;
-                if (continue_not_opt_flag ){
+                std::vector<std::string> algo_sequence;
+                if (continue_not_opt_flag) {
                     algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
-                }
-                else{
+                } else {
                     algo_sequence = get_random_sequence(strings, algo_num);
                 }
                 run_algo_seq(algo_sequence);
@@ -347,7 +347,7 @@ namespace alice {
                 current_population_v.push_back(combined_algo_seq_string);
 //                std::cout<<"Combined String:"<<combined_algo_seq_string<<std::endl;
                 iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-                iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
                 double current_area = klut.num_gates();
                 double current_delay = dklut.depth();
                 double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
@@ -369,7 +369,7 @@ namespace alice {
                         restore_mapped_aig_3);
                 store<iFPGA::klut_network>().current() = initial_kluts_3;
                 iFPGA::klut_network initial_klut_1 = store<iFPGA::klut_network>().current()._storage;
-                iFPGA::depth_view <iFPGA::klut_network> initial_dklut_1(initial_klut_1);
+                iFPGA::depth_view<iFPGA::klut_network> initial_dklut_1(initial_klut_1);
             }
 
             ////迭代GA 第一次
@@ -390,6 +390,10 @@ namespace alice {
 //                std::cout << "initial_max_fitness: " << initial_max_fitness << std::endl;
 //                std::cout << "initial_min_fitness: " << initial_min_fitness << std::endl;
                 ////归一
+                ////添加震荡
+                if (initial_min_fitness == initial_max_fitness) {
+                    initial_max_fitness = initial_max_fitness + 0.01;
+                }
                 for (auto &item: seq_to_db_map) {
                     double current_fit = item.second.fitness;
 //                    std::cout<<"current_fit:"<<current_fit<<std::endl;
@@ -411,12 +415,14 @@ namespace alice {
                     seq_to_db_map.find(dbMap.first)->second.fit_prob = fit_prob;
                 }
                 ////归一后的最大最小fitness
-                auto norm_find_max_fitness = std::max_element(seq_to_db_map.begin(), seq_to_db_map.end(), [](const auto& pair1, const auto& pair2){
-                    return pair1.second.fitness < pair2.second.fitness;
-                });
-                auto norm_find_min_fitness = std::min_element(seq_to_db_map.begin(), seq_to_db_map.end(), [](const auto& pair1, const auto& pair2){
-                    return pair1.second.fitness < pair2.second.fitness;;
-                });
+                auto norm_find_max_fitness = std::max_element(seq_to_db_map.begin(), seq_to_db_map.end(),
+                                                              [](const auto &pair1, const auto &pair2) {
+                                                                  return pair1.second.fitness < pair2.second.fitness;
+                                                              });
+                auto norm_find_min_fitness = std::min_element(seq_to_db_map.begin(), seq_to_db_map.end(),
+                                                              [](const auto &pair1, const auto &pair2) {
+                                                                  return pair1.second.fitness < pair2.second.fitness;;
+                                                              });
 
                 double max_fitness = norm_find_max_fitness->second.norm_fitness;
                 double min_fitness = norm_find_min_fitness->second.norm_fitness;
@@ -441,7 +447,7 @@ namespace alice {
                 sum_normal_fitness = 0;
                 double best_fitness = -1000.0;
                 //// 调用 find_top_better_strings 去找到fitness高的前3个，只有算子序列，无QoR
-                std::vector <std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map);
+                std::vector<std::string> top_better_algo_sequences = find_top_better_strings(seq_to_db_map);
                 better_seq_to_db_map.clear();
                 for (const auto &sequence: top_better_algo_sequences) {
                     fit_area_delay tmp_fit_area_delay;
@@ -452,9 +458,9 @@ namespace alice {
                 ////得到交叉或者变异之后的child
                 for (uint64_t i = 0; i < (current_population_v.size() - top_better_algo_sequences.size()); ++i) {
                     std::string string_father = ga_select(seq_to_db_map, current_population_v);
-                    std::vector <std::string> vector_father = string_to_vector(string_father);
+                    std::vector<std::string> vector_father = string_to_vector(string_father);
                     std::string string_mother = ga_select(seq_to_db_map, current_population_v);
-                    std::vector <std::string> vector_mother = string_to_vector(string_mother);
+                    std::vector<std::string> vector_mother = string_to_vector(string_mother);
                     std::cout << "father1:" << string_father << std::endl;
                     std::cout << "mother1:" << string_mother << std::endl;
                     ////自适应
@@ -516,11 +522,10 @@ namespace alice {
                         random_num < cross_probability) {
                         child = crossover_op(vector_father, vector_mother);
                     } else {
-                        std::vector <std::string> child_temp;
-                        if (continue_not_opt_flag){
+                        std::vector<std::string> child_temp;
+                        if (continue_not_opt_flag) {
                             child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num);
-                        }
-                        else{
+                        } else {
                             child_temp = get_random_sequence(strings, algo_num);
                         }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
@@ -531,9 +536,9 @@ namespace alice {
                     }
                     if (random_num < mutation_probability) {
                         std::cout << "mutation" << std::endl;
-                        std::vector <std::string> v_child = string_to_vector(child);
+                        std::vector<std::string> v_child = string_to_vector(child);
                         v_child.pop_back();
-                        std::vector <std::string> mutation_child = mutation(v_child);
+                        std::vector<std::string> mutation_child = mutation(v_child);
 //                        mutation_child.push_back("map_fpga;");
                         std::string combined_algo_seq_string = std::accumulate(mutation_child.begin(),
                                                                                mutation_child.end(),
@@ -543,10 +548,10 @@ namespace alice {
                     std::cout << "child1:" << child << std::endl;
                     if (child == string_father || child == string_mother) {
                         std::cout << "child == parents" << std::endl;
-                        std::vector <std::string> algo_sequence;
-                        if (continue_not_opt_flag){
+                        std::vector<std::string> algo_sequence;
+                        if (continue_not_opt_flag) {
                             algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
-                        }else{
+                        } else {
                             algo_sequence = get_random_sequence(strings, algo_num);
 
                         }
@@ -573,10 +578,10 @@ namespace alice {
                     if (better_seq_to_db_map.count(next_population_string) > 0) {
                         continue;
                     }
-                    std::vector <std::string> v_tmp_item = string_to_vector(next_population_string);
+                    std::vector<std::string> v_tmp_item = string_to_vector(next_population_string);
                     run_algo_seq(v_tmp_item);
                     iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-                    iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                    iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
                     double current_area = klut.num_gates();
                     double current_delay = dklut.depth();
                     double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
@@ -638,18 +643,17 @@ namespace alice {
             int count2 = 0;
             sum_normal_fitness = 0;
 
-            std::vector <std::string> v_best_seq_1 = string_to_vector(best_seq);
+            std::vector<std::string> v_best_seq_1 = string_to_vector(best_seq);
             v_best_seq_1.pop_back();
             std::cout << "best_seq_of_1:" << best_seq << std::endl;
             run_algo_seq(v_best_seq_1);
             stage2_initial_aig = store<iFPGA::aig_network>().current();
             stage2_initial_aig_storage = store<iFPGA::aig_network>().current()._storage;
             for (uint64_t i = 0; i < sequence_num; ++i) {
-                std::vector <std::string> algo_sequence_of_2;
-                if (continue_not_opt_flag){
+                std::vector<std::string> algo_sequence_of_2;
+                if (continue_not_opt_flag) {
                     algo_sequence_of_2 = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
-                }
-                else{
+                } else {
                     algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2);
                 }
                 run_algo_seq(algo_sequence_of_2);
@@ -660,7 +664,7 @@ namespace alice {
                 current_population_v_2.push_back(combined_algo_seq_string);
 
                 iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-                iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
                 double current_area = klut.num_gates();
                 double current_delay = dklut.depth();
 
@@ -702,6 +706,10 @@ namespace alice {
                                                                    });
                 double initial_max_fitness_2 = initial_find_max_fitness_2->second.fitness;
                 double initial_min_fitness_2 = initial_find_min_fitness_2->second.fitness;
+                ////添加震荡
+                if (initial_min_fitness_2 == initial_max_fitness_2) {
+                    initial_max_fitness_2 = initial_max_fitness_2 + 0.01;
+                }
                 ////归一化fitness
                 for (auto &item: seq_to_db_map_2) {
                     double current_fit = item.second.fitness;
@@ -735,7 +743,7 @@ namespace alice {
                     std::cout << "seq_2_fitness_norm:" << toDbMap2.second.norm_fitness << std::endl;
                 }
                 //// 调用 find_top_better_strings 去找到fitness前3
-                std::vector <std::string> top_better_algo_sequences_2 = find_top_better_strings(seq_to_db_map_2);
+                std::vector<std::string> top_better_algo_sequences_2 = find_top_better_strings(seq_to_db_map_2);
                 better_seq_to_db_map_2.clear();
                 for (const auto &sequence: top_better_algo_sequences_2) {
                     fit_area_delay tmp_fit_area_delay;
@@ -748,9 +756,9 @@ namespace alice {
                 for (uint64_t i = 0; i < (current_population_v_2.size() - top_better_algo_sequences_2.size()); ++i) {
 
                     std::string string_father = ga_select(seq_to_db_map_2, current_population_v_2);
-                    std::vector <std::string> vector_father = string_to_vector(string_father);
+                    std::vector<std::string> vector_father = string_to_vector(string_father);
                     std::string string_mother = ga_select(seq_to_db_map_2, current_population_v_2);
-                    std::vector <std::string> vector_mother = string_to_vector(string_mother);
+                    std::vector<std::string> vector_mother = string_to_vector(string_mother);
                     std::cout << "father2:" << string_father << std::endl;
                     std::cout << "mother2:" << string_mother << std::endl;
 
@@ -812,11 +820,10 @@ namespace alice {
                         random_num < cross_probability) {
                         child = crossover_op(vector_father, vector_mother);
                     } else {
-                        std::vector <std::string> child_temp;
-                        if (continue_not_opt_flag){
+                        std::vector<std::string> child_temp;
+                        if (continue_not_opt_flag) {
                             child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
-                        }
-                        else{
+                        } else {
                             child_temp = get_random_sequence(strings, algo_num_of_stage_2);
                         }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
@@ -826,9 +833,9 @@ namespace alice {
                     }
                     if (random_num < mutation_probability) {
 //                        std::cout << "mutation" << std::endl;
-                        std::vector <std::string> v_child = string_to_vector(child);
+                        std::vector<std::string> v_child = string_to_vector(child);
                         v_child.pop_back();
-                        std::vector <std::string> mutation_child = mutation(v_child);
+                        std::vector<std::string> mutation_child = mutation(v_child);
 //                        mutation_child.push_back("map_fpga");
 //                        std::vector<std::string> algo_sequence = get_random_sequence(strings, algo_num);
 
@@ -841,11 +848,10 @@ namespace alice {
                     ////存入下一次种群,得到一个完整的next_seq_to_de_map
                     if (child == string_father || child == string_mother) {
 //                        std::cout<<"child == pareants"<<std::endl;
-                        std::vector <std::string> algo_sequence;
-                        if (continue_not_opt_flag){
+                        std::vector<std::string> algo_sequence;
+                        if (continue_not_opt_flag) {
                             algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
-                        }
-                        else{
+                        } else {
                             algo_sequence = get_random_sequence(strings, algo_num_of_stage_2);
                         }
                         run_algo_seq(algo_sequence);
@@ -870,10 +876,10 @@ namespace alice {
                     if (better_seq_to_db_map_2.count(next_population_string_2) > 0) {
                         continue;
                     }
-                    std::vector <std::string> v_tmp_item = string_to_vector(next_population_string_2);
+                    std::vector<std::string> v_tmp_item = string_to_vector(next_population_string_2);
                     run_algo_seq(v_tmp_item);
                     iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-                    iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
+                    iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
                     double current_area = klut.num_gates();
                     double current_delay = dklut.depth();
                     double fitness = fitness_func(current_area, current_delay, no_opt_area, no_opt_delay);
@@ -890,7 +896,7 @@ namespace alice {
                     store<iFPGA::klut_network>().current() = initial_kluts_6;
 
                     iFPGA::klut_network state1_initial_klut = store<iFPGA::klut_network>().current()._storage;
-                    iFPGA::depth_view <iFPGA::klut_network> state1_initial_dklut(state1_initial_klut);
+                    iFPGA::depth_view<iFPGA::klut_network> state1_initial_dklut(state1_initial_klut);
 //                    double state1_current_area = state1_initial_klut.num_gates();
 //                    double state1_current_delay = state1_initial_dklut.depth();
 //                    std::cout << "test_after_state_initial" << std::endl;
@@ -949,39 +955,52 @@ namespace alice {
                     restore_mapped_aig_7);
             store<iFPGA::klut_network>().current() = initial_kluts_7;
 
-            std::vector <std::string> vector_best_seq_of_1 = string_to_vector(best_seq);
-            std::vector <std::string> vector_best_seq_of_2 = string_to_vector(best_seq_of_2);
-            vector_best_seq_of_1.pop_back();
-            for (const auto &bestSeqOf1: vector_best_seq_of_1) {
-                std::cout << "test1!!" << std::endl;
-                std::cout << bestSeqOf1;
+            std::cout<<"best_fit_of_1:"<<seq_to_db_map.find(best_seq)->second.fitness<<std::endl;
+            std::cout<<"best_fit_of_2:"<<seq_to_db_map_2.find(best_seq_of_2)->second.fitness<<std::endl;
+            std::vector<std::string> final_best_seq;
+            double final_best_area;
+            double final_best_delay;
+            if (seq_to_db_map.find(best_seq)->second.fitness >= seq_to_db_map_2.find(best_seq_of_2)->second.fitness) {
+                std::string string_final_best_seq = best_seq;
+                final_best_seq = string_to_vector(best_seq);
+                final_best_area = seq_to_db_map.find(best_seq)->second.area;
+                final_best_delay = seq_to_db_map.find(best_seq)->second.delay;
+                std::cout<<"use the result of stage 1"<<std::endl;
+            } else {
+                std::vector<std::string> vector_best_seq_of_1 = string_to_vector(best_seq);
+                std::vector<std::string> vector_best_seq_of_2 = string_to_vector(best_seq_of_2);
+                std::vector<std::string> vector_combine_best_seq_1_2 = vector_best_seq_of_1;
+                vector_combine_best_seq_1_2.pop_back();
+                for (const auto &bestSeqOf1: vector_combine_best_seq_1_2) {
+                    std::cout << "test1!!" << std::endl;
+                    std::cout << bestSeqOf1;
+                }
+                std::cout << "state_1_best_seq:" << best_seq << std::endl;
+                std::cout << "state_2_best_seq: " << best_seq_of_2 << std::endl;
+                for (const auto &item: vector_best_seq_of_2) {
+                    vector_combine_best_seq_1_2.push_back(item);
+                }
+                run_algo_seq(vector_combine_best_seq_1_2);
+                final_best_seq = vector_combine_best_seq_1_2;
+                iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
+                iFPGA::depth_view<iFPGA::klut_network> dklut(klut);
+                final_best_area = klut.num_gates();
+                final_best_delay = dklut.depth();
+                std::cout<<"use the result of stage 2"<<std::endl;
             }
-            std::cout << "state_1_best_seq:" << best_seq << std::endl;
-            std::cout << "state_2_best_seq: " << best_seq_of_2 << std::endl;
-            for (const auto &item: vector_best_seq_of_2) {
-                vector_best_seq_of_1.push_back(item);
-            }
-            run_algo_seq(vector_best_seq_of_1);
-            iFPGA::klut_network klut = store<iFPGA::klut_network>().current()._storage;
-            iFPGA::depth_view <iFPGA::klut_network> dklut(klut);
-            double current_area = klut.num_gates();
-            double current_delay = dklut.depth();
             std::cout << "no_opt_area: " << no_opt_area << std::endl;
             std::cout << "no_opt_delay: " << no_opt_delay << std::endl;
-            std::cout << "best_area: " << current_area << std::endl;
-            std::cout << "best_delay: " << current_delay << std::endl;
+            std::cout << "best_area: " << final_best_area << std::endl;
+            std::cout << "best_delay: " << final_best_delay << std::endl;
             std::cout << "best_seq:" << std::endl;
-            for (const auto &bestSeqOf1: vector_best_seq_of_1) {
+            for (const auto &bestSeqOf1: final_best_seq) {
                 std::cout << bestSeqOf1;
             }
             std::cout << " " << std::endl;
             std::ofstream output(outfile_path);
             if (output.is_open()) {
-                for (const auto &bestSeqOf1: vector_best_seq_of_1) {
+                for (const auto &bestSeqOf1: final_best_seq) {
                     output << bestSeqOf1;
-                }
-                for (const auto &item: vector_best_seq_of_2) {
-                    output << item;
                 }
                 output.close();
             }
