@@ -692,7 +692,7 @@ namespace alice {
             while (1) {
                 ////初始化sum_fitness
                 sum_normal_fitness = 0;
-                double best_fitness_of_2 = 0.0;
+                double best_fitness_of_2 = -1000.0;
 //                std::string best_seq{};
                 ////归一前最大最小fitness
                 auto initial_find_max_fitness_2 = std::max_element(seq_to_db_map_2.begin(), seq_to_db_map_2.end(),
