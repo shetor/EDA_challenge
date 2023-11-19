@@ -707,9 +707,14 @@ namespace alice {
                                                                    });
                 double initial_max_fitness_2 = initial_find_max_fitness_2->second.fitness;
                 double initial_min_fitness_2 = initial_find_min_fitness_2->second.fitness;
+                std::cout<<"initial_max_fit_2:"<<initial_max_fitness_2<<std::endl;
+                std::cout<<"initial_min_fit_2:"<<initial_min_fitness_2<<std::endl;
                 ////添加震荡
                 if (initial_min_fitness_2 == initial_max_fitness_2) {
-                    initial_max_fitness_2 = initial_max_fitness_2 + 0.01;
+                    std::cout<<"use this part"<<std::endl;
+                    initial_find_max_fitness_2->second.fitness = initial_find_max_fitness_2->second.fitness+0.01;
+                    initial_max_fitness_2 = initial_find_max_fitness_2->second.fitness;
+                    std::cout<<"initial_max_fit_2:"<<initial_max_fitness_2<<std::endl;
                 }
                 ////归一化fitness
                 for (auto &item: seq_to_db_map_2) {
