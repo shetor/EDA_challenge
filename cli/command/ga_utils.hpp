@@ -125,13 +125,16 @@ std::string ga_select(std::unordered_map<std::string, fit_area_delay>& seq_to_db
     }
     if (!not_all_zero_flag){
         for (auto &item: seq_to_db_map) {
-            item.second.fit_prob = 1/current_population_v.size();
+            std::cout<<"come in"<<std::endl;
+            item.second.fit_prob = 1.0/double(current_population_v.size());
+            std::cout<<"in fitness:"<<item.second.fit_prob<<std::endl;
         }
     }
 //    std::cout<<"ga_select random num:"<<random_num<<std::endl;
     double cumulative_probability = 0.0;
     for (const auto& string : current_population_v) {
         cumulative_probability += seq_to_db_map.find(string)->second.fit_prob;
+        std::cout<<"out fitness:"<<seq_to_db_map.find(string)->second.fit_prob<<std::endl;
         if (cumulative_probability >= random_num) {
             select_sequences = string; // 返回与选中概率匹配的字符串
             break;
