@@ -294,19 +294,22 @@ namespace alice {
             std::vector <std::string> add_lut_strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;",
                                                          "refactor;", "rewrite -z -l;",
                                                          "refactor -z;", "refactor -v;", "refactor -l;", "lut_opt;"};
-            std::vector <std::string> macro_1 = {"balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
-                                                 "balance;"};
-            std::vector <std::string> macro_2 = {
-                    "balance;", "rewrite;", "refactor;", "balance;", "rewrite;", "rewrite -z;", "balance;",
-                    "refactor -z;", "rewrite -z;", "balance;"};
-            std::vector <std::string> macro_3 = {
-                    "balance;", "rewrite;", "balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
-                    "balance;"};
-            std::vector <std::string> macro_4 = {"balance;", "rewrite -l;", "rewrite -z -l;", "rewrite -z -l;",
-                                                 "balance;"};
-            std::vector <std::string> macro_5 = {
-                    "balance;", "rewrite -l;", "refactor -l;", "balance;", "rewrite -z -l;", "balance;", "refactor -z;",
-                    "rewrite -z;", "balance;"};
+
+            std::vector <std::vector<std::string>> not_lut_macros = {
+                    {"balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
+                     "balance;"},
+                    {
+                            "balance;", "rewrite;", "refactor;", "balance;", "rewrite;", "rewrite -z;", "balance;",
+                            "refactor -z;", "rewrite -z;", "balance;"},
+                    {
+                            "balance;", "rewrite;", "balance;", "rewrite;", "rewrite -z;", "balance;", "rewrite -z;",
+                            "balance;"}, {"balance;", "rewrite -l;", "rewrite -z -l;", "rewrite -z -l;",
+                                          "balance;"}, {
+                            "balance;", "rewrite -l;", "refactor -l;", "balance;", "rewrite -z -l;", "balance;",
+                            "refactor -z;",
+                            "rewrite -z;", "balance;"}
+
+            };
 
             std::string best_seq{};
             std::string best_seq_of_2{};
@@ -321,10 +324,10 @@ namespace alice {
             double cross_probability = 0;
 
             int count = 0;
+            std::vector<std::vector<std::string>> available_macros = not_lut_macros;
             ////生成初始序列,返回seq_to_db_map
             for (uint64_t i = 0; i < sequence_num; ++i) {
                 if (seq_to_db_map.size() == 3) {
-                    std::cout << "seq_to_db_map_size_3" << seq_to_db_map.size() << std::endl;
                     continue_not_opt_flag = true;
                     double first_area = seq_to_db_map.begin()->second.area;
                     double first_delay = seq_to_db_map.begin()->second.delay;
@@ -339,7 +342,7 @@ namespace alice {
                 if (continue_not_opt_flag) {
                     algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
                 } else {
-                    algo_sequence = get_random_sequence(strings, algo_num);
+                    algo_sequence = get_random_sequence(strings, algo_num,available_macros);
                 }
                 run_algo_seq(algo_sequence);
                 ////turn vector to string
@@ -502,24 +505,11 @@ namespace alice {
                     std::string child = "";
                     vector_father.pop_back();
                     vector_mother.pop_back();
-                    bool is_not_father_equal_to_macro =
-                            is_not_vector_equal(vector_father, macro_1) &&
-                            is_not_vector_equal(vector_father, macro_2) &&
-                            is_not_vector_equal(vector_father, macro_3) &&
-                            is_not_vector_equal(vector_father, macro_4) &&
-                            is_not_vector_equal(vector_father, macro_5);
-                    bool is_not_mother_equal_to_macro =
-                            is_not_vector_equal(vector_mother, macro_1) &&
-                            is_not_vector_equal(vector_mother, macro_2) &&
-                            is_not_vector_equal(vector_mother, macro_3) &&
-                            is_not_vector_equal(vector_mother, macro_4) &&
-                            is_not_vector_equal(vector_mother, macro_5);
+                    bool is_not_father_equal_to_macro = is_not_vector_in_list(vector_father,not_lut_macros);
+                    bool is_not_mother_equal_to_macro = is_not_vector_in_list(vector_mother,not_lut_macros);
                     vector_father.push_back("map_fpga;");
                     vector_mother.push_back("map_fpga;");
 
-
-                    std::cout << "is_not_father_equal_to_macro:" << is_not_father_equal_to_macro << std::endl;
-                    std::cout << "is_not_mother_equal_to_macro:" << is_not_mother_equal_to_macro << std::endl;
                     if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro &&
                         random_num < cross_probability) {
                         child = crossover_op(vector_father, vector_mother);
@@ -528,7 +518,7 @@ namespace alice {
                         if (continue_not_opt_flag) {
                             child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num);
                         } else {
-                            child_temp = get_random_sequence(strings, algo_num);
+                            child_temp = get_random_sequence(strings, algo_num,available_macros);
                         }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
                                                                                child_temp.end(),
@@ -554,7 +544,7 @@ namespace alice {
                         if (continue_not_opt_flag) {
                             algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
                         } else {
-                            algo_sequence = get_random_sequence(strings, algo_num);
+                            algo_sequence = get_random_sequence(strings, algo_num,available_macros);
 
                         }
                         ////turn vector to string
@@ -572,7 +562,6 @@ namespace alice {
                 // 清空 seq_to_db_map
 //                sum_normal_fitness = 0;
                 seq_to_db_map.clear();
-                std::cout << "seq_map_clear_size:" << seq_to_db_map.size() << std::endl;
                 for (const auto &dbMap: better_seq_to_db_map) {
                     seq_to_db_map.emplace(dbMap.first, dbMap.second);
                 }
@@ -644,6 +633,7 @@ namespace alice {
             ////第二个阶段初始种群
             int count2 = 0;
 //            sum_normal_fitness = 0;
+            std::vector<std::vector<std::string>> available_macros_2 = not_lut_macros;
 
             std::vector <std::string> v_best_seq_1 = string_to_vector(best_seq);
             v_best_seq_1.pop_back();
@@ -656,7 +646,7 @@ namespace alice {
                 if (continue_not_opt_flag) {
                     algo_sequence_of_2 = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
                 } else {
-                    algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2);
+                    algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2,available_macros_2);
                 }
                 run_algo_seq(algo_sequence_of_2);
                 ////turn vector to string
@@ -708,14 +698,11 @@ namespace alice {
                                                                    });
                 double initial_max_fitness_2 = initial_find_max_fitness_2->second.fitness;
                 double initial_min_fitness_2 = initial_find_min_fitness_2->second.fitness;
-                std::cout<<"initial_max_fit_2:"<<initial_max_fitness_2<<std::endl;
-                std::cout<<"initial_min_fit_2:"<<initial_min_fitness_2<<std::endl;
+
                 ////添加震荡
                 if (initial_min_fitness_2 == initial_max_fitness_2) {
-                    std::cout<<"use this part"<<std::endl;
-                    initial_find_max_fitness_2->second.fitness = initial_find_max_fitness_2->second.fitness+0.01;
+                    initial_find_max_fitness_2->second.fitness = initial_find_max_fitness_2->second.fitness + 0.01;
                     initial_max_fitness_2 = initial_find_max_fitness_2->second.fitness;
-                    std::cout<<"initial_max_fit_2:"<<initial_max_fitness_2<<std::endl;
                 }
                 ////归一化fitness
                 for (auto &item: seq_to_db_map_2) {
@@ -809,21 +796,10 @@ namespace alice {
 
                     vector_father.pop_back();
                     vector_mother.pop_back();
-                    bool is_not_father_equal_to_macro =
-                            is_not_vector_equal(vector_father, macro_1) &&
-                            is_not_vector_equal(vector_father, macro_2) &&
-                            is_not_vector_equal(vector_father, macro_3) &&
-                            is_not_vector_equal(vector_father, macro_4) &&
-                            is_not_vector_equal(vector_father, macro_5);
-                    bool is_not_mother_equal_to_macro =
-                            is_not_vector_equal(vector_mother, macro_1) &&
-                            is_not_vector_equal(vector_mother, macro_2) &&
-                            is_not_vector_equal(vector_mother, macro_3) &&
-                            is_not_vector_equal(vector_mother, macro_4) &&
-                            is_not_vector_equal(vector_mother, macro_5);
+                    bool is_not_father_equal_to_macro = is_not_vector_in_list(vector_father,not_lut_macros);
+                    bool is_not_mother_equal_to_macro = is_not_vector_in_list(vector_mother,not_lut_macros);
                     vector_father.push_back("map_fpga;");
                     vector_mother.push_back("map_fpga;");
-
                     if (is_not_father_equal_to_macro && is_not_mother_equal_to_macro &&
                         random_num < cross_probability) {
                         child = crossover_op(vector_father, vector_mother);
@@ -832,7 +808,7 @@ namespace alice {
                         if (continue_not_opt_flag) {
                             child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
                         } else {
-                            child_temp = get_random_sequence(strings, algo_num_of_stage_2);
+                            child_temp = get_random_sequence(strings, algo_num_of_stage_2,available_macros_2);
                         }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
                                                                                child_temp.end(),
@@ -860,18 +836,18 @@ namespace alice {
                         if (continue_not_opt_flag) {
                             algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
                         } else {
-                            algo_sequence = get_random_sequence(strings, algo_num_of_stage_2);
+                            algo_sequence = get_random_sequence(strings, algo_num_of_stage_2,available_macros_2);
                         }
-                        run_algo_seq(algo_sequence);
-                        ////turn vector to string
                         std::string same_pare_child = std::accumulate(algo_sequence.begin(),
                                                                       algo_sequence.end(),
                                                                       std::string());
+                        run_algo_seq(algo_sequence);
+                        ////turn vector to string
+                        std::cout << "same_pare_child: " << same_pare_child << std::endl;
                         next_population_v_2.push_back(same_pare_child);
                     } else {
 //                        std::cout << "child != pareants" << std::endl;
                         next_population_v_2.push_back(child);
-
                     }
                 }
 
@@ -980,7 +956,6 @@ namespace alice {
                 std::vector <std::string> vector_combine_best_seq_1_2 = vector_best_seq_of_1;
                 vector_combine_best_seq_1_2.pop_back();
                 for (const auto &bestSeqOf1: vector_combine_best_seq_1_2) {
-                    std::cout << "test1!!" << std::endl;
                     std::cout << bestSeqOf1;
                 }
                 std::cout << "state_1_best_seq:" << best_seq << std::endl;
@@ -1004,7 +979,6 @@ namespace alice {
             for (const auto &bestSeqOf1: final_best_seq) {
                 std::cout << bestSeqOf1;
             }
-            std::cout << " " << std::endl;
             std::ofstream output(outfile_path);
             if (output.is_open()) {
                 for (const auto &bestSeqOf1: final_best_seq) {
