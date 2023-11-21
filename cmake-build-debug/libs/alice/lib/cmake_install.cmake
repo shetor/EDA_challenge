@@ -1,4 +1,4 @@
-# Install script for directory: /home/lzx/Desktop/EDA_challenge/libs/alice/lib
+# Install script for directory: /home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

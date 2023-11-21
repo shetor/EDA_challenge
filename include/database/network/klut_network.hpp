@@ -77,8 +77,8 @@ public:
   klut_network( std::shared_ptr<klut_storage> storage )
       : _storage( storage ),
         _events( std::make_shared<decltype( _events )::element_type>() )
-  {
-    _init();
+  { 
+
   }
 
 private:

@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -O0 -g -shared  -o imap.cpython-310-x86_64-linux-gnu.so CMakeFiles/imap_python.dir/imap.cpp.o  ../libs/abcsat/liblibabcsat.a 
+/usr/bin/c++ -fPIC -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -O0 -g -shared  -o imap.cpython-310-x86_64-linux-gnu.so CMakeFiles/imap_python.dir/imap.cpp.o  -lreadline ../libs/abcsat/liblibabcsat.a 

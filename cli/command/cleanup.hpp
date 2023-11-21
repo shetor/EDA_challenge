@@ -11,7 +11,7 @@ class cleanup_command : public command
 public:
     explicit cleanup_command(const environment::ptr& env) : command(env, "clean up the dangling nodes for AIGc") 
     {
-        add_flag("--verbose, -v", verbose, "toggles of report verbose information");
+        add_flag("--verbose, -v", verbose, "toggles of report verbose information [default=no]");
     }
 
     rules validity_rules() const { return {}; }

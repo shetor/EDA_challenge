@@ -45,7 +45,7 @@ struct refactor_params
   /*! \brief Maximum number of nodes in cone. */
   uint32_t max_cone_size{16};
   /*! \brief whether to allow depth growth*/
-  bool allow_depth_up = false;
+  bool preserve_depth = false;
   /*! \brief whether allow replace sub_ntk with zero gain */
   bool allow_zero_gain = false;
   bool verbose = false;
@@ -437,7 +437,7 @@ namespace detail
       std::vector<signal<Ntk>> cut;
       for (auto leaf : _leaves_nodes) {
         cut.push_back(_ntk.make_signal(leaf));
-      }
+      }    
 
       const auto on_signal = [&](auto const &f_new){
         // compute gain
@@ -453,7 +453,7 @@ namespace detail
         auto cur_depth = update_depth(_ntk.get_node(f_new));
 
         if ((gain > 0 || (_params.allow_zero_gain && gain == 0)) // area
-            && ((cur_depth <= reuqire_depth) || _params.allow_depth_up) && root != _ntk.get_node(f_new))  // depth
+            && ((cur_depth <= reuqire_depth) || !_params.preserve_depth) && root != _ntk.get_node(f_new))  // depth
         { 
           repalce_subgraph(root, f_new);
           update_fanouts_info(root, f_new);
@@ -503,12 +503,16 @@ namespace detail
     /**
      * @brief recursive compute depth for nodes in new cone
      */
-    uint32_t recursive_update_depth(node<Ntk> root, std::unordered_set<node<Ntk>> &leaves_set)
+    uint32_t recursive_update_depth(node<Ntk> n, std::unordered_set<node<Ntk>> &leaves_set)
     {
+      if( leaves_set.find( n ) != leaves_set.end() ) {
+        assert(_depth_map.find(n) != _depth_map.end() );
+        return _depth_map[n];
+      }
+      
       uint32_t cur_depth = 0;
-
       // compute current max depth
-      _ntk.foreach_fanin(root, [&](auto const &s, auto i) {
+      _ntk.foreach_fanin(n, [&](auto const &s, auto i) {
         auto child = _ntk.get_node( s );
         if ( leaves_set.find( child ) != leaves_set.end() ) {  // leaves node
           cur_depth = std::max( cur_depth, 1 + _depth_map.find( child )->second );
@@ -518,9 +522,9 @@ namespace detail
       });
 
       // update depth info
-      auto iter = _depth_map.find(root);
+      auto iter = _depth_map.find(n);
       if (iter == _depth_map.end()) { // newly node
-        _depth_map.insert(std::make_pair(root, cur_depth));
+        _depth_map.insert(std::make_pair(n, cur_depth));
       } else {
         iter->second = cur_depth;
       }

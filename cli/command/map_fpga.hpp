@@ -26,7 +26,7 @@ public:
         add_option("--global_area_iterations, -G", iFlowIter, "set the number of iteration for global area cost optimization, [1, 2] [default=1]");
         add_option("--local_area_iterations, -L", iAreaIter, "set the number of iteration for local area cost optimization, [1, 3] [default=2]");
         add_option("--type, -t", type, "set the type of mapping, 0/1 means mapping without/with choice from history AIGs, [default=0]");
-        add_flag("--verbose, -v", verbose, "toggles of report verbose information");
+        add_flag("--verbose, -v", verbose, "toggles of report verbose information [default=no]");
     }
 
     rules validity_rules() const { return {}; }
@@ -48,9 +48,13 @@ protected:
         if(!is_set("-t")) {
             type = 0;
         }
-        if(!is_set("-v")) {
+
+        if(is_set("-v")) {
+            verbose = true;
+        } else {
             verbose = false;
         }
+
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;

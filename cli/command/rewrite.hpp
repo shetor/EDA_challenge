@@ -12,9 +12,9 @@ public:
     {
         add_option("--priority_size, -P", priority_size, "set the number of priority-cut size for cut enumeration [6, 12] [default=10]");
         add_option("--cut_size, -C", cut_size, "set the input size of cut for cut enumeration [2, 4] [default=4]");
-        add_flag("--level_preserve, -l", preserve_level, "toggles of preserving the leves [default=yes]");
+        add_flag("--level_preserve, -l", preserve_level, "toggles of preserving the leves [default=no]");
         add_flag("--zero_gain, -z", zero_gain, "toggles of using zero-cost local replacement [default=no]");
-        add_flag("--verbose, -v", verbose, "toggles of report verbose information");
+        add_flag("--verbose, -v", verbose, "toggles of report verbose information [default=no]");
     }
 
     rules validity_rules() const { return {}; }
@@ -27,17 +27,23 @@ protected:
         if(!is_set("-C")) {
             cut_size = 4;
         }
-        if(!is_set("-l")) {
+
+        if(is_set("-l")) {
             preserve_level = true;
         } else {
             preserve_level = false;
         }
-        if(!is_set("-z")) {
+        if(is_set("-z")) {
+            zero_gain = true;
+        } else {
             zero_gain = false;
         }
-        if(!is_set("-v")) {
+        if(is_set("-v")) {
+            verbose = true;
+        } else {
             verbose = false;
         }
+         
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
@@ -59,15 +65,14 @@ protected:
         params.b_use_zero_gain = zero_gain;
         params.cut_enumeration_ps.cut_size = cut_size;
         params.cut_enumeration_ps.cut_limit = priority_size;
+        
         aig = iFPGA::rewrite(aig, params);
-        //printf("cut_size: %u, priority: %u, preserve: %d, zero: %d\n", 
-        //        cut_size, priority_size, preserve_level, zero_gain);
         store<iFPGA::aig_network>().current() = aig;
     }
 private:
     uint32_t cut_size = 4u;
     uint32_t priority_size = 10u;
-    bool preserve_level = true;
+    bool preserve_level = false;
     bool zero_gain = false;
     bool verbose = false;
 };

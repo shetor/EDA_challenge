@@ -334,21 +334,21 @@
 				{
 					"directoryIndex" : 18,
 					"id" : "imap::@434c77fc11d56e0cadb1",
-					"jsonFile" : "target-imap-Debug-15c5e80d55b6c5c4b8a9.json",
+					"jsonFile" : "target-imap-Debug-769eadc59a91552dbe6f.json",
 					"name" : "imap",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 18,
 					"id" : "imap_python::@434c77fc11d56e0cadb1",
-					"jsonFile" : "target-imap_python-Debug-8127752752b6530259fc.json",
+					"jsonFile" : "target-imap_python-Debug-461897cba04300131ab6.json",
 					"name" : "imap_python",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 13,
 					"id" : "libabcsat::@acd392433369edba402e",
-					"jsonFile" : "target-libabcsat-Debug-5ef68ae31f2d8917ea7f.json",
+					"jsonFile" : "target-libabcsat-Debug-7d3c84b26efb6247ea40.json",
 					"name" : "libabcsat",
 					"projectIndex" : 1
 				}
@@ -358,8 +358,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/lzx/Desktop/EDA_challenge/cmake-build-debug",
-		"source" : "/home/lzx/Desktop/EDA_challenge"
+		"build" : "/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug",
+		"source" : "/home/wuhaojie/Desktop/EDA_challenge"
 	},
 	"version" : 
 	{

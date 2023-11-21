@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/lzx/clion/clion-2023.2.2/bin/cmake/linux/x64/bin/cmake
+CMAKE_COMMAND = /home/wuhaojie/Desktop/clion-2023.1.4/bin/cmake/linux/x64/bin/cmake
 
 # The command to remove a file.
-RM = /home/lzx/clion/clion-2023.2.2/bin/cmake/linux/x64/bin/cmake -E rm -f
+RM = /home/wuhaojie/Desktop/clion-2023.1.4/bin/cmake/linux/x64/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lzx/Desktop/EDA_challenge
+CMAKE_SOURCE_DIR = /home/wuhaojie/Desktop/EDA_challenge
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lzx/Desktop/EDA_challenge/cmake-build-debug
+CMAKE_BINARY_DIR = /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/lzx/Desktop/EDA_challenge/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/lzx/clion/clion-2023.2.2/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/wuhaojie/Desktop/clion-2023.1.4/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/lzx/clion/clion-2023.2.2/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/wuhaojie/Desktop/clion-2023.1.4/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/lzx/Desktop/EDA_challenge/cmake-build-debug/CMakeFiles /home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/alice/lib//CMakeFiles/progress.marks
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lzx/Desktop/EDA_challenge/cmake-build-debug/CMakeFiles 0
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/CMakeFiles /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/alice/lib//CMakeFiles/progress.marks
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/clean
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,17 +103,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/preinstall
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/preinstall
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/alice/lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -135,6 +135,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/lzx/Desktop/EDA_challenge/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

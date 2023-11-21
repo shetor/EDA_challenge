@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DABC_NAMESPACE=pabc -DABC_NO_USE_READLINE -DLIN64
 
-CXX_INCLUDES = -I/home/lzx/Desktop/EDA_challenge/libs/abcsat
+CXX_INCLUDES = -I/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat
 
 CXX_FLAGS = -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -O0 -g -std=gnu++17 -fdiagnostics-color=always -w
 

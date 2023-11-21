@@ -12,9 +12,9 @@ public:
     {
         add_option("--max_input_size, -I", input_size, "set the max input size of the cone, <= 12 [default=10]");
         add_option("--max_cone_size, -C", cone_size, "set the max node size in the cone, <=20 [default=16]");
-        add_flag("--level_preserve, -l", preserve_level, "toggles of preserving the leves [default=yes]");
+        add_flag("--level_preserve, -l", preserve_level, "toggles of preserving the leves [default=no]");
         add_flag("--zero_gain, -z", zero_gain, "toggles of using zero-cost local replacement [default=no]");
-        add_flag("--verbose, -v", verbose, "toggles of report verbose information");
+        add_flag("--verbose, -v", verbose, "toggles of report verbose information [default=no]");
     }
 
     rules validity_rules() const { return {}; }
@@ -27,17 +27,23 @@ protected:
         if(!is_set("-C")) {
             cone_size = 16;
         }
-        if(!is_set("-l")) {
+
+        if(is_set("-l")) {
             preserve_level = true;
         } else {
             preserve_level = false;
         }
-        if(!is_set("-z")) {
+        if(is_set("-z")) {
+            zero_gain = true;
+        } else {
             zero_gain = false;
         }
-        if(!is_set("-v")) {
+        if(is_set("-v")) {
+            verbose = true;
+        } else {
             verbose = false;
         }
+
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
@@ -55,19 +61,19 @@ protected:
 
         iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
         iFPGA::refactor_params params;
-        params.allow_depth_up = preserve_level;
+        params.preserve_depth = preserve_level;
         params.allow_zero_gain = zero_gain;
         params.max_leaves_num = input_size;
         params.max_cone_size = cone_size;
         params.verbose = verbose;
+        
         aig = iFPGA::refactor(aig, params);
-
         store<iFPGA::aig_network>().current() = aig;
     }
 private:
     uint32_t input_size = 10u;
     uint32_t cone_size = 16u;
-    bool preserve_level = true;
+    bool preserve_level = false;
     bool zero_gain = false;
     bool verbose = false;
 };

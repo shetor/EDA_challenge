@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;CMake Files\libs\;CMake Files\libs\alice\;CMake Files\libs\alice\tools\;CMake Files\libs\alice\lib\;CMake Files\libs\alice\lib\pybind11\;CMake Files\libs\alice\lib\pybind11\tools\;CMake Files\libs\alice\include\;CMake Files\libs\abcsat\;CMake Files\include\;CMake Files\include\utils\;CMake Files\include\database\;CMake Files\include\database\network\;CMake Files\include\database\cut\;CMake Files\include\database\views\;CMake Files\include\operations\;CMake Files\include\operations\algorithms\;CMake Files\include\operations\io\;CMake Files\include\operations\optimization\;CMake Files\include\flow\;CMake Files\cli\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="libabcsat">
-				<Option output="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/liblibabcsat.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
+				<Option output="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/liblibabcsat.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -47,7 +47,7 @@
 					<Add option="-DLIN64"/>
 					<Add option="-DABC_NAMESPACE=pabc"/>
 					<Add option="-DABC_NO_USE_READLINE"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -57,15 +57,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 libabcsat"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 libabcsat"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="libabcsat/fast">
-				<Option output="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/liblibabcsat.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
+				<Option output="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/liblibabcsat.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -73,7 +73,7 @@
 					<Add option="-DLIN64"/>
 					<Add option="-DABC_NAMESPACE=pabc"/>
 					<Add option="-DABC_NO_USE_READLINE"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -83,15 +83,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 libabcsat/fast"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 libabcsat/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/libs/abcsat/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="imap">
-				<Option output="/home/lzx/Desktop/EDA_challenge/bin/imap" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/bin"/>
+				<Option output="/home/wuhaojie/Desktop/EDA_challenge/bin/imap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/bin"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -102,23 +102,24 @@
 					<Add option="-DABC_NAMESPACE=pabc"/>
 					<Add option="-DABC_NO_USE_READLINE"/>
 					<Add option="-DFMT_HEADER_ONLY"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/cli/commands"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/database"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/kitty/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/utils"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/operations"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/fmt"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/lorina"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/rang"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/flow"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/json"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/percy"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
+					<Add option="-DREADLINE_USE_READLINE"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/cli/commands"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/database"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/utils"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/operations"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/fmt"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/lorina"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/rang"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/flow"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/json"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/percy"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -128,15 +129,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="imap/fast">
-				<Option output="/home/lzx/Desktop/EDA_challenge/bin/imap" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/bin"/>
+				<Option output="/home/wuhaojie/Desktop/EDA_challenge/bin/imap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/bin"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -147,23 +148,24 @@
 					<Add option="-DABC_NAMESPACE=pabc"/>
 					<Add option="-DABC_NO_USE_READLINE"/>
 					<Add option="-DFMT_HEADER_ONLY"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/cli/commands"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/database"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/kitty/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/utils"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/operations"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/fmt"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/lorina"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/rang"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/flow"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/json"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/percy"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
+					<Add option="-DREADLINE_USE_READLINE"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/cli/commands"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/database"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/utils"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/operations"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/fmt"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/lorina"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/rang"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/flow"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/json"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/percy"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -173,44 +175,45 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap/fast"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="imap_python">
-				<Option output="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/imap.cpython-310-x86_64-linux-gnu.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli"/>
+				<Option output="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/imap.cpython-310-x86_64-linux-gnu.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DALICE_PYTHON"/>
+					<Add option="-DREADLINE_USE_READLINE"/>
 					<Add option="-DFMT_HEADER_ONLY"/>
 					<Add option="-DDISABLE_NAUTY"/>
 					<Add option="-DLIN64"/>
 					<Add option="-DABC_NAMESPACE=pabc"/>
 					<Add option="-DABC_NO_USE_READLINE"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/cli/commands"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/fmt"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/json"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/cli/commands"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/fmt"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/json"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/include"/>
 					<Add directory="/usr/include/python3.10"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/database"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/kitty/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/utils"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/operations"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/lorina"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/rang"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/flow"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/percy"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/database"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/utils"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/operations"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/lorina"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/rang"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/flow"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/percy"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -220,44 +223,45 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap_python"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap_python"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="imap_python/fast">
-				<Option output="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/imap.cpython-310-x86_64-linux-gnu.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli"/>
+				<Option output="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/imap.cpython-310-x86_64-linux-gnu.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DALICE_PYTHON"/>
+					<Add option="-DREADLINE_USE_READLINE"/>
 					<Add option="-DFMT_HEADER_ONLY"/>
 					<Add option="-DDISABLE_NAUTY"/>
 					<Add option="-DLIN64"/>
 					<Add option="-DABC_NAMESPACE=pabc"/>
 					<Add option="-DABC_NO_USE_READLINE"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/cli/commands"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/fmt"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/json"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/cli/commands"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/fmt"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/json"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/include"/>
 					<Add directory="/usr/include/python3.10"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/database"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/kitty/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/utils"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/operations"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/abcsat"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/lorina"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/rang"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/include/flow"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/include"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs"/>
-					<Add directory="/home/lzx/Desktop/EDA_challenge/libs/percy"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/database"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/utils"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/operations"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/lorina"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/rang"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/include/flow"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/include"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs"/>
+					<Add directory="/home/wuhaojie/Desktop/EDA_challenge/libs/percy"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -267,96 +271,96 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap_python/fast"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/lzx/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 imap_python/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/wuhaojie/Desktop/EDA_challenge/cmake-build-debug/cli/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/cli/imap.cpp">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/cli/imap.cpp">
 			<Option target="imap"/>
 			<Option target="imap_python"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/AbcGlucose.cpp">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/AbcGlucose.cpp">
 			<Option target="libabcsat"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/Glucose.cpp">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/Glucose.cpp">
 			<Option target="libabcsat"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/SimpSolver.cpp">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/SimpSolver.cpp">
 			<Option target="libabcsat"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/satSolver.cpp">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/satSolver.cpp">
 			<Option target="libabcsat"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/satStore.cpp">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/satStore.cpp">
 			<Option target="libabcsat"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\alice\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/tools/AliceTools.cmake">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/tools/AliceTools.cmake">
 			<Option virtualFolder="CMake Files\libs\alice\tools\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\alice\lib\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\alice\lib\pybind11\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/tools/FindPythonLibsNew.cmake">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/tools/FindPythonLibsNew.cmake">
 			<Option virtualFolder="CMake Files\libs\alice\lib\pybind11\tools\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/tools/pybind11Tools.cmake">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/tools/pybind11Tools.cmake">
 			<Option virtualFolder="CMake Files\libs\alice\lib\pybind11\tools\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/alice/include/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/alice/include/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\alice\include\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/libs/abcsat/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\abcsat\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/utils/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/utils/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\utils\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/database/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\database\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/network/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/database/network/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\database\network\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/cut/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/database/cut/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\database\cut\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/database/views/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/database/views/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\database\views\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/operations/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\operations\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/algorithms/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/operations/algorithms/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\operations\algorithms\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/io/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/operations/io/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\operations\io\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/operations/optimization/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/operations/optimization/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\operations\optimization\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/include/flow/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/include/flow/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\include\flow\"/>
 		</Unit>
-		<Unit filename="/home/lzx/Desktop/EDA_challenge/cli/CMakeLists.txt">
+		<Unit filename="/home/wuhaojie/Desktop/EDA_challenge/cli/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\cli\"/>
 		</Unit>
 	</Project>

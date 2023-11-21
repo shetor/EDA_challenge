@@ -1,4 +1,4 @@
-# Install script for directory: /home/lzx/Desktop/EDA_challenge/include/operations/optimization
+# Install script for directory: /home/wuhaojie/Desktop/EDA_challenge/include/operations/optimization
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

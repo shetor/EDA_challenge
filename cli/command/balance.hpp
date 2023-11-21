@@ -10,7 +10,7 @@ class balance_command : public command
 public:
     explicit balance_command(const environment::ptr& env) : command(env, "performs technology-independent AND-tree balance of AIG") 
     {
-        add_flag("--verbose, -v", verbose, "toggles of report verbose information");
+        add_flag("--verbose, -v", verbose, "toggles of report verbose information [default=no]");
     }
 
     rules validity_rules() const { return {}; }

@@ -18,6 +18,7 @@
 		"files" : 
 		[
 			"cli/CMakeLists.txt",
+			"libs/alice/include/CMakeLists.txt",
 			"libs/CMakeLists.txt"
 		],
 		"nodes" : 
@@ -43,8 +44,17 @@
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 70,
+				"line" : 32,
 				"parent" : 3
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 70,
+				"parent" : 5
 			},
 			{
 				"command" : 2,
@@ -69,39 +79,43 @@
 					"fragment" : "-Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O0 -g -O0 -g -std=gnu++17 -fPIC -fdiagnostics-color=always"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"fragment" : "-Wno-unneeded-internal-declaration"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"fragment" : "-fvisibility=hidden"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"define" : "ABC_NAMESPACE=pabc"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"define" : "ABC_NO_USE_READLINE"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"define" : "ALICE_PYTHON"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"define" : "DISABLE_NAUTY"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"define" : "FMT_HEADER_ONLY"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"define" : "LIN64"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "READLINE_USE_READLINE"
 				},
 				{
 					"define" : "imap_python_EXPORTS"
@@ -110,84 +124,84 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 6,
-					"path" : "/home/lzx/Desktop/EDA_challenge/cli/commands"
+					"backtrace" : 8,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/cli/commands"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/fmt"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/fmt"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/json"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/json"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/alice/lib/pybind11/include"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/pybind11/include"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"path" : "/usr/include/python3.10"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/include"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/include"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/include/database"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/include/database"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/kitty/include"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/kitty/include"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/include/utils"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/include/utils"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/include/operations"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/include/operations"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/abcsat"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/abcsat"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/lorina"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/lorina"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/rang"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/rang"
 				},
 				{
-					"backtrace" : 5,
-					"path" : "/home/lzx/Desktop/EDA_challenge/include/flow"
+					"backtrace" : 7,
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/include/flow"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/alice/include"
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/alice/include"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/alice/lib/cli11"
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/alice/lib/cli11"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs"
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "/home/lzx/Desktop/EDA_challenge/libs/percy"
+					"path" : "/home/wuhaojie/Desktop/EDA_challenge/libs/percy"
 				}
 			],
 			"language" : "CXX",
@@ -208,7 +222,7 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 5,
+			"backtrace" : 7,
 			"id" : "libabcsat::@acd392433369edba402e"
 		}
 	],
@@ -223,6 +237,11 @@
 			},
 			{
 				"backtrace" : 4,
+				"fragment" : "-lreadline",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
 				"fragment" : "../libs/abcsat/liblibabcsat.a",
 				"role" : "libraries"
 			}

@@ -1,4 +1,4 @@
-# Install script for directory: /home/lzx/Desktop/EDA_challenge/cli
+# Install script for directory: /home/wuhaojie/Desktop/EDA_challenge/cli
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

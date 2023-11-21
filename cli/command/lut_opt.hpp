@@ -21,7 +21,7 @@ public:
         add_option("--global_area_iterations, -G", iFlowIter, "set the number of iteration for global area cost optimization, [1, 2] [default=1]");
         add_option("--local_area_iterations, -L", iAreaIter, "set the number of iteration for local area cost optimization, [1, 3] [default=2]");
         add_flag("--zero_gain, -z", zero_gain, "toggles of using zero-cost local replacement [default=no]");
-        add_flag("--verbose, -v", verbose, "toggles of report verbose information");
+        add_flag("--verbose, -v", verbose, "toggles of report verbose information [default=no]");
     }
 
     rules validity_rules() const { return {}; }
@@ -44,9 +44,18 @@ protected:
         if(!is_set("-z")) {
             zero_gain = 0;
         }
-        if(!is_set("-v")) {
+
+        if(is_set("-z")) {
+            zero_gain = true;
+        } else {
+            zero_gain = false;
+        }
+        if(is_set("-v")) {
+            verbose = true;
+        } else {
             verbose = false;
         }
+
         if( store<iFPGA::aig_network>().empty() ) {
             printf("WARN: there is no any stored AIG file, please refer to the command \"read_aiger\"\n");
             return;
@@ -82,10 +91,10 @@ protected:
         params.uAreaIters = iAreaIter;
         params.bZeroGain = zero_gain;
         params.verbose = verbose;
+
         iFPGA_NAMESPACE::klut_mapping<decltype(mapped_aig), true>(mapped_aig, params);
         const auto kluts = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>( mapped_aig );
         iFPGA::aig_network res = iFPGA::convert_klut_to_aig( kluts );
-
         store<iFPGA::aig_network>().current() = res;
     }
 private:
