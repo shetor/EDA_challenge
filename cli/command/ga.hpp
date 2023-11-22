@@ -28,7 +28,7 @@ namespace alice {
             add_option("--output_file_path, -O", outfile_path, "output the sequences to the output file path");
         }
 
-        rules validity_rules() const override { return {}; }
+        rules validity_rules() const  { return {}; }
 
     protected:
         /*
@@ -217,7 +217,7 @@ namespace alice {
             if (algor == "rewrite;") {
                 uint32_t cut_size = 4u;
                 uint32_t priority_size = 10u;
-                bool preserve_level = true;
+                bool preserve_level = false;
                 bool zero_gain = false;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                 iFPGA::rewrite_params params;
@@ -225,13 +225,14 @@ namespace alice {
                 params.b_use_zero_gain = zero_gain;
                 params.cut_enumeration_ps.cut_size = cut_size;
                 params.cut_enumeration_ps.cut_limit = priority_size;
+
                 aig = iFPGA::rewrite(aig, params);
                 store<iFPGA::aig_network>().current() = aig;
             }
             if (algor == "rewrite -z;") {
                 uint32_t cut_size = 4u;
                 uint32_t priority_size = 10u;
-                bool preserve_level = true;
+                bool preserve_level = false;
                 bool zero_gain = true;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                 iFPGA::rewrite_params params;
@@ -239,13 +240,14 @@ namespace alice {
                 params.b_use_zero_gain = zero_gain;
                 params.cut_enumeration_ps.cut_size = cut_size;
                 params.cut_enumeration_ps.cut_limit = priority_size;
+
                 aig = iFPGA::rewrite(aig, params);
                 store<iFPGA::aig_network>().current() = aig;
             }
             if (algor == "rewrite -l;") {
                 uint32_t cut_size = 4u;
                 uint32_t priority_size = 10u;
-                bool preserve_level = false;
+                bool preserve_level = true;
                 bool zero_gain = false;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                 iFPGA::rewrite_params params;
@@ -253,13 +255,14 @@ namespace alice {
                 params.b_use_zero_gain = zero_gain;
                 params.cut_enumeration_ps.cut_size = cut_size;
                 params.cut_enumeration_ps.cut_limit = priority_size;
+
                 aig = iFPGA::rewrite(aig, params);
                 store<iFPGA::aig_network>().current() = aig;
             }
             if (algor == "rewrite -z -l;") {
                 uint32_t cut_size = 4u;
                 uint32_t priority_size = 10u;
-                bool preserve_level = false;
+                bool preserve_level = true;
                 bool zero_gain = true;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
                 iFPGA::rewrite_params params;
@@ -267,44 +270,11 @@ namespace alice {
                 params.b_use_zero_gain = zero_gain;
                 params.cut_enumeration_ps.cut_size = cut_size;
                 params.cut_enumeration_ps.cut_limit = priority_size;
+
                 aig = iFPGA::rewrite(aig, params);
                 store<iFPGA::aig_network>().current() = aig;
             }
             if (algor == "refactor;") {
-                uint32_t input_size = 10u;
-                uint32_t cone_size = 16u;
-                bool preserve_level = true;
-                bool zero_gain = false;
-                bool verbose = false;
-                iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
-                iFPGA::refactor_params params;
-                params.preserve_depth = preserve_level;
-                params.allow_zero_gain = zero_gain;
-                params.max_leaves_num = input_size;
-                params.max_cone_size = cone_size;
-                params.verbose = verbose;
-                aig = iFPGA::refactor(aig, params);
-
-                store<iFPGA::aig_network>().current() = aig;
-            }
-            if (algor == "refactor -z;") {
-                uint32_t input_size = 10u;
-                uint32_t cone_size = 16u;
-                bool preserve_level = true;
-                bool zero_gain = true;
-                bool verbose = false;
-                iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
-                iFPGA::refactor_params params;
-                params.preserve_depth = preserve_level;
-                params.allow_zero_gain = zero_gain;
-                params.max_leaves_num = input_size;
-                params.max_cone_size = cone_size;
-                params.verbose = verbose;
-                aig = iFPGA::refactor(aig, params);
-
-                store<iFPGA::aig_network>().current() = aig;
-            }
-            if (algor == "refactor -l;") {
                 uint32_t input_size = 10u;
                 uint32_t cone_size = 16u;
                 bool preserve_level = false;
@@ -317,15 +287,49 @@ namespace alice {
                 params.max_leaves_num = input_size;
                 params.max_cone_size = cone_size;
                 params.verbose = verbose;
-                aig = iFPGA::refactor(aig, params);
 
+                aig = iFPGA::refactor(aig, params);
+                store<iFPGA::aig_network>().current() = aig;
+            }
+            if (algor == "refactor -z;") {
+                uint32_t input_size = 10u;
+                uint32_t cone_size = 16u;
+                bool preserve_level = false;
+                bool zero_gain = true;
+                bool verbose = false;
+                iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+                iFPGA::refactor_params params;
+                params.preserve_depth = preserve_level;
+                params.allow_zero_gain = zero_gain;
+                params.max_leaves_num = input_size;
+                params.max_cone_size = cone_size;
+                params.verbose = verbose;
+
+                aig = iFPGA::refactor(aig, params);
+                store<iFPGA::aig_network>().current() = aig;
+            }
+            if (algor == "refactor -l;") {
+                uint32_t input_size = 10u;
+                uint32_t cone_size = 16u;
+                bool preserve_level = true;
+                bool zero_gain = false;
+                bool verbose = false;
+                iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
+                iFPGA::refactor_params params;
+                params.preserve_depth = preserve_level;
+                params.allow_zero_gain = zero_gain;
+                params.max_leaves_num = input_size;
+                params.max_cone_size = cone_size;
+                params.verbose = verbose;
+
+                aig = iFPGA::refactor(aig, params);
                 store<iFPGA::aig_network>().current() = aig;
 
             }
             if (algor == "refactor -v;") {
                 uint32_t input_size = 10u;
                 uint32_t cone_size = 16u;
-                bool preserve_level = true;
+                bool preserve_level = false;
                 bool zero_gain = false;
                 bool verbose = true;
                 iFPGA::aig_network aig = store<iFPGA::aig_network>().current();
@@ -335,8 +339,8 @@ namespace alice {
                 params.max_leaves_num = input_size;
                 params.max_cone_size = cone_size;
                 params.verbose = verbose;
-                aig = iFPGA::refactor(aig, params);
 
+                aig = iFPGA::refactor(aig, params);
                 store<iFPGA::aig_network>().current() = aig;
             }
             if (algor == "map_fpga;") {
@@ -402,7 +406,7 @@ namespace alice {
             iFPGA_NAMESPACE::klut_mapping<decltype(restore_mapped_aig_1), true>(restore_mapped_aig_1, param_mapping);
             const auto initial_kluts_1 = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>(
                     restore_mapped_aig_1);
-            int node_num = (int)initial_aig.num_gates();
+            int node_num = initial_aig.num_gates();
 
             //判断case大小来决定运行时间
             int limited_second_1;
@@ -447,7 +451,7 @@ namespace alice {
             std::vector<std::string> next_population_v;
             std::vector<std::string> next_population_v_2;
             bool continue_not_opt_flag = false;
-            uint64_t algo_num = 15;
+            uint64_t algo_num = 10;
             uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
             std::vector<std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
@@ -503,9 +507,9 @@ namespace alice {
                 }
                 std::vector<std::string> algo_sequence;
                 if (continue_not_opt_flag) {
-                    algo_sequence = get_random_add_lut_sequence(add_lut_strings, (int)algo_num);
+                    algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
                 } else {
-                    algo_sequence = get_random_sequence(strings, (int)algo_num, available_macros);
+                    algo_sequence = get_random_sequence(strings, algo_num, available_macros);
                 }
 //                run_algo_seq(algo_sequence);
                 for (const auto &sequence: algo_sequence) {
@@ -680,9 +684,9 @@ namespace alice {
                     } else {
                         std::vector<std::string> child_temp;
                         if (continue_not_opt_flag) {
-                            child_temp = get_random_add_lut_sequence(add_lut_strings, (int)algo_num);
+                            child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num);
                         } else {
-                            child_temp = get_random_sequence(strings, (int)algo_num, available_macros);
+                            child_temp = get_random_sequence(strings, algo_num, available_macros);
                         }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
                                                                                child_temp.end(),
@@ -706,9 +710,9 @@ namespace alice {
                         std::cout << "child == parents" << std::endl;
                         std::vector<std::string> algo_sequence;
                         if (continue_not_opt_flag) {
-                            algo_sequence = get_random_add_lut_sequence(add_lut_strings, (int)algo_num);
+                            algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num);
                         } else {
-                            algo_sequence = get_random_sequence(strings, (int)algo_num, available_macros);
+                            algo_sequence = get_random_sequence(strings, algo_num, available_macros);
 
                         }
                         ////turn vector to string
@@ -817,9 +821,9 @@ namespace alice {
             for (uint64_t i = 0; i < sequence_num; ++i) {
                 std::vector<std::string> algo_sequence_of_2;
                 if (continue_not_opt_flag) {
-                    algo_sequence_of_2 = get_random_add_lut_sequence(add_lut_strings, (int)algo_num_of_stage_2);
+                    algo_sequence_of_2 = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
                 } else {
-                    algo_sequence_of_2 = get_random_sequence(strings, (int)algo_num_of_stage_2, available_macros_2);
+                    algo_sequence_of_2 = get_random_sequence(strings, algo_num_of_stage_2, available_macros_2);
                 }
 //                run_algo_seq(algo_sequence_of_2);
                 for (const auto &sequence: algo_sequence_of_2) {
@@ -976,9 +980,9 @@ namespace alice {
                     } else {
                         std::vector<std::string> child_temp;
                         if (continue_not_opt_flag) {
-                            child_temp = get_random_add_lut_sequence(add_lut_strings, (int)algo_num_of_stage_2);
+                            child_temp = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
                         } else {
-                            child_temp = get_random_sequence(strings, (int)algo_num_of_stage_2, available_macros_2);
+                            child_temp = get_random_sequence(strings, algo_num_of_stage_2, available_macros_2);
                         }
                         std::string combined_algo_seq_string = std::accumulate(child_temp.begin(),
                                                                                child_temp.end(),
@@ -1004,9 +1008,9 @@ namespace alice {
 //                        std::cout<<"child == pareants"<<std::endl;
                         std::vector<std::string> algo_sequence;
                         if (continue_not_opt_flag) {
-                            algo_sequence = get_random_add_lut_sequence(add_lut_strings, (int)algo_num_of_stage_2);
+                            algo_sequence = get_random_add_lut_sequence(add_lut_strings, algo_num_of_stage_2);
                         } else {
-                            algo_sequence = get_random_sequence(strings, (int)algo_num_of_stage_2, available_macros_2);
+                            algo_sequence = get_random_sequence(strings, algo_num_of_stage_2, available_macros_2);
                         }
                         std::string same_pare_child = std::accumulate(algo_sequence.begin(),
                                                                       algo_sequence.end(),

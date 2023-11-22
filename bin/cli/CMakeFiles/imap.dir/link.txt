@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wall -Wno-unknown-pragmas -Werror=return-type -fopenmp -O3 -DNDEBUG CMakeFiles/imap.dir/imap.cpp.o -o ../imap  ../libs/abcsat/liblibabcsat.a 
