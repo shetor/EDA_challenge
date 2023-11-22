@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 切换到Small文件夹
-cd Middle || exit 2
+cd Large || exit 2
 
 # 遍历Small文件夹中的所有文件夹
 for dir in */; do
@@ -14,7 +14,7 @@ for dir in */; do
   # 寻找文件夹中的AIG文件
   for input_file in *.aig; do
     # 构建输出文件路径
-    log_file="/home/lzx/Desktop/EDA_challenge/output/${input_file%.*}.log"
+    log_file="/home/wuhaojie/Desktop/EDA_challenge/output${input_file%.*}.log"
 
    # 切换到脚本所在的目录的上一层
     script_dir="$(dirname "$(dirname "$0")")"
@@ -28,10 +28,10 @@ for dir in */; do
     cd bin || exit 2
     # 运行imap，并将控制台输出重定向到ilog文件中
     ./imap > "$log_file" <<EOF
-read_aiger -f "../benchmark/Middle/$dir$input_file"
+read_aiger -f "../benchmark/Large/$dir$input_file"
 ga
 EOF
     # 返回Small文件夹
-    cd "/home/lzx/Desktop/EDA_challenge/benchmark/Middle" || exit 2
+    cd "/home/wuhaojie/Desktop/EDA_challenge/benchmark/Large" || exit 2
   done
 done

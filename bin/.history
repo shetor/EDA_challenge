@@ -48,3 +48,25 @@ ga
 read_aiger -f /home/lzx/Desktop/adder/adder.aig
 lut_opt;lut_opt;refactor -l;rewrite -z;refactor;rewrite -z;balance;balance;rewrite -l;refactor -z;rewrite -l;refactor;rewrite;lut_opt;refactor -v;map_fpga;
 print_stats -t 1
+read_aiger -f "../benchmark/Small/b03_comb/b03_comb.aig"
+ga -O "/home/wuhaojie/Desktop/EDA_challenge"
+read_aiger -f "../benchmark/Large/DMA_comb/DMA_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/DSP_comb/DSP_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/ac97_ctrl_comb/ac97_ctrl_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/aes_core_comb/aes_core_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/arbiter/arbiter.aig"
+ga
+read_aiger -f "../benchmark/Large/b15_1_comb/b15_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b15_comb/b15_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b17_1_comb/b17_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b17_comb/b17_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b18_comb/b18_comb.aig"
+ga

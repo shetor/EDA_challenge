@@ -20,16 +20,16 @@ std::vector <std::string> get_random_add_lut_sequence(const std::vector <std::st
 
     std::uniform_real_distribution<> dis(0.0, 1.0);
     for (int i = 0; i < algo_num; i++) {
-        int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
+        int index = std::uniform_int_distribution<int>(0, (int)strings.size() - 1)(gen);
         counts[index]++;
     }
-    for (int i = 0; i < strings.size(); i++) {
-        std::string str = strings[i];
+    for (int i = 0; i < (int)strings.size(); i++) {
+        const std::string& str = strings[i];
         int count = counts[i];
         sequences.insert(sequences.end(), count, str);
     }
     std::shuffle(sequences.begin(), sequences.end(), gen);
-    sequences.push_back("map_fpga;");
+    sequences.emplace_back("map_fpga;");
     return sequences;
 }
 
@@ -44,14 +44,14 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
     double random_num = dis(gen);
 //    std::cout<<"random num:"<<random_num<<std::endl;
     for (int i = 0; i < algo_num; i++) {
-        int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
+        int index = std::uniform_int_distribution<int>(0, (int)strings.size() - 1)(gen);
         counts[index]++;
     }
 
     std::vector <std::string> sequences;
     if (random_num >= 0.5) {
-        for (int i = 0; i < strings.size(); i++) {
-            std::string str = strings[i];
+        for (int i = 0; i < (int)strings.size(); i++) {
+            const std::string& str = strings[i];
             int count = counts[i];
             sequences.insert(sequences.end(), count, str);
         }
@@ -64,24 +64,23 @@ std::vector <std::string> get_random_sequence(const std::vector <std::string> &s
 //        if (random_num>=0.1 && random_num<0.2){sequences = macro_4;}
 //        if (random_num>=0.0 && random_num<0.1){sequences = macro_5;}
         if (!available_macros.empty()){
-            int index = std::uniform_int_distribution<int>(0,available_macros.size()-1)(gen);
+            int index = std::uniform_int_distribution<int>(0,(int)available_macros.size()-1)(gen);
             sequences = available_macros[index];
             available_macros.erase(available_macros.begin()+index);
         }else{
-            std::vector<int> counts(strings.size(), 0);
             for (int i = 0; i < algo_num; i++) {
-                int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
+                int index = std::uniform_int_distribution<int>(0, (int)strings.size() - 1)(gen);
                 counts[index]++;
             }
-            for (int i = 0; i < strings.size(); i++) {
-                std::string str = strings[i];
+            for (int i = 0; i < (int)strings.size(); i++) {
+                const std::string& str = strings[i];
                 int count = counts[i];
                 sequences.insert(sequences.end(), count, str);
             }
             std::shuffle(sequences.begin(), sequences.end(), gen);
         }
     }
-    sequences.push_back("map_fpga;");
+    sequences.emplace_back("map_fpga;");
     return sequences;
 }
 
@@ -185,7 +184,7 @@ std::vector <std::string> string_to_vector(const std::string &input_string) {
 ////交叉
 std::string crossover_op(std::vector <std::string> seq_1, std::vector <std::string> seq_2) {
     std::vector <std::string> after_cross_x;
-    int seq_num = std::min(seq_1.size(), seq_2.size());
+    int seq_num = std::min((int)seq_1.size(), (int)seq_2.size());
     int position_1 = 0;
     int position_2 = 0;
     if (seq_num == 0) {
@@ -213,13 +212,13 @@ std::string crossover_op(std::vector <std::string> seq_1, std::vector <std::stri
 }
 
 ////变异
-std::vector <std::string> mutation(const std::vector <std::string> sequence) {
+std::vector <std::string> mutation(const std::vector <std::string>& sequence) {
     std::vector <std::string> mutated_sequence = sequence;
 //
 //    for (const auto &item: mutated_sequence) {
 //        std::cout<<"before mutate seq:"<<item<<std::endl;
 //    }
-    int seq_num = mutated_sequence.size();
+    int seq_num = (int)mutated_sequence.size();
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis_of_position_num(1, seq_num);
@@ -244,7 +243,7 @@ std::vector <std::string> mutation(const std::vector <std::string> sequence) {
         used_position.push_back(position);
 //        std::cout<<"position"<<count<<":"<<position<<std::endl;
     }
-    mutated_sequence.push_back("map_fpga;");
+    mutated_sequence.emplace_back("map_fpga;");
 //    for (const auto &item: mutated_sequence) {
 //        std::cout<<"after mutate seq:"<<item<<std::endl;
 //    }
