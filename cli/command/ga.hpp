@@ -516,16 +516,16 @@ namespace alice {
 //                run_algo_seq(algo_sequence);
                 for (const auto &sequence: algo_sequence) {
                     tmp_algo_string += sequence;
-                    std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
+//                    std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
                     if (all_result_map.count(tmp_algo_string) > 0) {
-                        std::cout << "come in the if" << std::endl;
+//                        std::cout << "come in the if" << std::endl;
                         store < iFPGA::aig_network > ().current() = all_result_map.find(tmp_algo_string)->second;
                         iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current()._storage;
                         iFPGA::depth_view<iFPGA::aig_network> tmp_daig(tmp_aig);
-                        printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
-                               tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
+//                        printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
+//                               tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
                     } else {
-                        std::cout << "come in the else" << std::endl;
+//                        std::cout << "come in the else" << std::endl;
                         run_algo(sequence);
                         iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current();
                         all_result_map.emplace(tmp_algo_string, tmp_aig);
@@ -737,6 +737,9 @@ namespace alice {
                 }
 
 
+
+
+
                 // 清空 seq_to_db_map
 //                sum_normal_fitness = 0;
                 seq_to_db_map.clear();
@@ -751,16 +754,16 @@ namespace alice {
                     std::vector<std::string> v_tmp_item = string_to_vector(next_population_string);
                     for (const auto &sequence: v_tmp_item) {
                         tmp_algo_string += sequence;
-                        std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
+//                        std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
                         if (all_result_map.count(tmp_algo_string) > 0) {
-                            std::cout << "come in the if" << std::endl;
+//                            std::cout << "come in the if" << std::endl;
                             store < iFPGA::aig_network > ().current() = all_result_map.find(tmp_algo_string)->second;
                             iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current()._storage;
                             iFPGA::depth_view<iFPGA::aig_network> tmp_daig(tmp_aig);
-                            printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
-                                   tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
+//                            printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
+//                                   tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
                         } else {
-                            std::cout << "come in the else" << std::endl;
+//                            std::cout << "come in the else" << std::endl;
                             run_algo(sequence);
                             iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current();
                             all_result_map.emplace(tmp_algo_string, tmp_aig);
@@ -856,16 +859,16 @@ namespace alice {
 //                run_algo_seq(algo_sequence_of_2);
                 for (const auto &sequence: algo_sequence_of_2) {
                     tmp_algo_string += sequence;
-                    std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
+//                    std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
                     if (all_result_map_2.count(tmp_algo_string) > 0) {
-                        std::cout << "come in the if" << std::endl;
+//                        std::cout << "come in the if" << std::endl;
                         store < iFPGA::aig_network > ().current() = all_result_map_2.find(tmp_algo_string)->second;
                         iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current()._storage;
                         iFPGA::depth_view<iFPGA::aig_network> tmp_daig(tmp_aig);
-                        printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
-                               tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
+//                        printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
+//                               tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
                     } else {
-                        std::cout << "come in the else" << std::endl;
+//                        std::cout << "come in the else" << std::endl;
                         run_algo(sequence);
                         iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current();
                         all_result_map_2.emplace(tmp_algo_string, tmp_aig);
@@ -1083,16 +1086,16 @@ namespace alice {
 //                    run_algo_seq(v_tmp_item);
                     for (const auto &sequence: v_tmp_item) {
                         tmp_algo_string += sequence;
-                        std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
+//                        std::cout << "tmp_algo_seq: " << tmp_algo_string << std::endl;
                         if (all_result_map_2.count(tmp_algo_string) > 0) {
-                            std::cout << "come in the if" << std::endl;
+//                            std::cout << "come in the if" << std::endl;
                             store < iFPGA::aig_network > ().current() = all_result_map_2.find(tmp_algo_string)->second;
                             iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current()._storage;
                             iFPGA::depth_view<iFPGA::aig_network> tmp_daig(tmp_aig);
-                            printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
-                                   tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
+//                            printf("Stats of AIG: pis=%d, pos=%d, area=%d, depth=%d\n", tmp_aig.num_pis(),
+//                                   tmp_aig.num_pos(), tmp_aig.num_gates(), tmp_daig.depth());
                         } else {
-                            std::cout << "come in the else" << std::endl;
+//                            std::cout << "come in the else" << std::endl;
                             run_algo(sequence);
                             iFPGA::aig_network tmp_aig = store < iFPGA::aig_network > ().current();
                             all_result_map_2.emplace(tmp_algo_string, tmp_aig);
