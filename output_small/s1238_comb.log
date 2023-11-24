@@ -1,0 +1,2661 @@
+iMAP v0.1 by PCL, CECA and Anlogic
+imap> read_aiger -f "../benchmark/Small/s1238_comb/s1238_comb.aig"
+imap> ga
+current_population:balance;rewrite;rewrite -z;balance;rewrite -z;balance;map_fpga;
+current_population:rewrite;refactor;refactor;refactor -l;refactor;refactor -z;rewrite -z;rewrite -z;rewrite -z -l;rewrite -l;map_fpga;
+current_population:balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;map_fpga;
+current_population:refactor;rewrite;rewrite -z -l;rewrite -z;rewrite -l;rewrite;refactor -z;refactor -v;rewrite -z;rewrite -z;map_fpga;
+current_population:rewrite -z;rewrite -z;refactor -v;rewrite -z -l;refactor -l;rewrite -l;refactor -z;rewrite -z;rewrite -l;refactor -l;map_fpga;
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:rewrite -z -l;rewrite -l;refactor -l;refactor -v;refactor -v;rewrite -z -l;rewrite -z -l;refactor -l;balance;refactor -v;map_fpga;
+current_population:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+current_population:balance;refactor -l;rewrite;rewrite -z -l;balance;rewrite -l;rewrite -l;refactor -v;refactor -l;refactor -l;map_fpga;
+current_population:rewrite -l;rewrite;refactor -v;rewrite -l;rewrite -l;refactor;rewrite -l;refactor -v;rewrite -z;rewrite -z;map_fpga;
+seq_to_db_map.size:10
+seq:balance;refactor -l;rewrite;rewrite -z -l;balance;rewrite -l;rewrite -l;refactor -v;refactor -l;refactor -l;map_fpga;
+seq_area:139
+seq_delay:9
+seq_fitness:-0.0238442
+seq_fitness_prob:0
+seq:rewrite -z -l;rewrite -l;refactor -l;refactor -v;refactor -v;rewrite -z -l;rewrite -z -l;refactor -l;balance;refactor -v;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.141924
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.244589
+seq:rewrite -l;rewrite;refactor -v;rewrite -l;rewrite -l;refactor;rewrite -l;refactor -v;rewrite -z;rewrite -z;map_fpga;
+seq_area:137
+seq_delay:9
+seq_fitness:-0.011887
+seq_fitness_prob:0.0107233
+seq:rewrite -z;rewrite -z;refactor -v;rewrite -z -l;refactor -l;rewrite -l;refactor -z;rewrite -z;rewrite -l;refactor -l;map_fpga;
+seq_area:139
+seq_delay:8
+seq_fitness:0.106625
+seq_fitness_prob:0.117005
+seq:refactor;rewrite;rewrite -z -l;rewrite -z;rewrite -l;rewrite;refactor -z;refactor -v;rewrite -z;rewrite -z;map_fpga;
+seq_area:140
+seq_delay:8
+seq_fitness:0.101015
+seq_fitness_prob:0.111974
+seq:balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;map_fpga;
+seq_area:137
+seq_delay:8
+seq_fitness:0.117792
+seq_fitness_prob:0.12702
+seq:rewrite;refactor;refactor;refactor -l;refactor;refactor -z;rewrite -z;rewrite -z;rewrite -z -l;rewrite -l;map_fpga;
+seq_area:136
+seq_delay:9
+seq_fitness:-0.00593471
+seq_fitness_prob:0.0160613
+seq:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+seq_area:138
+seq_delay:7
+seq_fitness:0.233402
+seq_fitness_prob:0.2307
+seq:balance;rewrite;rewrite -z;balance;rewrite -z;balance;map_fpga;
+seq_area:139
+seq_delay:9
+seq_fitness:-0.0238442
+seq_fitness_prob:0
+father1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+cross_probability:0.459959
+mutation_probability:0.383299
+child_2:balance;rewrite -l;rewrite -z -l;rewrite -z -l;balance;map_fpga;
+child1:balance;rewrite -l;rewrite -z -l;rewrite -z -l;balance;map_fpga;
+father1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:balance;rewrite;balance;rewrite;rewrite -z;balance;rewrite -z;balance;map_fpga;
+mutation
+child1:balance;refactor;refactor -z;rewrite;refactor -v;balance;rewrite -v;balance;map_fpga;
+father1:rewrite -z;rewrite -z;refactor -v;rewrite -z -l;refactor -l;rewrite -l;refactor -z;rewrite -z;rewrite -l;refactor -l;map_fpga;
+mother1:refactor;rewrite;rewrite -z -l;rewrite -z;rewrite -l;rewrite;refactor -z;refactor -v;rewrite -z;rewrite -z;map_fpga;
+cross_probability:0.536025
+mutation_probability:0.446688
+mutation
+child1:rewrite -v;rewrite -v;refactor -v;rewrite;refactor -l;balance;rewrite;refactor -v;rewrite;rewrite;map_fpga;
+father1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:refactor;rewrite -z -l;refactor;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+child1:refactor;rewrite -z -l;refactor;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:rewrite -z -l;rewrite -l;refactor -l;refactor -v;refactor -v;rewrite -z -l;rewrite -z -l;refactor -l;balance;refactor -v;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+mutation
+child1:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:refactor;rewrite;rewrite -z -l;rewrite -z;rewrite -l;rewrite;refactor -z;refactor -v;rewrite -z;rewrite -z;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+child1:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+father1:rewrite -z -l;rewrite -l;refactor -l;refactor -v;refactor -v;rewrite -z -l;rewrite -z -l;refactor -l;balance;refactor -v;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+child1:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+Best Sequence: refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+Best Fitness: 0.248889
+best_area:135
+best_delay:7
+best_fitness:0.248889
+count: 1
+run_time: 4.57182
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+current_population:rewrite -z -l;rewrite -l;refactor -l;refactor -v;refactor -v;rewrite -z -l;rewrite -z -l;refactor -l;balance;refactor -v;map_fpga;
+current_population:balance;rewrite -l;rewrite -z -l;rewrite -z -l;balance;map_fpga;
+current_population:balance;refactor;refactor -z;rewrite;refactor -v;balance;rewrite -v;balance;map_fpga;
+current_population:rewrite -v;rewrite -v;refactor -v;rewrite;refactor -l;balance;rewrite;refactor -v;rewrite;rewrite;map_fpga;
+current_population:refactor;rewrite -z -l;refactor;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+current_population:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+current_population:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+current_population:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+seq_area:132
+seq_delay:8
+seq_fitness:0.145402
+seq_fitness_prob:0.140517
+seq:refactor;rewrite -z -l;refactor;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.135063
+seq:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+seq_area:139
+seq_delay:8
+seq_fitness:0.106625
+seq_fitness_prob:0.121275
+seq:rewrite -v;rewrite -v;refactor -v;rewrite;refactor -l;balance;rewrite;refactor -v;rewrite;rewrite;map_fpga;
+seq_area:135
+seq_delay:10
+seq_fitness:-0.137778
+seq_fitness_prob:0
+seq:balance;rewrite -l;rewrite -z -l;rewrite -z -l;balance;map_fpga;
+seq_area:146
+seq_delay:9
+seq_fitness:-0.0662475
+seq_fitness_prob:0.0354941
+seq:balance;refactor;refactor -z;rewrite;refactor -v;balance;rewrite -v;balance;map_fpga;
+seq_area:135
+seq_delay:10
+seq_fitness:-0.137778
+seq_fitness_prob:0
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.191868
+seq:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+seq_area:139
+seq_delay:9
+seq_fitness:-0.0238442
+seq_fitness_prob:0.056535
+seq:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+seq_area:138
+seq_delay:7
+seq_fitness:0.233402
+seq_fitness_prob:0.184183
+seq:rewrite -z -l;rewrite -l;refactor -l;refactor -v;refactor -v;rewrite -z -l;rewrite -z -l;refactor -l;balance;refactor -v;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.135063
+father1:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+mother1:balance;rewrite -l;rewrite -z -l;rewrite -z -l;balance;map_fpga;
+cross_probability:0.512759
+mutation_probability:0.427299
+child_2:rewrite -z -l;rewrite -l;rewrite -z;rewrite -l;rewrite;refactor -z;rewrite;rewrite;rewrite -z -l;refactor -z;map_fpga;
+child1:rewrite -z -l;rewrite -l;rewrite -z;rewrite -l;rewrite;refactor -z;rewrite;rewrite;rewrite -z -l;refactor -z;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:refactor;rewrite -z -l;refactor;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+mutation
+child1:refactor -z;rewrite -l;refactor;rewrite;refactor -l;rewrite -v;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:rewrite;rewrite -z;rewrite -z -l;refactor -z;rewrite -l;rewrite -z -l;rewrite;rewrite -z -l;refactor -l;refactor -v;map_fpga;
+child1:rewrite;rewrite -z;rewrite -z -l;refactor -z;rewrite -l;rewrite -z -l;rewrite;rewrite -z -l;refactor -l;refactor -v;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+child1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+mother1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+cross_probability:0.459959
+mutation_probability:0.383299
+child_2:refactor -z;rewrite -z -l;rewrite;balance;rewrite -z -l;refactor -v;rewrite;refactor -v;refactor -z;rewrite -z -l;map_fpga;
+child1:refactor -z;rewrite -z -l;rewrite;balance;rewrite -z -l;refactor -v;rewrite;refactor -v;refactor -z;rewrite -z -l;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;rewrite -z;refactor;rewrite -z -l;rewrite -z -l;rewrite -v;balance;balance;map_fpga;
+cross_probability:0.536025
+mutation_probability:0.446688
+child_2:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+child1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+father1:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+mother1:refactor;balance;balance;refactor -l;refactor -z;rewrite -z -l;refactor -v;refactor -v;refactor -l;refactor;map_fpga;
+cross_probability:0.614307
+mutation_probability:0.511922
+child_2:refactor -v;refactor -l;refactor -z;rewrite -z -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;balance;map_fpga;
+child1:refactor -v;refactor -l;refactor -z;rewrite -z -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;balance;map_fpga;
+Best Sequence: rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+Best Fitness: 0.264217
+best_area:132
+best_delay:7
+best_fitness:0.264217
+count: 2
+run_time: 6.71377
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+current_population:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+current_population:rewrite -z -l;rewrite -l;rewrite -z;rewrite -l;rewrite;refactor -z;rewrite;rewrite;rewrite -z -l;refactor -z;map_fpga;
+current_population:refactor -z;rewrite -l;refactor;rewrite;refactor -l;rewrite -v;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+current_population:rewrite;rewrite -z;rewrite -z -l;refactor -z;rewrite -l;rewrite -z -l;rewrite;rewrite -z -l;refactor -l;refactor -v;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;rewrite -z -l;rewrite;balance;rewrite -z -l;refactor -v;rewrite;refactor -v;refactor -z;rewrite -z -l;map_fpga;
+current_population:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+current_population:refactor -v;refactor -l;refactor -z;rewrite -z -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;balance;map_fpga;
+seq_to_db_map.size:10
+seq:refactor -v;refactor -l;refactor -z;rewrite -z -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;balance;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.0848286
+seq:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+seq_area:137
+seq_delay:7
+seq_fitness:0.238582
+seq_fitness_prob:0.167238
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.183956
+seq:rewrite;rewrite -z;rewrite -z -l;refactor -z;rewrite -l;rewrite -z -l;rewrite;rewrite -z -l;refactor -l;refactor -v;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.0848286
+seq:rewrite -z -l;rewrite -l;rewrite -z;rewrite -l;rewrite;refactor -z;rewrite;rewrite;rewrite -z -l;refactor -z;map_fpga;
+seq_area:138
+seq_delay:9
+seq_fitness:-0.0178568
+seq_fitness_prob:0
+seq:refactor -z;rewrite -z -l;rewrite;balance;rewrite -z -l;refactor -v;rewrite;refactor -v;refactor -z;rewrite -z -l;map_fpga;
+seq_area:133
+seq_delay:9
+seq_fitness:0.0118167
+seq_fitness_prob:0.0193518
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.17396
+seq:refactor -z;rewrite -l;refactor;rewrite;refactor -l;rewrite -v;rewrite -z;rewrite -l;balance;refactor -v;map_fpga;
+seq_area:134
+seq_delay:9
+seq_fitness:0.00591715
+seq_fitness_prob:0.0155043
+seq:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+seq_area:138
+seq_delay:7
+seq_fitness:0.233402
+seq_fitness_prob:0.16386
+seq:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+seq_area:132
+seq_delay:8
+seq_fitness:0.145402
+seq_fitness_prob:0.10647
+father1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+cross_probability:0.456851
+mutation_probability:0.380709
+child_2:rewrite;refactor -l;refactor;refactor -z;rewrite -z;refactor -l;refactor;refactor;rewrite -z -l;balance;map_fpga;
+child1:rewrite;refactor -l;refactor;refactor -z;rewrite -z;refactor -l;refactor;refactor;rewrite -z -l;balance;map_fpga;
+father1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:balance;refactor -z;refactor -z;rewrite -l;rewrite;refactor -l;refactor -l;rewrite -z -l;refactor;balance;map_fpga;
+mutation
+child1:balance;refactor -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -v;refactor -v;refactor;balance;map_fpga;
+father1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+mother1:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+cross_probability:0.456851
+mutation_probability:0.380709
+child_2:refactor -l;rewrite -z -l;refactor -l;refactor -v;balance;refactor;rewrite -z;refactor -z;rewrite;balance;map_fpga;
+child1:refactor -l;rewrite -z -l;refactor -l;refactor -v;balance;refactor;rewrite -z;refactor -z;rewrite;balance;map_fpga;
+father1:refactor -v;refactor -l;refactor -z;rewrite -z -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;balance;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;rewrite -z -l;rewrite -z;refactor -v;refactor -v;map_fpga;
+child1:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;rewrite -z -l;rewrite -z;refactor -v;refactor -v;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:rewrite -l;refactor -v;refactor -v;refactor -v;refactor;balance;refactor -l;refactor -l;rewrite;rewrite -z -l;map_fpga;
+mutation
+child1:rewrite -l;rewrite;rewrite -z;rewrite;balance;balance;refactor -l;rewrite;balance;rewrite -z -l;map_fpga;
+father1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+mother1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+cross_probability:0.456851
+mutation_probability:0.380709
+mutation
+child1:refactor -v;rewrite -l;rewrite -v;rewrite -l;rewrite -v;balance;rewrite;refactor;rewrite;refactor -v;map_fpga;
+father1:rewrite -l;rewrite -z -l;balance;rewrite -l;refactor -l;balance;refactor;refactor -v;refactor -z;rewrite -z;map_fpga;
+mother1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+cross_probability:0.456851
+mutation_probability:0.380709
+child_2:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+child1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 3
+run_time: 8.3921
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+current_population:rewrite;refactor -l;refactor;refactor -z;rewrite -z;refactor -l;refactor;refactor;rewrite -z -l;balance;map_fpga;
+current_population:balance;refactor -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -v;refactor -v;refactor;balance;map_fpga;
+current_population:refactor -l;rewrite -z -l;refactor -l;refactor -v;balance;refactor;rewrite -z;refactor -z;rewrite;balance;map_fpga;
+current_population:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;rewrite -z -l;rewrite -z;refactor -v;refactor -v;map_fpga;
+current_population:rewrite -l;rewrite;rewrite -z;rewrite;balance;balance;refactor -l;rewrite;balance;rewrite -z -l;map_fpga;
+current_population:refactor -v;rewrite -l;rewrite -v;rewrite -l;rewrite -v;balance;rewrite;refactor;rewrite;refactor -v;map_fpga;
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_to_db_map.size:10
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.16903
+seq:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;rewrite -z -l;rewrite -z;refactor -v;refactor -v;map_fpga;
+seq_area:140
+seq_delay:8
+seq_fitness:0.101015
+seq_fitness_prob:0.104222
+seq:rewrite -l;rewrite;rewrite -z;rewrite;balance;balance;refactor -l;rewrite;balance;rewrite -z -l;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.108536
+seq:refactor -l;rewrite -z -l;refactor -l;refactor -v;balance;refactor;rewrite -z;refactor -z;rewrite;balance;map_fpga;
+seq_area:140
+seq_delay:10
+seq_fitness:-0.169602
+seq_fitness_prob:0
+seq:balance;refactor -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -v;refactor -v;refactor;balance;map_fpga;
+seq_area:136
+seq_delay:10
+seq_fitness:-0.144108
+seq_fitness_prob:0.00981869
+seq:refactor -v;rewrite -l;rewrite -v;rewrite -l;rewrite -v;balance;rewrite;refactor;rewrite;refactor -v;map_fpga;
+seq_area:135
+seq_delay:10
+seq_fitness:-0.137778
+seq_fitness_prob:0.0122565
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.167076
+seq:rewrite;refactor -l;refactor;refactor -z;rewrite -z;refactor -l;refactor;refactor;rewrite -z -l;balance;map_fpga;
+seq_area:137
+seq_delay:8
+seq_fitness:0.117792
+seq_fitness_prob:0.110683
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.161172
+seq:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+seq_area:137
+seq_delay:7
+seq_fitness:0.238582
+seq_fitness_prob:0.157203
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:rewrite -l;rewrite;rewrite -z;rewrite;balance;balance;refactor -l;rewrite;balance;rewrite -z -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:rewrite -z;rewrite -z -l;rewrite;rewrite -z;refactor -z;refactor;refactor -z;rewrite -l;refactor;refactor -l;map_fpga;
+child1:rewrite -z;rewrite -z -l;rewrite;rewrite -z;refactor -z;refactor;refactor -z;rewrite -l;refactor;refactor -l;map_fpga;
+father1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child1:refactor -v;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+father1:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;rewrite -z -l;rewrite -z;refactor -v;refactor -v;map_fpga;
+mother1:rewrite;refactor -l;refactor;refactor -z;rewrite -z;refactor -l;refactor;refactor;rewrite -z -l;balance;map_fpga;
+cross_probability:0.529325
+mutation_probability:0.441104
+mutation
+child1:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;refactor;rewrite -z;refactor -v;refactor -v;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:balance;balance;balance;refactor;refactor -v;refactor -z;rewrite;rewrite -v;refactor -v;rewrite;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -z;rewrite;rewrite -z -l;rewrite -l;refactor;refactor -v;refactor -v;refactor -l;refactor -v;refactor -l;map_fpga;
+child1:refactor -z;rewrite;rewrite -z -l;rewrite -l;refactor;refactor -v;refactor -v;refactor -l;refactor -v;refactor -l;map_fpga;
+father1:refactor -v;rewrite -l;balance;rewrite -l;rewrite -z -l;refactor -z;rewrite -l;refactor -l;rewrite;refactor -v;map_fpga;
+mother1:rewrite;refactor -l;refactor;refactor -z;rewrite -z;refactor -l;refactor;refactor;rewrite -z -l;balance;map_fpga;
+cross_probability:0.456851
+mutation_probability:0.380709
+mutation
+child1:rewrite -v;rewrite -l;balance;rewrite -l;rewrite -z -l;rewrite -v;rewrite -l;refactor;rewrite;balance;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:rewrite -l;rewrite;rewrite -z;rewrite;balance;balance;refactor -l;rewrite;balance;rewrite -z -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;rewrite -z -l;refactor -v;refactor -v;refactor -z;refactor -v;refactor -l;refactor -z;balance;balance;map_fpga;
+child1:refactor -v;rewrite -z -l;refactor -v;refactor -v;refactor -z;refactor -v;refactor -l;refactor -z;balance;balance;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 4
+run_time: 9.99027
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:rewrite -z;rewrite -z -l;rewrite;rewrite -z;refactor -z;refactor;refactor -z;rewrite -l;refactor;refactor -l;map_fpga;
+current_population:refactor -v;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;refactor;rewrite -z;refactor -v;refactor -v;map_fpga;
+current_population:balance;balance;balance;refactor;refactor -v;refactor -z;rewrite;rewrite -v;refactor -v;rewrite;map_fpga;
+current_population:refactor -z;rewrite;rewrite -z -l;rewrite -l;refactor;refactor -v;refactor -v;refactor -l;refactor -v;refactor -l;map_fpga;
+current_population:rewrite -v;rewrite -l;balance;rewrite -l;rewrite -z -l;rewrite -v;rewrite -l;refactor;rewrite;balance;map_fpga;
+current_population:refactor -v;rewrite -z -l;refactor -v;refactor -v;refactor -z;refactor -v;refactor -l;refactor -z;balance;balance;map_fpga;
+seq_to_db_map.size:10
+seq:refactor -v;rewrite -z -l;refactor -v;refactor -v;refactor -z;refactor -v;refactor -l;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:9
+seq_fitness:0.0176988
+seq_fitness_prob:0.0246086
+seq:refactor -z;rewrite;rewrite -z -l;rewrite -l;refactor;refactor -v;refactor -v;refactor -l;refactor -v;refactor -l;map_fpga;
+seq_area:135
+seq_delay:9
+seq_fitness:0
+seq_fitness_prob:0.012359
+seq:balance;balance;balance;refactor;refactor -v;refactor -z;rewrite;rewrite -v;refactor -v;rewrite;map_fpga;
+seq_area:135
+seq_delay:9
+seq_fitness:0
+seq_fitness_prob:0.012359
+seq:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;refactor;rewrite -z;refactor -v;refactor -v;map_fpga;
+seq_area:142
+seq_delay:8
+seq_fitness:0.0897427
+seq_fitness_prob:0.0744713
+seq:refactor -v;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.184619
+seq:rewrite -z;rewrite -z -l;rewrite;rewrite -z;refactor -z;refactor;refactor -z;rewrite -l;refactor;refactor -l;map_fpga;
+seq_area:132
+seq_delay:8
+seq_fitness:0.145402
+seq_fitness_prob:0.112994
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.19874
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.195228
+seq:rewrite -v;rewrite -l;balance;rewrite -l;rewrite -z -l;rewrite -v;rewrite -l;refactor;rewrite;balance;map_fpga;
+seq_area:138
+seq_delay:9
+seq_fitness:-0.0178568
+seq_fitness_prob:0
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.184619
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:refactor;rewrite -z;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -z -l;refactor;refactor;rewrite -z;refactor -v;refactor -v;map_fpga;
+cross_probability:0.450667
+mutation_probability:0.375556
+child_2:refactor -l;refactor -v;refactor -z;rewrite;refactor -z;refactor -v;balance;refactor -l;refactor -z;refactor -v;map_fpga;
+child1:refactor -l;refactor -v;refactor -z;rewrite;refactor -z;refactor -v;balance;refactor -l;refactor -z;refactor -v;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:rewrite -z;rewrite -z -l;rewrite;rewrite -z;refactor -z;refactor;refactor -z;rewrite -l;refactor;refactor -l;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:balance;refactor -z;balance;rewrite;rewrite;refactor -l;refactor -v;rewrite -z;rewrite -z -l;rewrite -z -l;map_fpga;
+child1:balance;refactor -z;balance;rewrite;rewrite;refactor -l;refactor -v;rewrite -z;rewrite -z -l;rewrite -z -l;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+child == parents
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:refactor -z;rewrite -z;rewrite -z -l;refactor -z;rewrite;refactor -l;rewrite -z;rewrite -z -l;refactor;rewrite -l;map_fpga;
+child1:refactor -z;rewrite -z;rewrite -z -l;refactor -z;rewrite;refactor -l;rewrite -z;rewrite -z -l;refactor;rewrite -l;map_fpga;
+father1:rewrite -z;rewrite -z -l;rewrite;rewrite -z;refactor -z;refactor;refactor -z;rewrite -l;refactor;refactor -l;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;rewrite;rewrite -z;rewrite -v;rewrite -v;refactor -l;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 5
+run_time: 11.8583
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:refactor;rewrite -z;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+current_population:refactor -l;refactor -v;refactor -z;rewrite;refactor -z;refactor -v;balance;refactor -l;refactor -z;refactor -v;map_fpga;
+current_population:balance;refactor -z;balance;rewrite;rewrite;refactor -l;refactor -v;rewrite -z;rewrite -z -l;rewrite -z -l;map_fpga;
+current_population:refactor -l;refactor -z;refactor -l;refactor -z;refactor -z;balance;rewrite;refactor;refactor;rewrite;map_fpga;
+current_population:refactor -z;rewrite -z;rewrite -z -l;refactor -z;rewrite;refactor -l;rewrite -z;rewrite -z -l;refactor;rewrite -l;map_fpga;
+current_population:rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;rewrite;rewrite -z;rewrite -v;rewrite -v;refactor -l;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;rewrite;rewrite -z;rewrite -v;rewrite -v;refactor -l;map_fpga;
+seq_area:139
+seq_delay:8
+seq_fitness:0.106625
+seq_fitness_prob:0.0904695
+seq:refactor -l;refactor -z;refactor -l;refactor -z;refactor -z;balance;rewrite;refactor;refactor;rewrite;map_fpga;
+seq_area:132
+seq_delay:8
+seq_fitness:0.145402
+seq_fitness_prob:0.104116
+seq:balance;refactor -z;balance;rewrite;rewrite;refactor -l;refactor -v;rewrite -z;rewrite -z -l;rewrite -z -l;map_fpga;
+seq_area:141
+seq_delay:9
+seq_fitness:-0.0358716
+seq_fitness_prob:0.0403232
+seq:refactor;rewrite -z;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:8
+seq_fitness:0.150872
+seq_fitness_prob:0.10604
+seq:refactor -l;refactor -v;refactor -z;rewrite;refactor -z;refactor -v;balance;refactor -l;refactor -z;refactor -v;map_fpga;
+seq_area:137
+seq_delay:10
+seq_fitness:-0.150455
+seq_fitness_prob:0
+seq:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:134
+seq_delay:7
+seq_fitness:0.254016
+seq_fitness_prob:0.142338
+seq:refactor -z;rewrite -z;rewrite -z -l;refactor -z;rewrite;refactor -l;rewrite -z;rewrite -z -l;refactor;rewrite -l;map_fpga;
+seq_area:143
+seq_delay:8
+seq_fitness:0.0840801
+seq_fitness_prob:0.0825357
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.147714
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.145928
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.140534
+father1:refactor;rewrite -z;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+mother1:refactor;rewrite -z;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+cross_probability:0.509477
+mutation_probability:0.424564
+mutation
+child1:refactor;rewrite;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -l;refactor -l;rewrite -z -l;refactor -l;rewrite;refactor -z;rewrite -z;rewrite -z;rewrite -z;refactor -z;map_fpga;
+child1:refactor -l;refactor -l;rewrite -z -l;refactor -l;rewrite;refactor -z;rewrite -z;rewrite -z;rewrite -z;refactor -z;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:refactor -l;refactor -z;refactor -l;refactor -z;refactor -z;balance;rewrite;refactor;refactor;rewrite;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:balance;rewrite -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;refactor -v;balance;refactor -l;map_fpga;
+child1:balance;rewrite -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;refactor -v;balance;refactor -l;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;rewrite;rewrite -z;rewrite -v;rewrite -v;refactor -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+child1:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite -z;rewrite -z -l;refactor -v;refactor;refactor -l;rewrite -z;rewrite -z;refactor -v;rewrite -z -l;balance;map_fpga;
+child1:rewrite -z;rewrite -z -l;refactor -v;refactor;refactor -l;rewrite -z;rewrite -z;refactor -v;rewrite -z -l;balance;map_fpga;
+father1:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:refactor -l;refactor -z;refactor -l;refactor -z;refactor -z;balance;rewrite;refactor;refactor;rewrite;map_fpga;
+cross_probability:0.44759
+mutation_probability:0.372992
+child_2:refactor -v;refactor;rewrite -l;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite;rewrite -z -l;balance;map_fpga;
+child1:refactor -v;refactor;rewrite -l;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite;rewrite -z -l;balance;map_fpga;
+father1:refactor -z;rewrite -l;rewrite -z -l;balance;refactor;balance;rewrite -z -l;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child1:refactor -z;rewrite -l;rewrite -z -l;balance;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 6
+run_time: 13.6582
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:refactor;rewrite;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+current_population:refactor -l;refactor -l;rewrite -z -l;refactor -l;rewrite;refactor -z;rewrite -z;rewrite -z;rewrite -z;refactor -z;map_fpga;
+current_population:balance;rewrite -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;refactor -v;balance;refactor -l;map_fpga;
+current_population:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+current_population:rewrite -z;rewrite -z -l;refactor -v;refactor;refactor -l;rewrite -z;rewrite -z;refactor -v;rewrite -z -l;balance;map_fpga;
+current_population:refactor -v;refactor;rewrite -l;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite;rewrite -z -l;balance;map_fpga;
+current_population:refactor -z;rewrite -l;rewrite -z -l;balance;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_to_db_map.size:10
+seq:refactor -v;refactor;rewrite -l;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite;rewrite -z -l;balance;map_fpga;
+seq_area:135
+seq_delay:7
+seq_fitness:0.248889
+seq_fitness_prob:0.179947
+seq:rewrite -z;rewrite -z -l;refactor -v;refactor;refactor -l;rewrite -z;rewrite -z;refactor -v;rewrite -z -l;balance;map_fpga;
+seq_area:137
+seq_delay:8
+seq_fitness:0.117792
+seq_fitness_prob:0.0415774
+seq:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+seq_area:133
+seq_delay:8
+seq_fitness:0.139916
+seq_fitness_prob:0.0649282
+seq:balance;rewrite -l;rewrite -z;rewrite -z;balance;refactor -v;refactor -l;refactor -v;balance;refactor -l;map_fpga;
+seq_area:144
+seq_delay:8
+seq_fitness:0.0784
+seq_fitness_prob:0
+seq:refactor -l;refactor -l;rewrite -z -l;refactor -l;rewrite;refactor -z;rewrite -z;rewrite -z;rewrite -z;refactor -z;map_fpga;
+seq_area:136
+seq_delay:8
+seq_fitness:0.123349
+seq_fitness_prob:0.0474429
+seq:refactor;rewrite;balance;rewrite;rewrite;balance;refactor -z;refactor -z;rewrite -v;refactor -z;map_fpga;
+seq_area:136
+seq_delay:8
+seq_fitness:0.123349
+seq_fitness_prob:0.0474429
+seq:refactor -z;rewrite -l;rewrite -z -l;balance;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.0356934
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.201482
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.196126
+seq:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:134
+seq_delay:7
+seq_fitness:0.254016
+seq_fitness_prob:0.185359
+father1:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:refactor -v;refactor;rewrite -l;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite;rewrite -z -l;balance;map_fpga;
+cross_probability:0.44759
+mutation_probability:0.372992
+mutation
+child1:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:rewrite;rewrite -z;rewrite -v;rewrite;rewrite -z;rewrite;balance;rewrite;refactor -v;balance;map_fpga;
+father1:refactor -v;refactor;rewrite -l;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite;rewrite -z -l;balance;map_fpga;
+mother1:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+cross_probability:0.44759
+mutation_probability:0.372992
+child_2:rewrite;balance;balance;rewrite;refactor -z;balance;refactor -z;refactor;refactor -z;refactor -z;map_fpga;
+child1:rewrite;balance;balance;rewrite;refactor -z;balance;refactor -z;refactor;refactor -z;refactor -z;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:refactor -l;refactor -l;rewrite -z -l;refactor -l;rewrite;refactor -z;rewrite -z;rewrite -z;rewrite -z;refactor -z;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:rewrite -z;rewrite -l;rewrite -z;rewrite;rewrite -l;refactor -l;rewrite;refactor -l;rewrite -l;refactor -v;map_fpga;
+child1:rewrite -z;rewrite -l;rewrite -z;rewrite;rewrite -l;refactor -l;rewrite;refactor -l;rewrite -l;refactor -v;map_fpga;
+father1:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:rewrite -v;refactor -z;rewrite -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -z;refactor -v;balance;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:refactor -v;refactor -z;rewrite -z -l;refactor -z;rewrite -l;rewrite;rewrite -l;refactor -v;refactor -v;refactor -l;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:refactor;rewrite;balance;refactor -z;rewrite -z;refactor;rewrite -l;refactor -v;balance;refactor -z;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:balance;refactor -v;refactor;rewrite;rewrite -v;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 7
+run_time: 15.3509
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+current_population:rewrite;rewrite -z;rewrite -v;rewrite;rewrite -z;rewrite;balance;rewrite;refactor -v;balance;map_fpga;
+current_population:rewrite;balance;balance;rewrite;refactor -z;balance;refactor -z;refactor;refactor -z;refactor -z;map_fpga;
+current_population:rewrite -z;rewrite -l;rewrite -z;rewrite;rewrite -l;refactor -l;rewrite;refactor -l;rewrite -l;refactor -v;map_fpga;
+current_population:rewrite -v;refactor -z;rewrite -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -z;refactor -v;balance;map_fpga;
+current_population:refactor;rewrite;balance;refactor -z;rewrite -z;refactor;rewrite -l;refactor -v;balance;refactor -z;map_fpga;
+current_population:balance;refactor -v;refactor;rewrite;rewrite -v;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_to_db_map.size:10
+seq:balance;refactor -v;refactor;rewrite;rewrite -v;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:9
+seq_fitness:0.0235632
+seq_fitness_prob:0.0266721
+seq:rewrite -v;refactor -z;rewrite -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -z;refactor -v;balance;map_fpga;
+seq_area:136
+seq_delay:8
+seq_fitness:0.123349
+seq_fitness_prob:0.0909285
+seq:rewrite -z;rewrite -l;rewrite -z;rewrite;rewrite -l;refactor -l;rewrite;refactor -l;rewrite -l;refactor -v;map_fpga;
+seq_area:138
+seq_delay:9
+seq_fitness:-0.0178568
+seq_fitness_prob:0
+seq:rewrite;balance;balance;rewrite;refactor -z;balance;refactor -z;refactor;refactor -z;refactor -z;map_fpga;
+seq_area:137
+seq_delay:8
+seq_fitness:0.117792
+seq_fitness_prob:0.0873499
+seq:rewrite;rewrite -z;rewrite -v;rewrite;rewrite -z;rewrite;balance;rewrite;refactor -v;balance;map_fpga;
+seq_area:137
+seq_delay:9
+seq_fitness:-0.011887
+seq_fitness_prob:0.00384422
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.184907
+seq:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+seq_area:140
+seq_delay:7
+seq_fitness:0.22299
+seq_fitness_prob:0.155092
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.181639
+seq:refactor;rewrite;balance;refactor -z;rewrite -z;refactor;rewrite -l;refactor -v;balance;refactor -z;map_fpga;
+seq_area:135
+seq_delay:8
+seq_fitness:0.128889
+seq_fitness_prob:0.0944957
+seq:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:134
+seq_delay:7
+seq_fitness:0.254016
+seq_fitness_prob:0.17507
+father1:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+mother1:rewrite;balance;balance;rewrite;refactor -z;balance;refactor -z;refactor;refactor -z;refactor -z;map_fpga;
+cross_probability:0.466206
+mutation_probability:0.388505
+mutation
+child1:balance;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -v;rewrite;map_fpga;
+father1:rewrite -v;refactor -z;rewrite -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -z;refactor -v;balance;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;balance;refactor -v;rewrite -l;refactor -v;refactor -z;map_fpga;
+child1:rewrite;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;balance;refactor -v;rewrite -l;refactor -v;refactor -z;map_fpga;
+father1:refactor;rewrite;balance;refactor -z;rewrite -z;refactor;rewrite -l;refactor -v;balance;refactor -z;map_fpga;
+mother1:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+cross_probability:0.466206
+mutation_probability:0.388505
+child_2:refactor -v;refactor -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor -l;refactor -z;rewrite -z;rewrite;map_fpga;
+child1:refactor -v;refactor -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor -l;refactor -z;rewrite -z;rewrite;map_fpga;
+father1:rewrite -v;refactor -z;rewrite -z;refactor -z;rewrite -l;rewrite;refactor -v;rewrite -z;refactor -v;balance;map_fpga;
+mother1:refactor;rewrite;balance;refactor -z;rewrite -z;refactor;rewrite -l;refactor -v;balance;refactor -z;map_fpga;
+cross_probability:0.522667
+mutation_probability:0.435556
+child_2:refactor -v;refactor -l;refactor -v;rewrite -z -l;refactor -z;rewrite;balance;refactor -l;refactor -l;refactor -z;map_fpga;
+child1:refactor -v;refactor -l;refactor -v;rewrite -z -l;refactor -z;rewrite;balance;refactor -l;refactor -l;refactor -z;map_fpga;
+father1:balance;refactor -v;refactor;rewrite;rewrite -v;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+cross_probability:0.466206
+mutation_probability:0.388505
+child_2:refactor;refactor -l;rewrite -z;rewrite;refactor -z;refactor;refactor -z;refactor;rewrite -z;balance;map_fpga;
+child1:refactor;refactor -l;rewrite -z;rewrite;refactor -z;refactor;refactor -z;refactor;rewrite -z;balance;map_fpga;
+father1:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+mother1:refactor -z;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -z;balance;map_fpga;
+cross_probability:0.466206
+mutation_probability:0.388505
+mutation
+child1:refactor -z;refactor;rewrite -z;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 8
+run_time: 16.984
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:balance;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -v;rewrite;map_fpga;
+current_population:rewrite;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;balance;refactor -v;rewrite -l;refactor -v;refactor -z;map_fpga;
+current_population:refactor -v;refactor -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor -l;refactor -z;rewrite -z;rewrite;map_fpga;
+current_population:refactor -v;refactor -l;refactor -v;rewrite -z -l;refactor -z;rewrite;balance;refactor -l;refactor -l;refactor -z;map_fpga;
+current_population:refactor;refactor -l;rewrite -z;rewrite;refactor -z;refactor;refactor -z;refactor;rewrite -z;balance;map_fpga;
+current_population:refactor -z;refactor;rewrite -z;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+seq_to_db_map.size:10
+seq:refactor -v;refactor -l;refactor -v;rewrite -z -l;refactor -z;rewrite;balance;refactor -l;refactor -l;refactor -z;map_fpga;
+seq_area:135
+seq_delay:8
+seq_fitness:0.128889
+seq_fitness_prob:0.0823473
+seq:refactor -v;refactor -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor -l;refactor -z;rewrite -z;rewrite;map_fpga;
+seq_area:135
+seq_delay:8
+seq_fitness:0.128889
+seq_fitness_prob:0.0823473
+seq:refactor;refactor -l;rewrite -z;rewrite;refactor -z;refactor;refactor -z;refactor;rewrite -z;balance;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.085446
+seq:rewrite;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;balance;refactor -v;rewrite -l;refactor -v;refactor -z;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.085446
+seq:refactor -z;refactor;rewrite -z;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:131
+seq_delay:8
+seq_fitness:0.150872
+seq_fitness_prob:0.0946832
+seq:balance;balance;rewrite -z;refactor -z;refactor -z;refactor -z;rewrite -v;refactor -v;rewrite -v;rewrite;map_fpga;
+seq_area:138
+seq_delay:9
+seq_fitness:-0.0178568
+seq_fitness_prob:0
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.161135
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.158288
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+seq_area:130
+seq_delay:8
+seq_fitness:0.156324
+seq_fitness_prob:0.0977425
+seq:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:134
+seq_delay:7
+seq_fitness:0.254016
+seq_fitness_prob:0.152563
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+cross_probability:0.506206
+mutation_probability:0.421838
+child1:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+child == parents
+father1:refactor -z;refactor;rewrite -z;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:rewrite;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;balance;refactor -v;rewrite -l;refactor -v;refactor -z;map_fpga;
+cross_probability:0.509477
+mutation_probability:0.424564
+child_2:refactor;rewrite -z -l;refactor -v;refactor -l;rewrite;refactor;refactor -v;rewrite -z;rewrite -z;refactor -z;map_fpga;
+child1:refactor;rewrite -z -l;refactor -v;refactor -l;rewrite;refactor;refactor -v;rewrite -z;rewrite -z;refactor -z;map_fpga;
+father1:refactor;refactor -l;rewrite -z;rewrite;refactor -z;refactor;refactor -z;refactor;rewrite -z;balance;map_fpga;
+mother1:refactor -z;refactor;rewrite -z;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+cross_probability:0.509477
+mutation_probability:0.424564
+mutation
+child1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+mother1:refactor;refactor -l;rewrite -z;rewrite;refactor -z;refactor;refactor -z;refactor;rewrite -z;balance;map_fpga;
+cross_probability:0.506206
+mutation_probability:0.421838
+mutation
+child1:balance;rewrite;rewrite -z;rewrite -z;rewrite -z -l;balance;balance;rewrite -v;refactor -v;rewrite -z;map_fpga;
+father1:refactor -v;refactor -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor -l;refactor -z;rewrite -z;rewrite;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:balance;refactor -z;refactor -z;rewrite -l;rewrite;rewrite;refactor -l;refactor -z;rewrite -z;balance;map_fpga;
+father1:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+father1:rewrite;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;balance;refactor -v;rewrite -l;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite -z -l;refactor -z;rewrite;refactor;refactor -v;refactor -z;map_fpga;
+cross_probability:0.506206
+mutation_probability:0.421838
+mutation
+child1:rewrite;rewrite;rewrite -z -l;rewrite -l;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -v;refactor -z;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 9
+run_time: 18.446
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+current_population:rewrite;refactor -v;refactor -v;refactor -z;refactor -z;balance;refactor -l;rewrite -z;refactor;refactor -v;map_fpga;
+current_population:refactor;rewrite -z -l;refactor -v;refactor -l;rewrite;refactor;refactor -v;rewrite -z;rewrite -z;refactor -z;map_fpga;
+current_population:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:balance;rewrite;rewrite -z;rewrite -z;rewrite -z -l;balance;balance;rewrite -v;refactor -v;rewrite -z;map_fpga;
+current_population:balance;refactor -z;refactor -z;rewrite -l;rewrite;rewrite;refactor -l;refactor -z;rewrite -z;balance;map_fpga;
+current_population:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+current_population:rewrite;rewrite;rewrite -z -l;rewrite -l;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -v;refactor -z;map_fpga;
+seq_to_db_map.size:10
+seq:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+seq_area:133
+seq_delay:8
+seq_fitness:0.139916
+seq_fitness_prob:0.100332
+seq:balance;rewrite;rewrite -z;rewrite -z;rewrite -z -l;balance;balance;rewrite -v;refactor -v;rewrite -z;map_fpga;
+seq_area:142
+seq_delay:8
+seq_fitness:0.0897427
+seq_fitness_prob:0.0643536
+seq:balance;refactor -z;refactor -z;rewrite -l;rewrite;rewrite;refactor -l;refactor -z;rewrite -z;balance;map_fpga;
+seq_area:141
+seq_delay:8
+seq_fitness:0.0953877
+seq_fitness_prob:0.0684016
+seq:refactor;rewrite -z -l;refactor -v;refactor -l;rewrite;refactor;refactor -v;rewrite -z;rewrite -z;refactor -z;map_fpga;
+seq_area:134
+seq_delay:9
+seq_fitness:0.00591715
+seq_fitness_prob:0.00424313
+seq:rewrite;refactor -v;refactor -v;refactor -z;refactor -z;balance;refactor -l;rewrite -z;refactor;refactor -v;map_fpga;
+seq_area:133
+seq_delay:9
+seq_fitness:0.0118167
+seq_fitness_prob:0.00847367
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.193106
+seq:rewrite;rewrite;rewrite -z -l;rewrite -l;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -v;refactor -z;map_fpga;
+seq_area:135
+seq_delay:9
+seq_fitness:0
+seq_fitness_prob:0
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.189468
+seq:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.189468
+seq:refactor -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor -v;rewrite;rewrite -l;map_fpga;
+seq_area:134
+seq_delay:7
+seq_fitness:0.254016
+seq_fitness_prob:0.182152
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite -z;refactor;balance;rewrite -z -l;refactor -v;rewrite -l;refactor -z;rewrite;rewrite -l;refactor -z;map_fpga;
+child1:rewrite -z;refactor;balance;rewrite -z -l;refactor -v;rewrite -l;refactor -z;rewrite;rewrite -l;refactor -z;map_fpga;
+father1:balance;rewrite;rewrite -z;rewrite -z;rewrite -z -l;balance;balance;rewrite -v;refactor -v;rewrite -z;map_fpga;
+mother1:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+cross_probability:0.516051
+mutation_probability:0.430042
+child_2:rewrite -l;refactor;balance;rewrite;rewrite -l;rewrite;rewrite -l;rewrite -l;rewrite -l;refactor -z;map_fpga;
+child1:rewrite -l;refactor;balance;rewrite;rewrite -l;rewrite;rewrite -l;rewrite -l;rewrite -l;refactor -z;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:refactor;balance;refactor -v;rewrite -l;refactor -v;balance;rewrite;refactor -z;balance;refactor -z;map_fpga;
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:refactor -l;rewrite -z;refactor;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+child1:refactor -l;rewrite -z;refactor;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite -z;balance;refactor;refactor -v;refactor -l;rewrite -l;refactor -z;balance;refactor -v;rewrite -z;map_fpga;
+child1:rewrite -z;balance;refactor;refactor -v;refactor -l;rewrite -l;refactor -z;balance;refactor -v;rewrite -z;map_fpga;
+father1:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+mother1:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+cross_probability:0.516051
+mutation_probability:0.430042
+child_2:rewrite -l;rewrite -l;refactor -z;rewrite -l;refactor;rewrite -z;refactor -v;rewrite;rewrite -z;rewrite -l;map_fpga;
+child1:rewrite -l;rewrite -l;refactor -z;rewrite -l;refactor;rewrite -z;refactor -v;rewrite;rewrite -z;rewrite -l;map_fpga;
+father1:refactor -z;rewrite -z;rewrite;rewrite -z;balance;refactor -z;refactor -v;rewrite -z;balance;rewrite -l;map_fpga;
+mother1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:balance;rewrite;refactor -z;balance;balance;rewrite -z -l;rewrite -z -l;refactor -v;refactor -v;refactor;map_fpga;
+child1:balance;rewrite;refactor -z;balance;balance;rewrite -z -l;rewrite -z -l;refactor -v;refactor -v;refactor;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 10
+run_time: 20.5507
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:rewrite -z;refactor;balance;rewrite -z -l;refactor -v;rewrite -l;refactor -z;rewrite;rewrite -l;refactor -z;map_fpga;
+current_population:rewrite -l;refactor;balance;rewrite;rewrite -l;rewrite;rewrite -l;rewrite -l;rewrite -l;refactor -z;map_fpga;
+current_population:refactor;balance;refactor -v;rewrite -l;refactor -v;balance;rewrite;refactor -z;balance;refactor -z;map_fpga;
+current_population:refactor -l;rewrite -z;refactor;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+current_population:rewrite -z;balance;refactor;refactor -v;refactor -l;rewrite -l;refactor -z;balance;refactor -v;rewrite -z;map_fpga;
+current_population:rewrite -l;rewrite -l;refactor -z;rewrite -l;refactor;rewrite -z;refactor -v;rewrite;rewrite -z;rewrite -l;map_fpga;
+current_population:balance;rewrite;refactor -z;balance;balance;rewrite -z -l;rewrite -z -l;refactor -v;refactor -v;refactor;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -z;balance;refactor;refactor -v;refactor -l;rewrite -l;refactor -z;balance;refactor -v;rewrite -z;map_fpga;
+seq_area:128
+seq_delay:10
+seq_fitness:-0.093961
+seq_fitness_prob:0.0228427
+seq:refactor -l;rewrite -z;refactor;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+seq_area:139
+seq_delay:8
+seq_fitness:0.106625
+seq_fitness_prob:0.114213
+seq:balance;rewrite;refactor -z;balance;balance;rewrite -z -l;rewrite -z -l;refactor -v;refactor -v;refactor;map_fpga;
+seq_area:136
+seq_delay:10
+seq_fitness:-0.144108
+seq_fitness_prob:0
+seq:rewrite -l;rewrite -l;refactor -z;rewrite -l;refactor;rewrite -z;refactor -v;rewrite;rewrite -z;rewrite -l;map_fpga;
+seq_area:135
+seq_delay:10
+seq_fitness:-0.137778
+seq_fitness_prob:0.00288333
+seq:refactor;balance;refactor -v;rewrite -l;refactor -v;balance;rewrite;refactor -z;balance;refactor -z;map_fpga;
+seq_area:144
+seq_delay:9
+seq_fitness:-0.0540444
+seq_fitness_prob:0.0410254
+seq:rewrite -l;refactor;balance;rewrite;rewrite -l;rewrite;rewrite -l;rewrite -l;rewrite -l;refactor -z;map_fpga;
+seq_area:135
+seq_delay:8
+seq_fitness:0.128889
+seq_fitness_prob:0.124355
+seq:rewrite -z;refactor;balance;rewrite -z -l;refactor -v;rewrite -l;refactor -z;rewrite;rewrite -l;refactor -z;map_fpga;
+seq_area:131
+seq_delay:8
+seq_fitness:0.150872
+seq_fitness_prob:0.134369
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.188311
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.185999
+seq:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.185999
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:refactor;rewrite;balance;refactor;rewrite -z -l;refactor -z;rewrite;refactor;balance;balance;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:rewrite -l;refactor;balance;rewrite;rewrite -l;rewrite;rewrite -l;rewrite -l;rewrite -l;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:rewrite;rewrite;refactor -v;refactor -v;balance;rewrite -v;rewrite -l;balance;rewrite -z;refactor -z;map_fpga;
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:rewrite -l;refactor;balance;rewrite;rewrite -l;rewrite;rewrite -l;rewrite -l;rewrite -l;refactor -z;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+child1:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+father1:refactor -l;rewrite -z;refactor;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:refactor -l;balance;rewrite -z -l;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:rewrite -z;balance;refactor -z;balance;rewrite -z;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+child1:rewrite -z;balance;refactor -z;balance;rewrite -z;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father1:rewrite -z;balance;refactor;refactor -v;refactor -l;rewrite -l;refactor -z;balance;refactor -v;rewrite -z;map_fpga;
+mother1:rewrite -z;refactor;balance;rewrite -z -l;refactor -v;rewrite -l;refactor -z;rewrite;rewrite -l;refactor -z;map_fpga;
+cross_probability:0.509477
+mutation_probability:0.424564
+mutation
+child1:rewrite;balance;balance;rewrite -z;rewrite;rewrite -l;balance;balance;refactor -v;rewrite -z;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite -l;refactor -v;rewrite -l;rewrite -l;rewrite -z;rewrite -l;refactor;rewrite -z;refactor;refactor -z;map_fpga;
+child1:rewrite -l;refactor -v;rewrite -l;rewrite -l;rewrite -z;rewrite -l;refactor;rewrite -z;refactor;refactor -z;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 11
+run_time: 22.5932
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor;rewrite;balance;refactor;rewrite -z -l;refactor -z;rewrite;refactor;balance;balance;map_fpga;
+current_population:rewrite;rewrite;refactor -v;refactor -v;balance;rewrite -v;rewrite -l;balance;rewrite -z;refactor -z;map_fpga;
+current_population:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+current_population:refactor -l;balance;rewrite -z -l;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+current_population:rewrite -z;balance;refactor -z;balance;rewrite -z;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+current_population:rewrite;balance;balance;rewrite -z;rewrite;rewrite -l;balance;balance;refactor -v;rewrite -z;map_fpga;
+current_population:rewrite -l;refactor -v;rewrite -l;rewrite -l;rewrite -z;rewrite -l;refactor;rewrite -z;refactor;refactor -z;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -l;refactor -v;rewrite -l;rewrite -l;rewrite -z;rewrite -l;refactor;rewrite -z;refactor;refactor -z;map_fpga;
+seq_area:134
+seq_delay:9
+seq_fitness:0.00591715
+seq_fitness_prob:0.0155695
+seq:refactor -l;balance;rewrite -z -l;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+seq_area:137
+seq_delay:7
+seq_fitness:0.238582
+seq_fitness_prob:0.167941
+seq:rewrite -z;balance;refactor -z;balance;rewrite -z;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_area:138
+seq_delay:9
+seq_fitness:-0.0178568
+seq_fitness_prob:0
+seq:rewrite;rewrite;refactor -v;refactor -v;balance;rewrite -v;rewrite -l;balance;rewrite -z;refactor -z;map_fpga;
+seq_area:138
+seq_delay:9
+seq_fitness:-0.0178568
+seq_fitness_prob:0
+seq:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.0851851
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.188053
+seq:rewrite;balance;balance;rewrite -z;rewrite;rewrite -l;balance;balance;refactor -v;rewrite -z;map_fpga;
+seq_area:142
+seq_delay:8
+seq_fitness:0.0897427
+seq_fitness_prob:0.0704665
+seq:refactor;rewrite;balance;refactor;rewrite -z -l;refactor -z;rewrite;refactor;balance;balance;map_fpga;
+seq_area:133
+seq_delay:8
+seq_fitness:0.139916
+seq_fitness_prob:0.103325
+seq:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.184729
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.184729
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite -z;refactor -v;refactor -l;refactor -v;refactor;balance;refactor -l;rewrite -z;refactor -v;refactor -z;map_fpga;
+child1:rewrite -z;refactor -v;refactor -l;refactor -v;refactor;balance;refactor -l;rewrite -z;refactor -v;refactor -z;map_fpga;
+father1:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+mother1:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+cross_probability:0.53267
+mutation_probability:0.443891
+mutation
+child1:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;rewrite;balance;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:refactor;rewrite;balance;refactor;rewrite -z -l;refactor -z;rewrite;refactor;balance;balance;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:refactor -v;rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;refactor -v;balance;balance;rewrite -v;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+child == parents
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:refactor -l;balance;rewrite -z -l;refactor -l;rewrite -l;refactor;rewrite -z -l;rewrite -l;rewrite -l;rewrite;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -z;refactor;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:rewrite -z;balance;rewrite;rewrite -z;rewrite -z -l;rewrite -z;rewrite -z;refactor -v;refactor -v;refactor;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:balance;refactor;refactor;rewrite -l;refactor;refactor -l;rewrite -z;refactor -v;rewrite -z -l;rewrite -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 12
+run_time: 24.3768
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+current_population:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:rewrite -z;refactor -v;refactor -l;refactor -v;refactor;balance;refactor -l;rewrite -z;refactor -v;refactor -z;map_fpga;
+current_population:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;rewrite;balance;map_fpga;
+current_population:refactor -v;rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;refactor -v;balance;balance;rewrite -v;map_fpga;
+current_population:refactor -v;rewrite -l;rewrite;rewrite -l;refactor -l;refactor -l;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+current_population:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -z;refactor;map_fpga;
+current_population:rewrite -z;balance;rewrite;rewrite -z;rewrite -z -l;rewrite -z;rewrite -z;refactor -v;refactor -v;refactor;map_fpga;
+current_population:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.140447
+seq:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.140447
+seq:refactor -v;rewrite -l;rewrite;rewrite -l;refactor -l;refactor -l;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.0693082
+seq:refactor -v;rewrite -z;rewrite -z -l;rewrite;rewrite -z;rewrite;refactor -v;balance;balance;rewrite -v;map_fpga;
+seq_area:139
+seq_delay:8
+seq_fitness:0.106625
+seq_fitness_prob:0.0666909
+seq:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;rewrite;balance;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.0796952
+seq:rewrite -z;refactor -v;refactor -l;refactor -v;refactor;balance;refactor -l;rewrite -z;refactor -v;refactor -z;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.0796952
+seq:rewrite -z;balance;rewrite;rewrite -z;rewrite -z -l;rewrite -z;rewrite -z;refactor -v;refactor -v;refactor;map_fpga;
+seq_area:141
+seq_delay:9
+seq_fitness:-0.0358716
+seq_fitness_prob:0
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.142822
+seq:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.140447
+seq:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.140447
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;rewrite -l;refactor -z;refactor;map_fpga;
+mother1:refactor -v;rewrite -l;rewrite;rewrite -l;refactor -l;refactor -l;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor;rewrite -z -l;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+child1:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor;rewrite -z -l;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:refactor -v;rewrite -l;rewrite;rewrite -l;refactor -l;refactor -l;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:refactor -v;rewrite;rewrite -z -l;rewrite -l;refactor -l;refactor;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+father1:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;rewrite;balance;map_fpga;
+mother1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child1:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;refactor -z;refactor;map_fpga;
+father1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -z;rewrite;refactor;rewrite -l;rewrite -z;balance;refactor -z;rewrite -z -l;rewrite;rewrite -l;map_fpga;
+child1:refactor -z;rewrite;refactor;rewrite -l;rewrite -z;balance;refactor -z;rewrite -z -l;rewrite;rewrite -l;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;rewrite -z;rewrite -z -l;refactor;rewrite;balance;rewrite;rewrite -z -l;refactor -v;refactor -l;map_fpga;
+child1:refactor -v;rewrite -z;rewrite -z -l;refactor;rewrite;balance;rewrite;rewrite -z -l;refactor -v;refactor -l;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:refactor -v;rewrite -l;rewrite;rewrite -l;refactor -l;refactor -l;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:balance;balance;rewrite -z -l;rewrite -l;refactor -v;rewrite;refactor -v;rewrite;refactor -z;refactor;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:rewrite -z;balance;rewrite -z -l;refactor;rewrite -z -l;refactor -z;rewrite;refactor;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:rewrite -z;refactor -v;balance;balance;balance;refactor -z;rewrite -z;rewrite -z -l;rewrite -z -l;rewrite;map_fpga;
+child1:rewrite -z;refactor -v;balance;balance;balance;refactor -z;rewrite -z;rewrite -z -l;rewrite -z -l;rewrite;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 13
+run_time: 26.2972
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+current_population:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor;rewrite -z -l;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+current_population:refactor -v;rewrite;rewrite -z -l;rewrite -l;refactor -l;refactor;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+current_population:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;refactor -z;refactor;map_fpga;
+current_population:refactor -z;rewrite;refactor;rewrite -l;rewrite -z;balance;refactor -z;rewrite -z -l;rewrite;rewrite -l;map_fpga;
+current_population:refactor -v;rewrite -z;rewrite -z -l;refactor;rewrite;balance;rewrite;rewrite -z -l;refactor -v;refactor -l;map_fpga;
+current_population:balance;balance;rewrite -z -l;rewrite -l;refactor -v;rewrite;refactor -v;rewrite;refactor -z;refactor;map_fpga;
+current_population:rewrite -z;refactor -v;balance;balance;balance;refactor -z;rewrite -z;rewrite -z -l;rewrite -z -l;rewrite;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -z;refactor -v;balance;balance;balance;refactor -z;rewrite -z;rewrite -z -l;rewrite -z -l;rewrite;map_fpga;
+seq_area:133
+seq_delay:9
+seq_fitness:0.0118167
+seq_fitness_prob:0
+seq:balance;balance;rewrite -z -l;rewrite -l;refactor -v;rewrite;refactor -v;rewrite;refactor -z;refactor;map_fpga;
+seq_area:136
+seq_delay:8
+seq_fitness:0.123349
+seq_fitness_prob:0.07675
+seq:refactor -v;rewrite -z;rewrite -z -l;refactor;rewrite;balance;rewrite;rewrite -z -l;refactor -v;refactor -l;map_fpga;
+seq_area:134
+seq_delay:8
+seq_fitness:0.134411
+seq_fitness_prob:0.084362
+seq:refactor -z;rewrite;refactor;rewrite -l;rewrite -z;balance;refactor -z;rewrite -z -l;rewrite;rewrite -l;map_fpga;
+seq_area:133
+seq_delay:8
+seq_fitness:0.139916
+seq_fitness_prob:0.0881498
+seq:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:8
+seq_fitness:0.145402
+seq_fitness_prob:0.0919257
+seq:refactor -v;rewrite;rewrite -z -l;rewrite -l;refactor -l;refactor;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+seq_area:136
+seq_delay:8
+seq_fitness:0.123349
+seq_fitness_prob:0.07675
+seq:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor;rewrite -z -l;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+seq_area:141
+seq_delay:8
+seq_fitness:0.0953877
+seq_fitness_prob:0.0575085
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.177179
+seq:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.173687
+seq:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.173687
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+child1:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:refactor -z;rewrite;refactor;rewrite -l;rewrite -z;balance;refactor -z;rewrite -z -l;rewrite;rewrite -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:balance;rewrite;rewrite -z;rewrite -l;rewrite -z;balance;refactor -z;rewrite;rewrite;refactor;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+mutation
+child1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;rewrite;refactor -z;refactor -z;map_fpga;
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+mother1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+cross_probability:0.438425
+mutation_probability:0.365354
+child_2:refactor -v;refactor -v;rewrite -z;refactor -z;refactor -l;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;rewrite -z;map_fpga;
+child1:refactor -v;refactor -v;rewrite -z;refactor -z;refactor -l;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;rewrite -z;map_fpga;
+father1:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor;rewrite -z -l;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+mother1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child1:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor -z;rewrite -z;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+child == parents
+father1:refactor -z;rewrite -v;refactor;rewrite -v;refactor;refactor -l;refactor;refactor -v;refactor -z;refactor;map_fpga;
+mother1:refactor -v;rewrite;rewrite -z -l;rewrite -l;refactor -l;refactor;rewrite -z -l;balance;rewrite;rewrite -z;map_fpga;
+cross_probability:0.512759
+mutation_probability:0.427299
+mutation
+child1:refactor -z;rewrite;rewrite -z -l;rewrite;refactor -l;refactor;rewrite -z -l;balance;refactor -z;refactor;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 14
+run_time: 28.1047
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+current_population:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+current_population:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+current_population:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+current_population:balance;rewrite;rewrite -z;rewrite -l;rewrite -z;balance;refactor -z;rewrite;rewrite;refactor;map_fpga;
+current_population:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;rewrite;refactor -z;refactor -z;map_fpga;
+current_population:refactor -v;refactor -v;rewrite -z;refactor -z;refactor -l;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;rewrite -z;map_fpga;
+current_population:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor -z;rewrite -z;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+current_population:rewrite -l;refactor -z;balance;rewrite -z -l;refactor -v;rewrite -z -l;rewrite;refactor;refactor -z;refactor -v;map_fpga;
+current_population:refactor -z;rewrite;rewrite -z -l;rewrite;refactor -l;refactor;rewrite -z -l;balance;refactor -z;refactor;map_fpga;
+seq_to_db_map.size:10
+seq:rewrite -l;refactor -z;balance;rewrite -z -l;refactor -v;rewrite -z -l;rewrite;refactor;refactor -z;refactor -v;map_fpga;
+seq_area:137
+seq_delay:8
+seq_fitness:0.117792
+seq_fitness_prob:0.0926583
+seq:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor -z;rewrite -z;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+seq_area:139
+seq_delay:8
+seq_fitness:0.106625
+seq_fitness_prob:0.0846792
+seq:refactor -v;refactor -v;rewrite -z;refactor -z;refactor -l;rewrite;rewrite -z -l;refactor -z;rewrite -z -l;rewrite -z;map_fpga;
+seq_area:136
+seq_delay:9
+seq_fitness:-0.00593471
+seq_fitness_prob:0.00425301
+seq:balance;rewrite;rewrite -z;rewrite -l;rewrite -z;balance;refactor -z;rewrite;rewrite;refactor;map_fpga;
+seq_area:137
+seq_delay:9
+seq_fitness:-0.011887
+seq_fitness_prob:0
+seq:refactor -z;rewrite;rewrite -z -l;rewrite;refactor -l;refactor;rewrite -z -l;balance;refactor -z;refactor;map_fpga;
+seq_area:129
+seq_delay:9
+seq_fitness:0.0352395
+seq_fitness_prob:0.0336728
+seq:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+seq_area:138
+seq_delay:8
+seq_fitness:0.112217
+seq_fitness_prob:0.088675
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_area:131
+seq_delay:7
+seq_fitness:0.269292
+seq_fitness_prob:0.200908
+seq:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.197282
+seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;rewrite;refactor -z;refactor -z;map_fpga;
+seq_area:135
+seq_delay:8
+seq_fitness:0.128889
+seq_fitness_prob:0.100587
+seq:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+seq_area:132
+seq_delay:7
+seq_fitness:0.264217
+seq_fitness_prob:0.197282
+father1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;rewrite;refactor -z;refactor -z;map_fpga;
+mother1:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+cross_probability:0.522667
+mutation_probability:0.435556
+mutation
+child1:balance;rewrite;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite;refactor -z;refactor -z;map_fpga;
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor -z;rewrite -z;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -z -l;balance;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+child1:refactor -v;refactor -z;refactor -l;rewrite -z;rewrite -z;rewrite -z -l;balance;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+mutation
+child1:balance;balance;rewrite;rewrite -z;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:rewrite -l;refactor -z;balance;rewrite -z -l;refactor -v;rewrite -z -l;rewrite;refactor;refactor -z;refactor -v;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;rewrite;balance;refactor;rewrite -z;rewrite;rewrite -z -l;refactor -z;rewrite;rewrite -z;map_fpga;
+child1:refactor -v;rewrite;balance;refactor;rewrite -z;rewrite;rewrite -z -l;refactor -z;rewrite;rewrite -z;map_fpga;
+father1:refactor;refactor -l;balance;rewrite;refactor -z;refactor -z;rewrite -z;refactor -z;balance;balance;map_fpga;
+mother1:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor -z;rewrite -z;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;rewrite -z -l;balance;rewrite -l;refactor -z;rewrite;refactor -v;rewrite -l;rewrite -l;refactor -l;map_fpga;
+child1:refactor -v;rewrite -z -l;balance;rewrite -l;refactor -z;rewrite;refactor -v;rewrite -l;rewrite -l;refactor -l;map_fpga;
+father1:balance;balance;rewrite -z -l;rewrite;rewrite -z -l;rewrite;refactor -v;rewrite -z;refactor -z;refactor;map_fpga;
+mother1:refactor -z;rewrite;rewrite -z -l;rewrite;refactor -l;refactor;rewrite -z -l;balance;refactor -z;refactor;map_fpga;
+cross_probability:0.44147
+mutation_probability:0.367891
+child_2:refactor -v;refactor -v;refactor -v;refactor -z;refactor -v;rewrite;rewrite -z;balance;rewrite;rewrite -z -l;map_fpga;
+child1:refactor -v;refactor -v;refactor -v;refactor -z;refactor -v;rewrite;rewrite -z;balance;rewrite;rewrite -z -l;map_fpga;
+father1:rewrite -l;refactor -l;rewrite;rewrite -z;rewrite -z -l;refactor;rewrite -z;rewrite -l;refactor -v;refactor;map_fpga;
+mother1:refactor -l;balance;balance;rewrite;rewrite -z -l;refactor -z;rewrite -z;rewrite -l;rewrite;rewrite -z -l;map_fpga;
+cross_probability:0.53267
+mutation_probability:0.443891
+child_2:rewrite -z -l;refactor -l;rewrite -z -l;refactor -l;refactor -v;rewrite;rewrite -z -l;balance;refactor -z;rewrite -l;map_fpga;
+child1:rewrite -z -l;refactor -l;rewrite -z -l;refactor -l;refactor -v;rewrite;rewrite -z -l;balance;refactor -z;rewrite -l;map_fpga;
+Best Sequence: balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+Best Fitness: 0.269292
+best_area:131
+best_delay:7
+best_fitness:0.269292
+count: 15
+run_time: 30.4324
+best_seq_of_1:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+seq_2_string:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.935636
+seq_2_string:balance;refactor -l;refactor -v;refactor -v;rewrite -l;refactor;refactor;refactor -z;refactor -z;refactor -v;map_fpga;
+seq_2_area:140
+seq_2_delay:9
+seq_2_fitness:-0.0298491
+seq_2_fitness_norm:0.113651
+seq_2_string:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:131
+seq_2_delay:8
+seq_2_fitness:0.150872
+seq_2_fitness_norm:0.67794
+seq_2_string:balance;refactor -v;refactor -z;rewrite -l;refactor -v;rewrite -z;rewrite -z;rewrite -l;rewrite -z;rewrite -z -l;map_fpga;
+seq_2_area:137
+seq_2_delay:9
+seq_2_fitness:-0.011887
+seq_2_fitness_norm:0.169737
+seq_2_string:balance;rewrite;rewrite -z;balance;rewrite -z;balance;map_fpga;
+seq_2_area:139
+seq_2_delay:9
+seq_2_fitness:-0.0238442
+seq_2_fitness_norm:0.132401
+seq_2_string:rewrite -l;rewrite -z;refactor -l;refactor -l;refactor -z;refactor -z;refactor;refactor -z;rewrite -z -l;refactor;map_fpga;
+seq_2_area:132
+seq_2_delay:8
+seq_2_fitness:0.145402
+seq_2_fitness_norm:0.660862
+seq_2_string:refactor -v;refactor;refactor -v;rewrite;refactor -l;rewrite -l;balance;refactor -z;rewrite -l;rewrite -z;map_fpga;
+seq_2_area:139
+seq_2_delay:8
+seq_2_fitness:0.106625
+seq_2_fitness_norm:0.539782
+seq_2_string:balance;rewrite -l;rewrite -z -l;rewrite -z -l;balance;map_fpga;
+seq_2_area:146
+seq_2_delay:9
+seq_2_fitness:-0.0662475
+seq_2_fitness_norm:0
+seq_2_string:balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;map_fpga;
+seq_2_area:137
+seq_2_delay:8
+seq_2_fitness:0.117792
+seq_2_fitness_norm:0.57465
+father2:refactor -v;refactor;refactor -v;rewrite;refactor -l;rewrite -l;balance;refactor -z;rewrite -l;rewrite -z;map_fpga;
+mother2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+father2:balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother2:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+father2:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+mother2:refactor -v;refactor;refactor -v;rewrite;refactor -l;rewrite -l;balance;refactor -z;rewrite -l;rewrite -z;map_fpga;
+father2:rewrite -l;rewrite -z;refactor -l;refactor -l;refactor -z;refactor -z;refactor;refactor -z;rewrite -z -l;refactor;map_fpga;
+mother2:balance;rewrite;refactor;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -z;balance;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:balance;refactor -l;refactor -v;refactor -v;rewrite -l;refactor;refactor;refactor -z;refactor -z;refactor -v;map_fpga;
+father2:refactor -v;refactor;refactor -v;rewrite;refactor -l;rewrite -l;balance;refactor -z;rewrite -l;rewrite -z;map_fpga;
+mother2:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+father2:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+mother2:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+Best Sequence: balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+Best Fitness: 0.254016
+best_area:134
+best_delay:7
+best_fitness:0.254016
+count2: 1
+run_time: 34.7253
+seq_2_string:refactor;refactor -z;rewrite;refactor -l;refactor;rewrite -l;refactor -z;balance;refactor;rewrite -z -l;map_fpga;
+seq_2_area:133
+seq_2_delay:8
+seq_2_fitness:0.139916
+seq_2_fitness_norm:0.561069
+seq_2_string:rewrite;refactor -l;balance;balance;rewrite;refactor -l;balance;rewrite -z;balance;rewrite -z;map_fpga;
+seq_2_area:133
+seq_2_delay:8
+seq_2_fitness:0.139916
+seq_2_fitness_norm:0.561069
+seq_2_string:refactor;balance;refactor -v;refactor -v;refactor -z;balance;refactor;refactor -l;refactor;rewrite -l;map_fpga;
+seq_2_area:138
+seq_2_delay:8
+seq_2_fitness:0.112217
+seq_2_fitness_norm:0.454517
+seq_2_string:balance;rewrite;balance;rewrite;rewrite -z;balance;rewrite -z;balance;map_fpga;
+seq_2_area:141
+seq_2_delay:8
+seq_2_fitness:0.0953877
+seq_2_fitness_norm:0.389775
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:balance;rewrite -z -l;refactor -v;refactor;balance;rewrite -l;rewrite;refactor -z;refactor;refactor -v;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0
+seq_2_string:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.920702
+seq_2_string:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.920702
+seq_2_string:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:131
+seq_2_delay:8
+seq_2_fitness:0.150872
+seq_2_fitness_norm:0.603217
+father2:balance;rewrite;balance;rewrite;rewrite -z;balance;rewrite -z;balance;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+father2:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor -l;rewrite -z -l;map_fpga;
+mother2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+father2:balance;rewrite -l;refactor -l;balance;rewrite -z -l;balance;refactor -z;rewrite -z;balance;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+Best Sequence: balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+Best Fitness: 0.254016
+best_area:134
+best_delay:7
+best_fitness:0.254016
+count2: 2
+run_time: 36.5227
+seq_2_string:refactor -l;refactor -z;balance;rewrite -z -l;refactor;rewrite -l;rewrite;rewrite -z -l;refactor -v;refactor -v;map_fpga;
+seq_2_area:134
+seq_2_delay:9
+seq_2_fitness:0.00591715
+seq_2_fitness_norm:0.144155
+seq_2_string:refactor -v;refactor -l;refactor;refactor;refactor -l;rewrite -z;rewrite -l;refactor;balance;refactor;map_fpga;
+seq_2_area:136
+seq_2_delay:8
+seq_2_fitness:0.123349
+seq_2_fitness_norm:0.54925
+seq_2_string:rewrite;rewrite -z -l;rewrite -z -l;refactor;rewrite -z -l;refactor -v;rewrite -l;rewrite;refactor;balance;map_fpga;
+seq_2_area:137
+seq_2_delay:9
+seq_2_fitness:-0.011887
+seq_2_fitness_norm:0.0827377
+seq_2_string:rewrite -l;refactor -l;refactor;rewrite -z;rewrite;rewrite -z;refactor -z;refactor -v;refactor -l;refactor;map_fpga;
+seq_2_area:134
+seq_2_delay:9
+seq_2_fitness:0.00591715
+seq_2_fitness_norm:0.144155
+seq_2_string:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:balance;rewrite -z -l;rewrite;rewrite -l;rewrite -l;balance;refactor -z;rewrite;rewrite;balance;map_fpga;
+seq_2_area:132
+seq_2_delay:9
+seq_2_fitness:0.0176988
+seq_2_fitness_norm:0.184797
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:rewrite;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite -l;refactor -v;rewrite -l;rewrite -z;rewrite;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.587409
+seq_2_string:rewrite;refactor -l;rewrite -z;refactor -l;rewrite;rewrite -z;rewrite -z -l;rewrite;refactor -v;refactor -v;map_fpga;
+seq_2_area:141
+seq_2_delay:9
+seq_2_fitness:-0.0358716
+seq_2_fitness_norm:0
+seq_2_string:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.928892
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+father2:refactor -l;refactor -z;balance;rewrite -z -l;refactor;rewrite -l;rewrite;rewrite -z -l;refactor -v;refactor -v;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+mother2:refactor -v;refactor -l;refactor;refactor;refactor -l;rewrite -z;rewrite -l;refactor;balance;refactor;map_fpga;
+father2:balance;rewrite -z -l;rewrite;rewrite -l;rewrite -l;balance;refactor -z;rewrite;rewrite;balance;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:rewrite;rewrite -z -l;rewrite -l;rewrite -z;balance;rewrite -l;refactor -v;rewrite -l;rewrite -z;rewrite;map_fpga;
+Best Sequence: balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+Best Fitness: 0.254016
+best_area:134
+best_delay:7
+best_fitness:0.254016
+count2: 3
+run_time: 38.6541
+seq_2_string:balance;refactor -l;rewrite -l;refactor;rewrite;rewrite -z -l;rewrite -z;refactor;refactor -l;rewrite;map_fpga;
+seq_2_area:137
+seq_2_delay:8
+seq_2_fitness:0.117792
+seq_2_fitness_norm:0.640747
+seq_2_string:rewrite -z;refactor -z;refactor -z;refactor -z;refactor;rewrite -l;rewrite;rewrite -z;rewrite -l;refactor -l;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.684575
+seq_2_string:rewrite -z;refactor;refactor -z;refactor;refactor -z;rewrite -l;rewrite -z -l;balance;rewrite;rewrite -z -l;map_fpga;
+seq_2_area:135
+seq_2_delay:8
+seq_2_fitness:0.128889
+seq_2_fitness_norm:0.670012
+seq_2_string:refactor -l;rewrite -z;rewrite -l;rewrite -z;refactor -v;rewrite -z -l;refactor -v;refactor -z;balance;refactor -v;map_fpga;
+seq_2_area:132
+seq_2_delay:9
+seq_2_fitness:0.0176988
+seq_2_fitness_norm:0.376779
+seq_2_string:refactor -v;rewrite -l;rewrite;rewrite;balance;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.945638
+seq_2_string:rewrite -z;rewrite;refactor -l;rewrite -z;refactor -v;refactor -l;balance;rewrite;refactor -v;refactor -v;map_fpga;
+seq_2_area:133
+seq_2_delay:10
+seq_2_fitness:-0.125171
+seq_2_fitness_norm:0
+seq_2_string:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:1
+seq_2_string:rewrite -z -l;refactor -l;refactor -z;refactor -z;refactor -v;rewrite -l;refactor -z;refactor -v;balance;rewrite -z;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.684575
+seq_2_string:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.945638
+father2:rewrite -z;refactor -z;refactor -z;refactor -z;refactor;rewrite -l;rewrite;rewrite -z;rewrite -l;refactor -l;map_fpga;
+mother2:rewrite -z -l;refactor -l;refactor -z;refactor -z;refactor -v;rewrite -l;refactor -z;refactor -v;balance;rewrite -z;map_fpga;
+father2:rewrite -z;refactor -z;refactor -z;refactor -z;refactor;rewrite -l;rewrite;rewrite -z;rewrite -l;refactor -l;map_fpga;
+mother2:balance;refactor -l;rewrite -l;refactor;rewrite;rewrite -z -l;rewrite -z;refactor;refactor -l;rewrite;map_fpga;
+father2:refactor -l;rewrite -z;rewrite -l;rewrite -z;refactor -v;rewrite -z -l;refactor -v;refactor -z;balance;refactor -v;map_fpga;
+mother2:refactor -v;rewrite -l;rewrite;rewrite;balance;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:rewrite -z;refactor;refactor -z;refactor;refactor -z;rewrite -l;rewrite -z -l;balance;rewrite;rewrite -z -l;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:refactor -v;rewrite -l;rewrite;rewrite;balance;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:refactor -v;rewrite -l;rewrite;rewrite;balance;rewrite;refactor;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+Best Sequence: rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.264217
+best_area:132
+best_delay:7
+best_fitness:0.264217
+count2: 4
+run_time: 40.3774
+seq_2_string:refactor -l;balance;balance;refactor -l;refactor -l;rewrite;rewrite -l;balance;rewrite -l;refactor -v;map_fpga;
+seq_2_area:132
+seq_2_delay:9
+seq_2_fitness:0.0176988
+seq_2_fitness_norm:0.0669856
+seq_2_string:refactor -l;rewrite -z -l;rewrite -z -l;balance;refactor -v;rewrite;rewrite -l;refactor -l;refactor;rewrite -z -l;map_fpga;
+seq_2_area:136
+seq_2_delay:8
+seq_2_fitness:0.123349
+seq_2_fitness_norm:0.466848
+seq_2_string:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.96139
+seq_2_string:refactor -v;refactor;refactor -v;rewrite;rewrite -z;balance;balance;rewrite -l;refactor -v;balance;map_fpga;
+seq_2_area:137
+seq_2_delay:8
+seq_2_fitness:0.117792
+seq_2_fitness_norm:0.445815
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:1
+seq_2_string:rewrite -l;rewrite -l;refactor -v;refactor;balance;rewrite -z -l;balance;rewrite -z;refactor -l;refactor -z;map_fpga;
+seq_2_area:135
+seq_2_delay:9
+seq_2_fitness:0
+seq_2_fitness_norm:0
+seq_2_string:rewrite -l;rewrite -l;balance;rewrite -z -l;rewrite -z -l;refactor;rewrite;rewrite -z -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:140
+seq_2_delay:8
+seq_2_fitness:0.101015
+seq_2_fitness_norm:0.382318
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.96139
+seq_2_string:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.96139
+seq_2_string:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+seq_2_area:138
+seq_2_delay:7
+seq_2_fitness:0.233402
+seq_2_fitness_norm:0.883373
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+father2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+mother2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+father2:refactor -l;balance;balance;refactor -l;refactor -l;rewrite;rewrite -l;balance;rewrite -l;refactor -v;map_fpga;
+mother2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+father2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+mother2:refactor -v;refactor;refactor;refactor -v;balance;rewrite;refactor -l;rewrite -l;refactor -l;rewrite -z -l;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:balance;rewrite -l;rewrite;refactor -z;rewrite -z -l;rewrite -z -l;rewrite -z;rewrite -z -l;refactor;balance;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+Best Sequence: rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.264217
+best_area:132
+best_delay:7
+best_fitness:0.264217
+count2: 5
+run_time: 41.9391
+seq_2_string:refactor -l;rewrite -z;refactor;rewrite -z;refactor -z;refactor -z;refactor -l;rewrite -z;refactor -z;refactor;map_fpga;
+seq_2_area:129
+seq_2_delay:8
+seq_2_fitness:0.161758
+seq_2_fitness_norm:0.745123
+seq_2_string:refactor;rewrite;rewrite;refactor -l;rewrite -z -l;balance;refactor;balance;rewrite;rewrite -l;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0.327972
+seq_2_string:rewrite -z;rewrite -l;refactor -v;rewrite -z;rewrite -l;refactor -z;balance;rewrite -l;refactor -v;rewrite -z;map_fpga;
+seq_2_area:132
+seq_2_delay:8
+seq_2_fitness:0.145402
+seq_2_fitness_norm:0.704437
+seq_2_string:refactor -l;balance;refactor -v;rewrite -l;balance;refactor;refactor -z;balance;refactor -z;refactor -z;map_fpga;
+seq_2_area:133
+seq_2_delay:8
+seq_2_fitness:0.139916
+seq_2_fitness_norm:0.690788
+seq_2_string:refactor -z;refactor -z;refactor -l;refactor -z;refactor;balance;refactor -z;rewrite -l;rewrite -l;refactor -v;map_fpga;
+seq_2_area:137
+seq_2_delay:8
+seq_2_fitness:0.117792
+seq_2_fitness_norm:0.635754
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:1
+seq_2_string:rewrite -z -l;refactor -z;refactor -v;refactor -z;balance;balance;balance;rewrite -v;rewrite -v;rewrite;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0.327972
+seq_2_string:refactor -z;balance;rewrite -z -l;refactor -z;rewrite -z -l;refactor;rewrite -z;rewrite -z;refactor -z;refactor -l;map_fpga;
+seq_2_area:135
+seq_2_delay:10
+seq_2_fitness:-0.137778
+seq_2_fitness_norm:0
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.974623
+seq_2_string:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.974623
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:rewrite -z -l;refactor -z;refactor -v;refactor -z;balance;balance;balance;rewrite -v;rewrite -v;rewrite;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;refactor -v;refactor -z;balance;balance;balance;rewrite -v;rewrite -v;rewrite;map_fpga;
+father2:refactor -l;rewrite -z;refactor;rewrite -z;refactor -z;refactor -z;refactor -l;rewrite -z;refactor -z;refactor;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:refactor -l;balance;refactor -v;rewrite -l;balance;refactor;refactor -z;balance;refactor -z;refactor -z;map_fpga;
+mother2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -l;balance;refactor -v;rewrite -l;balance;refactor;refactor -z;balance;refactor -z;refactor -z;map_fpga;
+Best Sequence: rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.264217
+best_area:132
+best_delay:7
+best_fitness:0.264217
+count2: 6
+run_time: 43.6992
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;refactor -z;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:9
+seq_2_fitness:0.0118167
+seq_2_fitness_norm:0.0657091
+seq_2_string:refactor;refactor -l;refactor -l;rewrite -z -l;rewrite -z -l;refactor -l;refactor -l;rewrite -l;refactor -z;refactor -l;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0
+seq_2_string:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.962238
+seq_2_string:refactor -l;rewrite -z;rewrite;rewrite -z;rewrite -z;refactor -l;balance;rewrite;refactor -l;refactor;map_fpga;
+seq_2_area:131
+seq_2_delay:8
+seq_2_fitness:0.150872
+seq_2_fitness_norm:0.580438
+seq_2_string:refactor -z;refactor -l;rewrite;rewrite -z;refactor -z;rewrite;rewrite -z -l;refactor;refactor -v;refactor -z;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.962238
+seq_2_string:rewrite -l;refactor -l;rewrite -l;refactor -l;rewrite -l;refactor -l;rewrite -l;rewrite;refactor -z;refactor;map_fpga;
+seq_2_area:133
+seq_2_delay:9
+seq_2_fitness:0.0118167
+seq_2_fitness_norm:0.0657091
+seq_2_string:balance;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:135
+seq_2_delay:9
+seq_2_fitness:0
+seq_2_fitness_norm:0.021968
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:1
+seq_2_string:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.962238
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.962238
+father2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+mother2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:refactor -l;rewrite -z;rewrite;rewrite -z;rewrite -z;refactor -l;balance;rewrite;refactor -l;refactor;map_fpga;
+mother2:refactor -z;refactor -l;rewrite;rewrite -z;refactor -z;rewrite;rewrite -z -l;refactor;refactor -v;refactor -z;map_fpga;
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+father2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+mother2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+father2:rewrite;refactor;refactor -l;refactor -z;rewrite -z;refactor -z;rewrite -z -l;rewrite -l;refactor -z;refactor -v;map_fpga;
+mother2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+Best Sequence: rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.264217
+best_area:132
+best_delay:7
+best_fitness:0.264217
+count2: 7
+run_time: 45.7986
+seq_2_string:refactor -z;rewrite -z -l;refactor;balance;refactor -v;rewrite -l;rewrite -l;refactor -l;rewrite -z -l;rewrite -z -l;map_fpga;
+seq_2_area:130
+seq_2_delay:10
+seq_2_fitness:-0.106392
+seq_2_fitness_norm:0
+seq_2_string:balance;rewrite -l;rewrite;rewrite -l;refactor;rewrite;refactor;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:136
+seq_2_delay:8
+seq_2_fitness:0.123349
+seq_2_fitness_norm:0.619902
+seq_2_string:rewrite;balance;refactor -v;rewrite -z;rewrite -z -l;refactor -v;rewrite -z;rewrite -z -l;refactor -v;rewrite -z;map_fpga;
+seq_2_area:139
+seq_2_delay:8
+seq_2_fitness:0.106625
+seq_2_fitness_norm:0.574775
+seq_2_string:balance;refactor -l;refactor -z;refactor -v;rewrite -z;rewrite -z -l;refactor -z;refactor;rewrite -z -l;rewrite -z;map_fpga;
+seq_2_area:139
+seq_2_delay:7
+seq_2_fitness:0.228205
+seq_2_fitness_norm:0.90283
+seq_2_string:refactor -z;refactor -l;rewrite -z;refactor;refactor;refactor -v;rewrite -z;refactor -l;rewrite;refactor -l;map_fpga;
+seq_2_area:130
+seq_2_delay:10
+seq_2_fitness:-0.106392
+seq_2_fitness_norm:0
+seq_2_string:rewrite -z;rewrite -l;refactor -z;refactor -v;rewrite -l;rewrite -l;balance;rewrite -z -l;rewrite -z;rewrite -z;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.649749
+seq_2_string:rewrite -z;rewrite;rewrite;balance;rewrite -l;rewrite;balance;refactor -z;rewrite -l;balance;map_fpga;
+seq_2_area:131
+seq_2_delay:8
+seq_2_fitness:0.150872
+seq_2_fitness_norm:0.694165
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:1
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.972474
+seq_2_string:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.972474
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:balance;refactor -l;refactor -z;refactor -v;rewrite -z;rewrite -z -l;refactor -z;refactor;rewrite -z -l;rewrite -z;map_fpga;
+mother2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+father2:balance;refactor -l;refactor -z;refactor -v;rewrite -z;rewrite -z -l;refactor -z;refactor;rewrite -z -l;rewrite -z;map_fpga;
+mother2:balance;refactor -l;refactor -z;refactor -v;rewrite -z;rewrite -z -l;refactor -z;refactor;rewrite -z -l;rewrite -z;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:balance;rewrite -l;rewrite;rewrite -l;refactor;rewrite;refactor;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:rewrite;balance;refactor -v;rewrite -z;rewrite -z -l;refactor -v;rewrite -z;rewrite -z -l;refactor -v;rewrite -z;map_fpga;
+mother2:rewrite -z;rewrite;rewrite;balance;rewrite -l;rewrite;balance;refactor -z;rewrite -l;balance;map_fpga;
+father2:balance;refactor -l;refactor -z;refactor -v;rewrite -z;rewrite -z -l;refactor -z;refactor;rewrite -z -l;rewrite -z;map_fpga;
+mother2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:balance;rewrite -l;rewrite;rewrite -l;refactor;rewrite;refactor;balance;rewrite -l;rewrite -z -l;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 8
+run_time: 47.3582
+seq_2_string:rewrite -z;refactor;rewrite -z -l;refactor -v;refactor -z;refactor;rewrite -l;rewrite -z -l;rewrite -z -l;refactor -z;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.548712
+seq_2_string:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:128
+seq_2_delay:7
+seq_2_fitness:0.284409
+seq_2_fitness_norm:1
+seq_2_string:balance;refactor -z;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+seq_2_area:143
+seq_2_delay:9
+seq_2_fitness:-0.0479693
+seq_2_fitness_norm:0
+seq_2_string:rewrite -z;refactor -z;refactor -l;rewrite -z -l;refactor -z;balance;rewrite;refactor;refactor -v;refactor -v;map_fpga;
+seq_2_area:135
+seq_2_delay:9
+seq_2_fitness:0
+seq_2_fitness_norm:0.144321
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.93925
+seq_2_string:refactor -v;refactor;refactor -z;refactor -l;refactor -z;balance;balance;refactor -z;refactor -l;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.548712
+seq_2_string:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.908558
+seq_2_string:rewrite;rewrite -z -l;rewrite -z -l;rewrite -l;rewrite -l;balance;rewrite -z;refactor -l;refactor -l;rewrite -z;map_fpga;
+seq_2_area:138
+seq_2_delay:8
+seq_2_fitness:0.112217
+seq_2_fitness_norm:0.48194
+seq_2_string:rewrite -z -l;refactor;refactor -v;rewrite -z;balance;balance;refactor -v;balance;rewrite -z -l;rewrite -z -l;map_fpga;
+seq_2_area:135
+seq_2_delay:8
+seq_2_fitness:0.128889
+seq_2_fitness_norm:0.532099
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.908558
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:rewrite -z;refactor;rewrite -z -l;refactor -v;refactor -z;refactor;rewrite -l;rewrite -z -l;rewrite -z -l;refactor -z;map_fpga;
+father2:refactor -v;refactor;refactor -z;refactor -l;refactor -z;balance;balance;refactor -z;refactor -l;balance;map_fpga;
+mother2:rewrite -z;refactor -z;refactor -l;rewrite -z -l;refactor -z;balance;rewrite;refactor;refactor -v;refactor -v;map_fpga;
+father2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z;refactor;rewrite -z -l;refactor -v;refactor -z;refactor;rewrite -l;rewrite -z -l;rewrite -z -l;refactor -z;map_fpga;
+mother2:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:refactor;rewrite -z -l;refactor -z;balance;rewrite;balance;rewrite;balance;rewrite -z -l;refactor -l;map_fpga;
+mother2:rewrite -z;refactor;rewrite -z -l;refactor -v;refactor -z;refactor;rewrite -l;rewrite -z -l;rewrite -z -l;refactor -z;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 9
+run_time: 49.4958
+seq_2_string:rewrite -z;refactor -v;refactor -z;balance;refactor -v;rewrite -z -l;rewrite -l;refactor;rewrite -l;refactor -z;map_fpga;
+seq_2_area:135
+seq_2_delay:8
+seq_2_fitness:0.128889
+seq_2_fitness_norm:0.505119
+seq_2_string:refactor -v;rewrite -z;rewrite -l;rewrite -z -l;refactor -z;refactor -l;rewrite -l;refactor -z;rewrite -z;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:9
+seq_2_fitness:0.0118167
+seq_2_fitness_norm:0.132585
+seq_2_string:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:7
+seq_2_fitness:0.259125
+seq_2_fitness_norm:0.919544
+seq_2_string:refactor;balance;rewrite -z;rewrite;refactor -l;rewrite;rewrite;rewrite -z -l;refactor -z;refactor -v;map_fpga;
+seq_2_area:140
+seq_2_delay:9
+seq_2_fitness:-0.0298491
+seq_2_fitness_norm:0
+seq_2_string:balance;refactor -z;refactor -v;rewrite -z;rewrite -z -l;refactor;rewrite;rewrite -z -l;rewrite -z;rewrite -z;map_fpga;
+seq_2_area:132
+seq_2_delay:9
+seq_2_fitness:0.0176988
+seq_2_fitness_norm:0.151302
+seq_2_string:refactor;refactor -z;rewrite;refactor -v;refactor;refactor -z;refactor -z;refactor -l;refactor -l;rewrite -z;map_fpga;
+seq_2_area:133
+seq_2_delay:8
+seq_2_fitness:0.139916
+seq_2_fitness_norm:0.540207
+seq_2_string:refactor -l;rewrite;rewrite -z -l;balance;rewrite -l;rewrite -z -l;refactor -v;balance;rewrite -z -l;refactor -z;map_fpga;
+seq_2_area:135
+seq_2_delay:8
+seq_2_fitness:0.128889
+seq_2_fitness_norm:0.505119
+seq_2_string:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:128
+seq_2_delay:7
+seq_2_fitness:0.284409
+seq_2_fitness_norm:1
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.935747
+seq_2_string:refactor -l;rewrite -z;refactor;refactor -z;refactor;refactor -z;balance;balance;rewrite -l;rewrite -z -l;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.903285
+father2:refactor -l;rewrite;rewrite -z -l;balance;rewrite -l;rewrite -z -l;refactor -v;balance;rewrite -z -l;refactor -z;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:refactor;refactor -z;rewrite;refactor -v;refactor;refactor -z;refactor -z;refactor -l;refactor -l;rewrite -z;map_fpga;
+mother2:refactor;refactor -z;rewrite;refactor -v;refactor;refactor -z;refactor -z;refactor -l;refactor -l;rewrite -z;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:refactor -l;rewrite;rewrite -z -l;balance;rewrite -l;rewrite -z -l;refactor -v;balance;rewrite -z -l;refactor -z;map_fpga;
+mother2:refactor -v;rewrite -z;rewrite -l;rewrite -z -l;refactor -z;refactor -l;rewrite -l;refactor -z;rewrite -z;rewrite;map_fpga;
+father2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+same_pare_child: refactor -z;refactor -z;refactor -v;rewrite -z;rewrite -l;refactor -z;rewrite -l;rewrite -l;rewrite -z;rewrite -z;map_fpga;
+father2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 10
+run_time: 51.356
+seq_2_string:rewrite -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor;rewrite -z -l;rewrite -l;rewrite -z;rewrite -z;map_fpga;
+seq_2_area:134
+seq_2_delay:7
+seq_2_fitness:0.254016
+seq_2_fitness_norm:0.895319
+seq_2_string:refactor -z;refactor -z;refactor -v;rewrite -z;rewrite -l;refactor -z;rewrite -l;rewrite -l;rewrite -z;rewrite -z;map_fpga;
+seq_2_area:133
+seq_2_delay:9
+seq_2_fitness:0.0118167
+seq_2_fitness_norm:0.0611393
+seq_2_string:refactor -l;rewrite -z;rewrite -z -l;balance;rewrite;refactor -l;refactor -z;balance;rewrite -z;rewrite -v;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.483377
+seq_2_string:refactor -z;rewrite -z -l;refactor -v;rewrite -z;rewrite;balance;rewrite -z -l;refactor -z;balance;refactor -z;map_fpga;
+seq_2_area:133
+seq_2_delay:9
+seq_2_fitness:0.0118167
+seq_2_fitness_norm:0.0611393
+seq_2_string:refactor -l;balance;rewrite;rewrite -l;refactor;rewrite;balance;rewrite -z;balance;balance;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0
+seq_2_string:rewrite -z;refactor -z;refactor;refactor -l;refactor -z;refactor -z;balance;rewrite -z -l;refactor -v;rewrite -z -l;map_fpga;
+seq_2_area:136
+seq_2_delay:8
+seq_2_fitness:0.123349
+seq_2_fitness_norm:0.445278
+seq_2_string:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:128
+seq_2_delay:7
+seq_2_fitness:0.284409
+seq_2_fitness_norm:1
+seq_2_string:balance;refactor -l;balance;refactor -v;refactor -z;refactor -l;rewrite -z;refactor -z;rewrite;balance;map_fpga;
+seq_2_area:135
+seq_2_delay:9
+seq_2_fitness:0
+seq_2_fitness_norm:0.0204403
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.930455
+seq_2_string:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:7
+seq_2_fitness:0.259125
+seq_2_fitness_norm:0.912917
+father2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:refactor -l;rewrite -z;rewrite -z -l;balance;rewrite;refactor -l;refactor -z;balance;rewrite -z;rewrite -v;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z;refactor -z;refactor -v;rewrite -l;rewrite -z;refactor;rewrite -z -l;rewrite -l;rewrite -z;rewrite -z;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -z;rewrite -z -l;refactor -v;rewrite -z;rewrite;balance;rewrite -z -l;refactor -z;balance;refactor -z;map_fpga;
+father2:refactor -l;rewrite -z;rewrite -z -l;balance;rewrite;refactor -l;refactor -z;balance;rewrite -z;rewrite -v;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -l;rewrite -z;rewrite -z -l;balance;rewrite;refactor -l;refactor -z;balance;rewrite -z;rewrite -v;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 11
+run_time: 53.1306
+seq_2_string:refactor;rewrite -l;rewrite -z;refactor -z;rewrite;refactor -z;rewrite -z;balance;refactor;balance;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0.0394423
+seq_2_string:balance;refactor -z;rewrite -l;rewrite;balance;balance;refactor;refactor -z;rewrite;refactor -z;map_fpga;
+seq_2_area:137
+seq_2_delay:9
+seq_2_fitness:-0.011887
+seq_2_fitness_norm:0.0197502
+seq_2_string:rewrite -z;rewrite;rewrite;refactor -l;rewrite -z -l;refactor -l;rewrite -z -l;rewrite -l;rewrite -l;rewrite -l;map_fpga;
+seq_2_area:138
+seq_2_delay:9
+seq_2_fitness:-0.0178568
+seq_2_fitness_norm:0
+seq_2_string:refactor -z;rewrite -z;refactor -z;rewrite -z -l;balance;refactor -z;refactor -v;refactor -v;refactor -v;refactor;map_fpga;
+seq_2_area:135
+seq_2_delay:9
+seq_2_fitness:0
+seq_2_fitness_norm:0.0590764
+seq_2_string:refactor;refactor -z;balance;refactor -l;refactor -z;refactor;refactor;rewrite -z -l;rewrite -z -l;rewrite;map_fpga;
+seq_2_area:136
+seq_2_delay:8
+seq_2_fitness:0.123349
+seq_2_fitness_norm:0.467158
+seq_2_string:rewrite -z -l;refactor -z;rewrite;rewrite -z;balance;balance;rewrite -l;refactor -v;refactor;refactor -l;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0.0394423
+seq_2_string:refactor;rewrite -z;rewrite;refactor -v;rewrite;rewrite -l;balance;refactor -z;rewrite -l;balance;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.503754
+seq_2_string:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:128
+seq_2_delay:7
+seq_2_fitness:0.284409
+seq_2_fitness_norm:1
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.933198
+seq_2_string:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:7
+seq_2_fitness:0.259125
+seq_2_fitness_norm:0.916352
+father2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor;rewrite -z;rewrite;refactor -v;rewrite;rewrite -l;balance;refactor -z;rewrite -l;balance;map_fpga;
+father2:refactor;rewrite -z;rewrite;refactor -v;rewrite;rewrite -l;balance;refactor -z;rewrite -l;balance;map_fpga;
+mother2:refactor;rewrite -z;rewrite;refactor -v;rewrite;rewrite -l;balance;refactor -z;rewrite -l;balance;map_fpga;
+father2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor;rewrite -z;rewrite;refactor -v;rewrite;rewrite -l;balance;refactor -z;rewrite -l;balance;map_fpga;
+father2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+same_pare_child: rewrite;rewrite -z;refactor;rewrite -l;rewrite -z;rewrite;refactor;rewrite;balance;refactor -z;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 12
+run_time: 54.6808
+seq_2_string:rewrite -z -l;balance;rewrite;refactor -v;rewrite;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:7
+seq_2_fitness:0.259125
+seq_2_fitness_norm:0.912917
+seq_2_string:refactor -l;refactor;rewrite -z;refactor -z;rewrite;refactor -z;refactor -z;refactor -l;refactor;rewrite -z;map_fpga;
+seq_2_area:135
+seq_2_delay:8
+seq_2_fitness:0.128889
+seq_2_fitness_norm:0.464358
+seq_2_string:rewrite -z;rewrite -l;refactor -z;rewrite -z;refactor -z;refactor -v;refactor -l;refactor;rewrite;refactor -l;map_fpga;
+seq_2_area:135
+seq_2_delay:9
+seq_2_fitness:0
+seq_2_fitness_norm:0.0204403
+seq_2_string:rewrite -z;rewrite;rewrite;refactor -z;refactor -l;refactor -z;refactor -l;rewrite -l;balance;rewrite -z -l;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.930455
+seq_2_string:rewrite -l;refactor -l;refactor;rewrite -z;refactor -z;refactor;rewrite -z;refactor -l;refactor -z;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:8
+seq_2_fitness:0.145402
+seq_2_fitness_norm:0.521234
+seq_2_string:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:128
+seq_2_delay:7
+seq_2_fitness:0.284409
+seq_2_fitness_norm:1
+seq_2_string:refactor -v;rewrite -z;rewrite;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -v;refactor;map_fpga;
+seq_2_area:133
+seq_2_delay:7
+seq_2_fitness:0.259125
+seq_2_fitness_norm:0.912917
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.930455
+seq_2_string:rewrite;rewrite -z;refactor;rewrite -l;rewrite -z;rewrite;refactor;rewrite;balance;refactor -z;map_fpga;
+seq_2_area:136
+seq_2_delay:9
+seq_2_fitness:-0.00593471
+seq_2_fitness_norm:0
+seq_2_string:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:133
+seq_2_delay:7
+seq_2_fitness:0.259125
+seq_2_fitness_norm:0.912917
+father2:refactor -v;rewrite -z;rewrite;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -v;refactor;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;refactor -v;rewrite;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z;rewrite;rewrite;refactor -z;refactor -l;refactor -z;refactor -l;rewrite -l;balance;rewrite -z -l;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;refactor -v;rewrite;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;refactor -v;rewrite;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -v;rewrite -z;rewrite;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -v;refactor;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:refactor -l;refactor;rewrite -z;refactor -z;rewrite;refactor -z;refactor -z;refactor -l;refactor;rewrite -z;map_fpga;
+father2:refactor -v;rewrite -z;rewrite;balance;rewrite;rewrite -z;balance;refactor -z;rewrite -v;refactor;map_fpga;
+mother2:rewrite -l;refactor -l;refactor;rewrite -z;refactor -z;refactor;rewrite -z;refactor -l;refactor -z;rewrite;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite;refactor -z;rewrite -l;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 13
+run_time: 56.486
+seq_2_string:balance;refactor -z;rewrite -z;rewrite;rewrite;rewrite -z;rewrite -l;rewrite -l;refactor -z;refactor -l;map_fpga;
+seq_2_area:133
+seq_2_delay:8
+seq_2_fitness:0.139916
+seq_2_fitness_norm:0.481157
+seq_2_string:refactor -v;refactor -z;rewrite -z;rewrite;refactor;rewrite;rewrite -z;refactor;rewrite;refactor -z;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.461391
+seq_2_string:refactor -v;refactor;refactor -l;rewrite -z -l;refactor -v;rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -l;map_fpga;
+seq_2_area:134
+seq_2_delay:8
+seq_2_fitness:0.134411
+seq_2_fitness_norm:0.461391
+seq_2_string:refactor -v;rewrite -l;rewrite -l;rewrite -l;rewrite -z;refactor -z;refactor -l;rewrite;refactor -v;refactor -l;map_fpga;
+seq_2_area:132
+seq_2_delay:8
+seq_2_fitness:0.145402
+seq_2_fitness_norm:0.500859
+seq_2_string:rewrite;refactor -z;refactor -l;rewrite -l;refactor -v;refactor;rewrite -z;refactor;rewrite -z -l;refactor -l;map_fpga;
+seq_2_area:137
+seq_2_delay:8
+seq_2_fitness:0.117792
+seq_2_fitness_norm:0.401716
+seq_2_string:rewrite -z -l;refactor -z;balance;balance;refactor -z;balance;refactor -l;refactor;refactor -v;refactor -z;map_fpga;
+seq_2_area:136
+seq_2_delay:7
+seq_2_fitness:0.243744
+seq_2_fitness_norm:0.853981
+seq_2_string:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:128
+seq_2_delay:7
+seq_2_fitness:0.284409
+seq_2_fitness_norm:1
+seq_2_string:balance;rewrite -v;refactor -z;balance;rewrite;refactor -z;balance;balance;rewrite -z;refactor -v;map_fpga;
+seq_2_area:134
+seq_2_delay:9
+seq_2_fitness:0.00591715
+seq_2_fitness_norm:0
+seq_2_string:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.927495
+seq_2_string:rewrite -z;rewrite;rewrite;refactor -z;refactor -l;refactor -z;refactor -l;rewrite -l;balance;rewrite -z -l;map_fpga;
+seq_2_area:132
+seq_2_delay:7
+seq_2_fitness:0.264217
+seq_2_fitness_norm:0.927495
+father2:rewrite;refactor -z;refactor -l;rewrite -l;refactor -v;refactor;rewrite -z;refactor;rewrite -z -l;refactor -l;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;balance;balance;refactor -z;balance;refactor -l;refactor;refactor -v;refactor -z;map_fpga;
+father2:rewrite -z -l;refactor -z;balance;balance;refactor -z;balance;refactor -l;refactor;refactor -v;refactor -z;map_fpga;
+mother2:refactor -v;refactor;refactor -l;rewrite -z -l;refactor -v;rewrite -z;rewrite -z;rewrite -l;refactor -v;rewrite -l;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;refactor -z;balance;balance;refactor -z;balance;refactor -l;refactor;refactor -v;refactor -z;map_fpga;
+father2:rewrite -z -l;refactor -z;rewrite -l;refactor -l;balance;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z;rewrite;rewrite;refactor -z;refactor -l;refactor -z;refactor -l;rewrite -l;balance;rewrite -z -l;map_fpga;
+father2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+mother2:rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Sequence: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+Best Fitness: 0.284409
+best_area:128
+best_delay:7
+best_fitness:0.284409
+count2: 14
+run_time: 58.1796
+best_fit_of_1:0.269292
+best_fit_of_2:0.284409
+balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;state_1_best_seq:balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;map_fpga;
+state_2_best_seq: rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;
+use the result of stage 2
+no_opt_area: 135
+no_opt_delay: 9
+best_area: 128
+best_delay: 7
+best_seq:
+balance;rewrite;refactor -v;rewrite -l;rewrite;rewrite;rewrite -z;refactor -z;refactor -v;refactor -z;rewrite -z -l;balance;rewrite;rewrite -l;refactor;balance;balance;rewrite -z;refactor -v;rewrite;map_fpga;imap> 

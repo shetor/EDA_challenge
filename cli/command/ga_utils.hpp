@@ -224,8 +224,8 @@ std::vector <std::string> mutation(const std::vector <std::string>& sequence) {
     std::vector <std::int32_t> used_position;
 
     for (int i = 1; i <= position_num - 1; ++i) {
-        std::vector <std::string> operations = {"balance;", "rewrite;", "rewrite -z;", "rewrite -v;", "refactor;",
-                                                "refactor -z;", "refactor -v;"};
+        std::vector <std::string> operations = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
+                                                "refactor -z;", "refactor -v;", "refactor -l;", "rewrite -z -l;"};
         mutated_sequence[position] = operations[dis_of_position(gen) % operations.size()];
 
         do {

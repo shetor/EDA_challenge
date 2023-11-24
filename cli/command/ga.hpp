@@ -429,9 +429,7 @@ namespace alice {
             if (store < iFPGA::klut_network > ().empty()) {
                 store < iFPGA::klut_network > ().extend();
             }
-
             store < iFPGA::klut_network > ().current() = initial_kluts_1;
-
             iFPGA::klut_network initial_klut = store < iFPGA::klut_network > ().current()._storage;
             iFPGA::depth_view<iFPGA::klut_network> initial_dklut(initial_klut);
             double no_opt_area = initial_klut.num_gates();
@@ -440,6 +438,7 @@ namespace alice {
 
             ////复原
             store < iFPGA::aig_network > ().current() = initial_aig;
+
 
 
             std::unordered_map<std::string, fit_area_delay> seq_to_db_map{};
@@ -647,19 +646,8 @@ namespace alice {
                     std::cout << "father1:" << string_father << std::endl;
                     std::cout << "mother1:" << string_mother << std::endl;
                     ////自适应
-                    double father_fitness = 0;
-                    double mother_fitness = 0;
-                    for (const auto &item: seq_to_db_map) {
-                        if (string_father == item.first) {
-                            father_fitness = item.second.fitness;
-                        }
-                    }
-//                    std::cout << "father_fitness:" << father_fitness << std::endl;
-                    for (const auto &item: seq_to_db_map) {
-                        if (string_mother == item.first) {
-                            mother_fitness = item.second.fitness;
-                        }
-                    }
+                    double father_fitness = seq_to_db_map.find(string_father)->second.fitness;
+                    double mother_fitness = seq_to_db_map.find(string_mother)->second.fitness;
 //                    std::cout << "mother_fitness:" << mother_fitness << std::endl;
                     double max_fitness_of_parents = std::max(father_fitness, mother_fitness);
                     if (max_fitness_of_parents != min_fitness && max_fitness_of_parents != max_fitness) {
@@ -735,9 +723,6 @@ namespace alice {
                         next_population_v.push_back(child);
                     }
                 }
-
-
-
 
 
                 // 清空 seq_to_db_map
@@ -848,6 +833,7 @@ namespace alice {
             iFPGA_NAMESPACE::klut_mapping<decltype(restore_mapped_aig_2), true>(restore_mapped_aig_2, param_mapping);
             const auto initial_kluts_2 = *iFPGA_NAMESPACE::choice_to_klut<iFPGA_NAMESPACE::klut_network>(
                     restore_mapped_aig_2);
+
             for (uint64_t i = 0; i < sequence_num; ++i) {
                 std::string tmp_algo_string{};
                 std::vector<std::string> algo_sequence_of_2;

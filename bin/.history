@@ -73,3 +73,107 @@ ga
 read_aiger -f ../benchmark/Small/b03_comb/b03_comb.aig
 rewrite -z;refactor -l;rewrite -z;rewrite;refactor -z;refactor -l;balance;refactor;rewrite -z -l;rewrite;map_fpga;
 print_stats -t 1
+read_aiger -f ../benchmark/Small/b03_comb/b03_comb.aig
+rewrite -z -l;rewrite -v;balance;refactor -l;rewrite -z;rewrite;refactor;rewrite -z;rewrite;balance;rewrite -z;refactor -z;refactor;rewrite -z;refactor;rewrite -z;rewrite -z -l;refactor -l;rewrite;balance;map_fpga;
+print_stats -t 1
+read_aiger -f ../benchmark/Small/b03_comb/b03_comb.aig
+rewrite -z -l;rewrite -v;balance;refactor -l;rewrite -z;rewrite;refactor;rewrite -z;rewrite;balance;map_fpga;
+print_stats -t 1
+refactor;rewrite -l;refactor -v;refactor -l;refactor -z;rewrite;balance;rewrite -l;rewrite -z;balance;map_fpga;
+print_stats -t 1
+read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C2670.iscas_comb/C2670.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C432.iscas_comb/C432.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C499.iscas_comb/C499.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/C880.iscas_comb/C880.iscas_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/apex7_comb/apex7_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b03_comb/b03_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b04_comb/b04_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b05_comb/b05_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b07_comb/b07_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b10_comb/b10_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b11_comb/b11_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b13_comb/b13_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/b9_comb/b9_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/c8_comb/c8_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/cavlc/cavlc.aig"
+ga
+read_aiger -f "../benchmark/Small/comp_comb/comp_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/int2float/int2float.aig"
+ga
+read_aiger -f "../benchmark/Small/lal_comb/lal_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/mux_cl_comb/mux_cl_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/pcler8_cl_comb/pcler8_cl_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s1196_comb/s1196_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s1238_comb/s1238_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s13207_comb/s13207_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s1488_comb/s1488_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s1494_comb/s1494_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s15850_comb/s15850_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s298_comb/s298_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s400_comb/s400_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s444_comb/s444_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s510_comb/s510_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s526_comb/s526_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s526n_comb/s526n_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s713_comb/s713_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s820_comb/s820_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s832_comb/s832_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s838_1_comb/s838_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/s9234_1_comb/s9234_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/sasc_comb/sasc_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/sct_comb/sct_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/simple_spi_comb/simple_spi_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/steppermotordrive_comb/steppermotordrive_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/term1_comb/term1_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/ttt2_comb/ttt2_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/usb_phy_comb/usb_phy_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/x4_comb/x4_comb.aig"
+ga
+read_aiger -f "../benchmark/Small/z4ml_comb/z4ml_comb.aig"
+ga

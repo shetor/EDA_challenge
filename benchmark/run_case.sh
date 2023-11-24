@@ -14,7 +14,7 @@ for dir in */; do
   # 寻找文件夹中的AIG文件
   for input_file in *.aig; do
     # 构建输出文件路径
-    log_file="/home/wuhaojie/Desktop/EDA_challenge/output${input_file%.*}.log"
+    log_file="/home/wuhaojie/Desktop/EDA_challenge/output/${input_file%.*}.log"
 
    # 切换到脚本所在的目录的上一层
     script_dir="$(dirname "$(dirname "$0")")"
