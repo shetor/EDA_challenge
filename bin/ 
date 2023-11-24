@@ -1,1 +1,1 @@
-balance;rewrite -v;rewrite -z;rewrite -z;refactor -z;rewrite -z;rewrite;refactor -z;balance;refactor -z;rewrite -z -l;refactor -l;rewrite;rewrite;rewrite -z;rewrite -z;refactor -z;rewrite;balance;rewrite -l;map_fpga;
+rewrite -z -l;rewrite -l;balance;map_fpga;

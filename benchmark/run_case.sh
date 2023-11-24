@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 切换到Small文件夹
-cd Large || exit 2
+cd Small || exit 2
 
 # 遍历Small文件夹中的所有文件夹
 for dir in */; do
@@ -28,10 +28,10 @@ for dir in */; do
     cd bin || exit 2
     # 运行imap，并将控制台输出重定向到ilog文件中
     ./imap > "$log_file" <<EOF
-read_aiger -f "../benchmark/Large/$dir$input_file"
+read_aiger -f "../benchmark/Small/$dir$input_file"
 ga
 EOF
     # 返回Small文件夹
-    cd "/home/wuhaojie/Desktop/EDA_challenge/benchmark/Large" || exit 2
+    cd "/home/wuhaojie/Desktop/EDA_challenge/benchmark/Small" || exit 2
   done
 done

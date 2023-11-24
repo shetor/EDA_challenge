@@ -128,11 +128,15 @@ find_top_better_strings(const std::unordered_map <std::string, fit_area_delay> &
 ////轮盘赌选择
 std::string ga_select(std::unordered_map <std::string, fit_area_delay> &seq_to_db_map,
                       const std::vector <std::string> &current_population_v) {
+    double sum_fit_prob = 0.0;
+    for (const auto &populationV: current_population_v) {
+        sum_fit_prob+=seq_to_db_map.find(populationV)->second.fit_prob;
+    }
     std::random_device rd;
     std::mt19937 gen(rd());
     std::string select_sequences;
     // 生成一个0到总概率之间的随机数
-    std::uniform_real_distribution<> dis(0.0, 1.0);
+    std::uniform_real_distribution<> dis(0.0, sum_fit_prob);
     double random_num = dis(gen);
     bool not_all_zero_flag = false;
     for (const auto &item: seq_to_db_map) {
@@ -150,6 +154,7 @@ std::string ga_select(std::unordered_map <std::string, fit_area_delay> &seq_to_d
     }
 //    std::cout<<"ga_select random num:"<<random_num<<std::endl;
     double cumulative_probability = 0.0;
+
     for (const auto &string: current_population_v) {
         cumulative_probability += seq_to_db_map.find(string)->second.fit_prob;
 //        std::cout << "out fitness:" << seq_to_db_map.find(string)->second.fit_prob << std::endl;
