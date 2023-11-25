@@ -18,7 +18,6 @@ std::vector <std::string> get_random_add_lut_sequence(const std::vector <std::st
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::uniform_real_distribution<> dis(0.0, 1.0);
     for (int i = 0; i < algo_num; i++) {
         int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
         counts[index]++;

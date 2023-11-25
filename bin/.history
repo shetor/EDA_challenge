@@ -177,65 +177,87 @@ read_aiger -f "../benchmark/Small/x4_comb/x4_comb.aig"
 ga
 read_aiger -f "../benchmark/Small/z4ml_comb/z4ml_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/ADDERFDS_comb/ADDERFDS_comb.aig"
+read_aiger -f "../benchmark/Large/DMA_comb/DMA_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/C1908.iscas_comb/C1908.iscas_comb.aig"
+read_aiger -f "../benchmark/Large/DSP_comb/DSP_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/C2670.iscas_comb/C2670.iscas_comb.aig"
+read_aiger -f "../benchmark/Large/ac97_ctrl_comb/ac97_ctrl_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/C432.iscas_comb/C432.iscas_comb.aig"
+read_aiger -f "../benchmark/Large/aes_core_comb/aes_core_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/C499.iscas_comb/C499.iscas_comb.aig"
+read_aiger -f "../benchmark/Middle/C3540.iscas_comb/C3540.iscas_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/C880.iscas_comb/C880.iscas_comb.aig"
+read_aiger -f "../benchmark/Middle/C6288.iscas_comb/C6288.iscas_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/apex7_comb/apex7_comb.aig"
+read_aiger -f "../benchmark/Middle/b12_comb/b12_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b03_comb/b03_comb.aig"
+read_aiger -f "../benchmark/Middle/b14_1_comb/b14_1_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b04_comb/b04_comb.aig"
+read_aiger -f "../benchmark/Middle/b14_comb/b14_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b05_comb/b05_comb.aig"
+read_aiger -f "../benchmark/Middle/dalu_comb/dalu_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b07_comb/b07_comb.aig"
+read_aiger -f "../benchmark/Middle/des_area_comb/des_area_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b10_comb/b10_comb.aig"
+read_aiger -f "../benchmark/Middle/frg2_comb/frg2_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b11_comb/b11_comb.aig"
+read_aiger -f "../benchmark/Middle/i2c/i2c.aig"
 ga
-read_aiger -f "../benchmark/Small/b13_comb/b13_comb.aig"
+read_aiger -f "../benchmark/Middle/i2c_comb/i2c_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/b9_comb/b9_comb.aig"
+read_aiger -f "../benchmark/Middle/max/max.aig"
 ga
-read_aiger -f "../benchmark/Small/c8_comb/c8_comb.aig"
+read_aiger -f "../benchmark/Middle/mem_ctrl_comb/mem_ctrl_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/cavlc/cavlc.aig"
+read_aiger -f "../benchmark/Middle/pair_comb/pair_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/comp_comb/comp_comb.aig"
+read_aiger -f "../benchmark/Middle/pci_spoci_ctrl_comb/pci_spoci_ctrl_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/int2float/int2float.aig"
+read_aiger -f "../benchmark/Middle/s35932_comb/s35932_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/lal_comb/lal_comb.aig"
+read_aiger -f "../benchmark/Middle/s38417_comb/s38417_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/mux_cl_comb/mux_cl_comb.aig"
+read_aiger -f "../benchmark/Middle/s38584_comb/s38584_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/pcler8_cl_comb/pcler8_cl_comb.aig"
+read_aiger -f "../benchmark/Middle/s5378_comb/s5378_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s1196_comb/s1196_comb.aig"
+read_aiger -f "../benchmark/Middle/systemcdes_comb/systemcdes_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s1238_comb/s1238_comb.aig"
+read_aiger -f "../benchmark/Middle/tv80_comb/tv80_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s13207_comb/s13207_comb.aig"
+read_aiger -f "../benchmark/Middle/wb_dma_comb/wb_dma_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s1488_comb/s1488_comb.aig"
+read_aiger -f "../benchmark/Middle/x3.blif_comb/x3.blif_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s1494_comb/s1494_comb.aig"
+read_aiger -f "../benchmark/Large/DMA_comb/DMA_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s15850_comb/s15850_comb.aig"
+read_aiger -f "../benchmark/Large/DSP_comb/DSP_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s298_comb/s298_comb.aig"
+read_aiger -f "../benchmark/Large/ac97_ctrl_comb/ac97_ctrl_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s400_comb/s400_comb.aig"
+read_aiger -f "../benchmark/Large/aes_core_comb/aes_core_comb.aig"
 ga
-read_aiger -f "../benchmark/Small/s444_comb/s444_comb.aig"
+read_aiger -f "../benchmark/Large/arbiter/arbiter.aig"
+ga
+read_aiger -f "../benchmark/Large/b15_1_comb/b15_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b15_comb/b15_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b17_1_comb/b17_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b17_comb/b17_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b18_comb/b18_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b20_1_comb/b20_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b20_comb/b20_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b21_1_comb/b21_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b21_comb/b21_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b22_1_comb/b22_1_comb.aig"
+ga
+read_aiger -f "../benchmark/Large/b22_comb/b22_comb.aig"
 ga

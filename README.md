@@ -1,84 +1,40 @@
-<div align="center">
-<h1>iMAP</h1>
-</div>
+# EDA_Challenge
 
-```
-Logic optimization and technology mapping tool.
-```
-### **Features**
-- All the operation is mainly based on the strcuture of And-Inverter Graph (AIG) now.
-- Logic Optimization
-  - rewrite
-  - refactor 
-  - balance
-  - lut_opt
-- Technology mapping
-  - map_fpga
-- IO
-  - read_aiger
-  - write_aiger
-  - write_fpga
-  - write_verilog
-  - write_dot
+## Introduction
 
-### **Compilation**
-```
-mkdir build && cd build
-cmake ..
-make -j 8
-```
-After compilation, the binary will be stored in the ${project_path}/bin/ directory.
+This repository is the source code of the EDA Elite Challenge Question  2: Intelligent Process of Combinational Logic Optimization and Process Mapping. The development platform is iMAP. This project is targeted at the given AIG(And-Inverter Graph) input combinational logic circuit, requiring the intelligent process algorithm to Features, dynamically provide a suitable sequence of logical optimization algorithms, and finally output a functionally equivalent LUT (look-up table) netlist. We used dynamic programming + multi-stage genetic algorithm to realize the design of intelligent process, greatly optimizing the area and delay. We provide the running script(run.sh)  for users to use.
 
-### **Usages**
-- Interactive execution
-```
-username@pcl-X11DPi-N-T:<project_path>/bin$ ./imap
-imap> read_aiger -f ../../../benchmark/EPFL/arithmetic/adder.aig
-imap> print_stats -t 0
-Stats of AIG: pis=256, pos=129, area=1020, depth=255
-imap> rewrite 
-imap> balance 
-imap> refactor 
-imap> lut_opt 
-imap> map_fpga 
-imap> print_stats -t 1
-Stats of FPGA: pis=256, pos=129, area=215, depth=75
-imap> write_fpga -f adder.fpga.v
-```
-- batch execution \
-The above step-by-step interactive execution can be performed at a time as shown below:
-```
-./imap -c "read_aiger -f ../../../benchmark/EPFL/arithmetic/adder.aig; print_stats -t 0; rewrite; balance; refactor; lut_opt; map_fpga; print_stats -t 1; write_fpga -f adder.fpga.v"
+## User guide
+
+#### Method one:
+
+When users enter our repository (EDA Challenge), they will see a running script (run.sh). After compiling and generating an executable file, they can directly run the following instructions:
+
+```shell
+run.sh input_path/*.aig output_path/*.seq
 ```
 
-### Activated your python APIs
-After running the "Compilation" step, the python library will generated in the "build/cli" path and named with "imap.python-<PYHTON-VERSION>-x86_64-linux-gnu.so", for example, if your python version is 3.7, then <PYHTON-VERSION> is 37.
-It is necessary to run the EngineIMAP with the generated python library.
+After running this command, the operator sequence will be output to the *.seq file in the specified path.
+
+**For example**:
+
 ```
-1. cd <path>/imap/ai_infra
-2. rm lib/imap.cpython-<PYHTON-VERSION>-x86_64-linux-gnu.so
-3. cp <path>/imap/build/cli/imap.cpython-<PYHTON-VERSION>-x86_64-linux-gnu.so ./lib
+run.sh /home/EDA_challenge/benchmarks/adder.aig /home/EDA_challenge/output/adder.seq
 ```
-Then, the EngineIMAP in imap_engine.py will be activated, and you can run with your python:
+
+#### Method two:
+
+Users can go to cli/bin and then you will see the imap executable file,and then you can run the following command.
+
 ```
-python demo.py <path_aig>
+read_aiger -f ../benchmark/adder/adder.aig 
+ga -O ../output/adder.seq
 ```
-**Notes**: You can modify the apis in "cli" folder of imap to let it support your modified algorithms before activating your python APIs.
 
+## Develop Enviroment
 
-### **WIP**
-- Yosys + imap;
-- Sequential circuit;
-- ASIC technology mapping;
+- Integrated Development Environment: CLion CL-222.4167.35
 
----
-### Contact us
-- Peng Cheng Laboratory / iEDA group
-- Peking University / Center for Energy-Efficient Computing and Applications
-- Shanghai Anlogic Infotech CO., LTD.
+- OS: Ubuntu 22.04
+- Compiler tool chain: gcc 11.4.0 
 
-If you have any question, please feel free to submit issues, or just send an email to "nlwmode AT gmail DOT com". 
-
-<div align="center">
- <img src="https://gitee.com/oscc-project/iEDA/raw/master/docs/resources/WeChatGroup.png" width="20%" height="20%" alt="微信讨论群" />
-</div>
