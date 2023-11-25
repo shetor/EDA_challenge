@@ -272,7 +272,7 @@ namespace alice {
             std::vector<std::string> next_population_v_2;
             bool continue_not_opt_flag = false;
             uint64_t algo_num = 5;
-            uint64_t algo_num_of_stage_2 = 15;
+            uint64_t algo_num_of_stage_2 = 10;
             uint64_t sequence_num = 10;
             std::vector<std::string> strings = {"balance;", "rewrite;", "rewrite -z;", "rewrite -l;", "refactor;",
                                                 "refactor -z;", "refactor -v;", "refactor -l;", "rewrite -z -l;"};
