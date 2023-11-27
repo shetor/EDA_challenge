@@ -12,22 +12,41 @@ struct fit_area_delay {
     double norm_fitness = 0;
 };
 
-std::vector <std::string> get_random_add_lut_sequence(const std::vector <std::string> &strings, int algo_num) {
-    std::vector <std::string> sequences;
+std::vector <std::string> get_random_add_lut_sequence(const std::vector <std::string> &strings, int algo_num,std::vector <std::vector<std::string>> &available_lut_macros) {
+    std::vector <std::string> sequences{};
     std::vector<int> counts(strings.size(), 0);
     std::random_device rd;
     std::mt19937 gen(rd());
 
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    double random_num = dis(gen);
     for (int i = 0; i < algo_num; i++) {
         int index = std::uniform_int_distribution<int>(0, strings.size() - 1)(gen);
         counts[index]++;
     }
-    for (int i = 0; i < strings.size(); i++) {
-        const std::string& str = strings[i];
-        int count = counts[i];
-        sequences.insert(sequences.end(), count, str);
+
+    if (random_num>=0.5){
+        for (int i = 0; i < strings.size(); i++) {
+            const std::string& str = strings[i];
+            int count = counts[i];
+            sequences.insert(sequences.end(), count, str);
+        }
+        std::shuffle(sequences.begin(), sequences.end(), gen);
+    }else {
+        if (!available_lut_macros.empty()){
+            int index = std::uniform_int_distribution<int>(0,available_lut_macros.size()-1)(gen);
+            sequences = available_lut_macros[index];
+            available_lut_macros.erase(available_lut_macros.begin()+index);
+        }else{
+            for (int i = 0; i < strings.size(); i++) {
+                const std::string& str = strings[i];
+                int count = counts[i];
+                sequences.insert(sequences.end(), count, str);
+            }
+            std::shuffle(sequences.begin(), sequences.end(), gen);
+        }
     }
-    std::shuffle(sequences.begin(), sequences.end(), gen);
+
     sequences.emplace_back("map_fpga;");
     return sequences;
 }

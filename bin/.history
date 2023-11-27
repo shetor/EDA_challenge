@@ -261,3 +261,5 @@ read_aiger -f "../benchmark/Large/b22_1_comb/b22_1_comb.aig"
 ga
 read_aiger -f "../benchmark/Large/b22_comb/b22_comb.aig"
 ga
+read_aiger -f "../benchmark/Small/b03_comb/b03_comb.aig"
+ga -O "../test_output/b03_comb.seq"
